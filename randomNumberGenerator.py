@@ -1,4 +1,5 @@
 import argparse
+import random
 
 # configuracion del parser para tomar argumentos por linea de comandos
 parser = argparse.ArgumentParser()
@@ -43,7 +44,7 @@ else:
 
 # Metodo que calcula una cierta cantidad de numeros aleatorios
 # con el metodo congruencial mixto/multiplicativo
-def calcularNrosAleatoriosMetodoCongruencial(s, M, A, C, cantidad=20):
+def generarNrosAleatoriosMetodoCongruencial(s, M, A, C, cantidad=20):
 	n = []  # vector de numero de iteracion
 	X = []  # vector de resultados
 	R = []  # vector de residuos
@@ -66,18 +67,28 @@ def calcularNrosAleatoriosMetodoCongruencial(s, M, A, C, cantidad=20):
 	return n, X, R
 
 
-#n, X, R = calcularNrosAleatoriosMetodoCongruencial(s, M, A, C, 100)
+def generarNumerosAleatoriosPython(cantidad=20):
+	nros = []
+
+	for i in range(0, cantidad):
+		x = round(random.random(), 4)
+		nros.append(x)
+
+	return nros
+
+
+# n, X, R = calcularNrosAleatoriosMetodoCongruencial(s, M, A, C, 100)
 
 # print(n)
 # print(X)
 # print(R)
 
 # for i in n:
-#	print("Iteración nro: " + str(i) + ". Resultado: " + str(X[i]) + ". Residuo: " + str(R[i]))
+# print("Iteración nro: " + str(i) + ". Resultado: " + str(X[i]) + ". Residuo: " + str(R[i]))
 #
-#	opt = input("Presione enter para el próximo nro de la lista o cualquier otra tecla y enter para salir: ")
-#	if opt is not "":
-#		break
+# opt = input("Presione enter para el próximo nro de la lista o cualquier otra tecla y enter para salir: ")
+# if opt is not "":
+# break
 
 # def pruebaChiCuadrado(serie, nroIntervalos=10):
 #
