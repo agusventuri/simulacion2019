@@ -5,7 +5,8 @@ import random
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-s', '--semilla', help="semilla con la que se van a generar los numeros")
-parser.add_argument('-c', '--constc', help="constante 'C' con la que ejecutar el generador. Dejar en blanco para metodo congruencial multiplicativo")
+parser.add_argument('-c', '--constc',
+                    help="constante 'C' con la que ejecutar el generador. Dejar en blanco para metodo congruencial multiplicativo")
 parser.add_argument('-a', '--consta', help="constante 'A' con la que ejecutar el generador")
 parser.add_argument('-m', '--constm', help="constante 'M' con la que ejecutar el generador")
 
@@ -20,61 +21,60 @@ s = 0.0
 
 # toma de variables en caso de que se hayan pasado por parametros
 if args.semilla is None and args.constc is None and args.constm is None and args.consta is None:
-	flagGeneracionGuiada = True
+    flagGeneracionGuiada = True
 elif args.semilla is not None and args.consta is not None and args.constm is not None:
-	A = float(args.consta)
-	M = float(args.constm)
-	s = float(args.semilla)
-	if args.constc is not None or args.constc != "0":
-		C = float(args.constc)
-
+    A = float(args.consta)
+    M = float(args.constm)
+    s = float(args.semilla)
+    if args.constc is not None or args.constc != "0":
+        C = float(args.constc)
 
 # toma de variables en caso de que no se hayan pasado por parametros
 if flagGeneracionGuiada:
-	s = float(input("Ingrese la semilla: "))
-	M = float(input("Ingrese la constante M: "))
-	A = float(input("Ingrese la constante A: "))
-	C = float(input("Ingrese la constante C: "))
+    s = float(input("Ingrese la semilla: "))
+    M = float(input("Ingrese la constante M: "))
+    A = float(input("Ingrese la constante A: "))
+    C = float(input("Ingrese la constante C: "))
 
 if C == 0:
-	print("usando método congruencial multiplicativo")
+    print("usando método congruencial multiplicativo")
 else:
-	print("usando método congruencial mixto")
+    print("usando método congruencial mixto")
 
 
 # Metodo que calcula una cierta cantidad de numeros aleatorios
 # con el metodo congruencial mixto/multiplicativo
 def generarNrosAleatoriosMetodoCongruencial(s, M, A, C, cantidad=20):
-	n = []  # vector de numero de iteracion
-	X = []  # vector de resultados
-	R = []  # vector de residuos
-	i = 0
-	while i < cantidad:
-		n.append(i)
+    n = []  # vector de numero de iteracion
+    X = []  # vector de resultados
+    R = []  # vector de residuos
+    i = 0
+    while i < cantidad:
+        n.append(i)
 
-		if i == 0:
-			X.append(round(s, 4))
-		else:
-			newX = (A * X[i - 1] + C) % M
-			newXRounded = round(newX, 4)
-			X.append(newXRounded)
+        if i == 0:
+            X.append(round(s, 4))
+        else:
+            newX = (A * X[i - 1] + C) % M
+            newXRounded = round(newX, 4)
+            X.append(newXRounded)
 
-		newR = X[i] / M
-		newRRounded = round(newR, 4)
-		R.append(newRRounded)
+        newR = X[i] / M
+        newRRounded = round(newR, 4)
+        R.append(newRRounded)
 
-		i += 1
-	return n, X, R
+        i += 1
+    return n, X, R
 
 
 def generarNumerosAleatoriosPython(cantidad=20):
-	nros = []
+    nros = []
 
-	for i in range(0, cantidad):
-		x = round(random.random(), 4)
-		nros.append(x)
+    for i in range(0, cantidad):
+        x = round(random.random(), 4)
+        nros.append(x)
 
-	return nros
+    return nros
 
 
 # n, X, R = calcularNrosAleatoriosMetodoCongruencial(s, M, A, C, 100)
@@ -98,23 +98,23 @@ def generarNumerosAleatoriosPython(cantidad=20):
 # limite inferior y el segundo el superior
 # tambien devuelve un vector con las medias de cada intervalo
 def dividirEnIntervalos(cantIntervalos, maximo=1, minimo=0):
-	paso = (maximo - minimo) / cantIntervalos
-	intervalos = []
-	mediaDeCadaIntervalo = []
-	i = 0
-	while i < cantIntervalos:
-		if i == 0:
-			intervalos.append([round(minimo, 4), round(minimo + paso, 4)])
-		else:
-			minimoAnterior = round(intervalos[i - 1][1], 4)
-			intervalos.append([minimoAnterior, round(minimoAnterior + paso, 4)])
+    paso = (maximo - minimo) / cantIntervalos
+    intervalos = []
+    mediaDeCadaIntervalo = []
+    i = 0
+    while i < cantIntervalos:
+        if i == 0:
+            intervalos.append([round(minimo, 4), round(minimo + paso, 4)])
+        else:
+            minimoAnterior = round(intervalos[i - 1][1], 4)
+            intervalos.append([minimoAnterior, round(minimoAnterior + paso, 4)])
 
-		i += 1
+        i += 1
 
-	for i in intervalos:
-		mediaDeCadaIntervalo.append(round((i[0] + i[1]) / 2, 4))
+    for i in intervalos:
+        mediaDeCadaIntervalo.append(round((i[0] + i[1]) / 2, 4))
 
-	return intervalos, mediaDeCadaIntervalo
+    return intervalos, mediaDeCadaIntervalo
 
 
 # metodo que realiza el test de Chi cuadrado a una serie con una cantidad x de intervalos
@@ -122,27 +122,26 @@ def dividirEnIntervalos(cantIntervalos, maximo=1, minimo=0):
 # menor a limite superior
 # Devuelve un vector con las frecuencias esperadas y un vector con las frecuencias reales
 def testChiCuadrado(serie, cantIntervalos):
-	frecuenciaEsperada = [len(serie) / cantIntervalos] * cantIntervalos
-	frecuenciaReal = []
+    frecuenciaEsperada = [len(serie) / cantIntervalos] * cantIntervalos
+    frecuenciaReal = []
 
-	intervalos, mediaDeCadaIntervalo = dividirEnIntervalos(cantIntervalos)
-	# print(intervalos)
+    intervalos, mediaDeCadaIntervalo = dividirEnIntervalos(cantIntervalos)
+    # print(intervalos)
 
-	for i in intervalos:
-		contadorApariciones = 0
+    for i in intervalos:
+        contadorApariciones = 0
 
-		item = 0
+        item = 0
 
-		while item < len(serie):
-			if serie[item] >= i[0] and serie[item] < i[1]:
-				contadorApariciones += 1
+        while item < len(serie):
+            if serie[item] >= i[0] and serie[item] < i[1]:
+                contadorApariciones += 1
 
-			item += 1
+            item += 1
 
-		frecuenciaReal.append(contadorApariciones)
+        frecuenciaReal.append(contadorApariciones)
 
-	return frecuenciaEsperada, frecuenciaReal
-
+    return frecuenciaEsperada, frecuenciaReal
 
 # frecuenciaEsperada, frecuenciaReal = testChiCuadrado(R, 10)
 
