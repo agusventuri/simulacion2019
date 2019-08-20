@@ -14,8 +14,15 @@ OS = "os"
 CONG_MIX = "mix"
 
 
+# Aplicación UI realizada con tkinter para generar números aleatorios y realizar test chi-cuadrado.
 class NumberGenerator(Tk):
 
+    # Constructor de la aplicación.
+    #
+    # Crea las pantallas de la aplicación.
+    #
+    # A cada pantalla la agrega a una lista que se utiliza para navegar entre las pantallas y que solo se creen una
+    # única vez.
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
         container = Frame(self)
@@ -27,7 +34,10 @@ class NumberGenerator(Tk):
 
         self.frames = {}
 
-        for F in (StartPage, CongruentialMixed, CongruentialMultiplicative, TestChiSquare):
+        # Cada nueva pantalla que se quiera mostrar debe ser agregada aca.
+        screens = (StartPage, CongruentialMixed, CongruentialMultiplicative, TestChiSquare)
+
+        for F in screens:
             frame = F(container, self)
 
             self.frames[F] = frame
@@ -36,13 +46,18 @@ class NumberGenerator(Tk):
 
         self.show_frame(StartPage)
 
+    # "Muestra" la pantalla que se pasa por parámetro siempre y cuando este agregada en la lista inicializada en el
+    # constructor.
+    # En realidad lo que hace es subirla en el "eje z" de pantallas poniéndola por encima del resto.
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
 
 
+# Clase que representa la pantalla inicial de la aplicación.
 class StartPage(Frame):
 
+    # Constructor de la pantalla inicial. Agrega los botones para acceder a las siguientes pantallas y nuestros nombres.
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         label = Label(self, text="Generador de Números Aleatorios", font=LARGE_FONT)
@@ -68,14 +83,23 @@ class StartPage(Frame):
             pady=20)
 
 
+# Clase base para las pantallas generadores de números aleatorios por el método congruencial.
 class CongruentialMethod(Frame):
+    # Inicialización de las variables básicas que se necesitan para generar los números aleatorios.
     m = None
     c = None
     seed = None
     a = None
+    # Variable destinada a almacenar el generador que se va a utilizar. Ver models/__init__.py
     generator = None
+    # Indice del último número generado. Variable global para luego mostrar la cantidad total generada de números.
     last_index_generated = 0
 
+    # Constructor base de las pantallas generadoras de números aleatorios por método congruencial.
+    # Agrega los botones de navegación (btn_back), los botones de acción (btn_calculate, add_one), los inputs para
+    # ingresar los valores necesario para generar los números (m_input, seed_input, a_input, c_input), sus labels,
+    # labels informativos para el total generado (total_label y total_count para mostrar el valor) o errores
+    # (error_label) y la tabla donde se podrán visualizar los números generados.
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.generated = []
@@ -130,22 +154,46 @@ class CongruentialMethod(Frame):
         for col in cols:
             self.table.heading(col, text=col)
 
+    # Método que define las acciones a ejecutar al presionar el botón add_one.
     def add_number(self):
+        # Genera un nuevo número mediante el generador.
         new_generated = self.generator.generate_number()
+
+        # Aumenta la cantidad de números generados en 1.
         self.last_index_generated += 1
+
+        # Agrega el número generado a la lista de generados.
         self.generated.append(new_generated)
+
+        # Inserta el número en la tabla, formateandolo correctamente para su visualización.
         self.table.insert("", "end", values=(self.last_index_generated, '{:.4f}'.format(new_generated)))
+
+        # Fuerza el renderizado de la tabla con el nuevo valor.
         self.table.update()
+
+        # Actualiza el label de la cuenta total.
         self.total_count.configure(text=str(self.last_index_generated))
+
+        # Fuerza el renderizado del label de la cuenta total.
         self.total_count.update()
+
+        # Mueve el cursor de la tabla a la última posición para poder ver los resultados.
         self.table.yview_moveto(1)
 
+    # Método que define las acciones a ejecutar al presionar btn_calculate.
+    #
+    # Parámetro mixed define si se utiliza el generador congruencial mixto o el multiplicativo.
     def generate_numbers(self, mixed):
+        # Se limpia el label de error.
         self.error_label.configure(text="")
+
+        # Se limpia la tabla de resultados.
         self.table.delete(*self.table.get_children())
 
+        # Corre la validación de inputs
         valid, error = self.validate_inputs(mixed)
 
+        # Autoexplicativo =B
         if valid:
             if mixed:
                 self.generator = MixedCongruentialGenerator(self.seed, self.m, self.a, self.c)
@@ -155,11 +203,15 @@ class CongruentialMethod(Frame):
             self.error_label.configure(text=error)
             return
 
+        # Deshabilita los inputs para que no se puedan modificar y no varien los valores luego cuando quiera agregar
+        # de a un único número.
         self.m_input.configure(state=DISABLED)
         self.a_input.configure(state=DISABLED)
         self.c_input.configure(state=DISABLED)
         self.seed_input.configure(state=DISABLED)
 
+        # TODO: Cambiar por el método generador múltiple en vez de el único. O tambien llamar al add_number LOL
+        # Basandose en BASE_ITERATIONS, genera un número aleatorio y realiza lo mismo que el método add_number.
         for i in range(BASE_ITERATIONS):
             self.btn_calculate.configure(state=DISABLED)
             new_generated = self.generator.generate_number()
@@ -171,8 +223,17 @@ class CongruentialMethod(Frame):
             self.total_count.configure(text=str(self.last_index_generated))
             self.total_count.update()
 
+        # Habilita el generador de a un número.
         self.add_one.configure(state=NORMAL)
 
+    # Validación de los inputs.
+    #
+    # "Recorre" de arriba para abajo inputs de la UI. Al encontrar un error "corta" y devuelve False y el String de
+    # error.
+    # Si no encuentra ningún error, devuelve True y String vacío.
+    #
+    # Parámetro mixed en True si se esta validando para el método congruencial mixto. False si es multiplicativo. De
+    # esta forma se valida o no c_input.
     def validate_inputs(self, mixed):
         self.m = self.m_input.get()
         self.seed = self.seed_input.get()
@@ -216,61 +277,116 @@ class CongruentialMethod(Frame):
 
         return True, ""
 
+    # Método que define las acciones a realizar al presionar el botón btn_back.
     def go_back(self, controller):
+        # Vuelve los inputs al estado habilitado
         self.m_input.configure(state=NORMAL)
         self.a_input.configure(state=NORMAL)
         self.c_input.configure(state=NORMAL)
         self.seed_input.configure(state=NORMAL)
+
+        # Borra el contenido de los inputs
         self.m_input.delete(0, END)
         self.seed_input.delete(0, END)
         self.a_input.delete(0, END)
         self.c_input.delete(0, END)
+
+        # Limpia la lista de números generados.
         self.generated.clear()
+
+        # Limpia la tabla de números generados.
         self.table.delete(*self.table.get_children())
+
+        # Restaura los botones a su estado inicial
         self.btn_calculate.configure(state=NORMAL)
         self.add_one.configure(state=DISABLED)
+
+        # Limpia la referencia al generador
         self.generator = None
+
+        # Limpia el label total de generados.
         self.total_count.configure(text="")
+
+        # Muestra la página inicial.
         controller.show_frame(StartPage)
 
 
+# Especificación de la pantalla del generador del método congruencial para el método congruencial mixto.
 class CongruentialMixed(CongruentialMethod):
+
+    # Constructor de la pantalla.
     def __init__(self, parent, controller):
+        # Llama al constructor padre para inicializar las cosas comunes de la pantalla.
         super().__init__(parent, controller)
 
+        # Setea el título correspondiente.
         self.title.configure(text="Método Congruencial Mixto")
+
+        # Setea la acción correspondiente al btn_calculate
         self.btn_calculate.configure(command=lambda: self.generate_numbers(True))
-        self.update()
 
 
+# Especificación de la pantalla del generador del método congruencial para el método congruencial multiplicativo.
 class CongruentialMultiplicative(CongruentialMethod):
+
+    # Constructor de la pantalla.
     def __init__(self, parent, controller):
+        # Llama al constructor padre para inicializar las cosas comunes de la pantalla.
         super().__init__(parent, controller)
 
+        # Setea el título correspondiente.
         self.title.configure(text="Método Congruencial Multiplicativo")
+
+        # Setea el valor 0 a C ya que no se usa.
         self.c_input.insert(0, "0")
+
+        # Deshabilita el input c_input para que no se pueda modificar el valor.
         self.c_input.configure(state=DISABLED)
+
+        # Setea la acción correspondiente al btn_calculate
         self.btn_calculate.configure(command=lambda: self.generate_numbers(False))
 
 
+# Clase que representa la pantalla para realizar el Test de Chi Cuadrado.
 class TestChiSquare(Frame):
+    # Inicialización de las variables básicas que se necesitan para generar los números aleatorios.
     m = None
     c = None
     seed = None
     a = None
+    # Variable destinada a almacenar el generador que se va a utilizar. Ver models/__init__.py
     generator = None
+    # Indice del último número generado. Variable global para luego mostrar la cantidad total generada de números.
     last_index_generated = 0
 
+    # Constructor de la pantalla para realizar el Test de Chi Cuadrado.
+    # Agrega los botones de navegación (btn_back), los botones de acción (btn_calculate, btn_make_test, btn_make_graph),
+    # los inputs para ingresar los valores necesario para generar los números (m_input, seed_input, a_input, c_input),
+    # los inputs para ingresar la cantidad de números aleatorios que se quieren crear (quantity_input), y la cantidad
+    # de intervalos en los cuales se quiere dividir y realizar el test (intervals_input), los RadioButtons para definir
+    # el método a utilizar para la creación de la serie de números aleatorios (language_button y congruential_button),
+    # los labels, labels informativos para el total generado (total_label y total_count para mostrar el valor) o errores
+    # (error_label), la tabla donde se podrán visualizar los números generados, la tabla para visualizar la distribución
+    # de frecuencia real y esperada por intervalos.
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
+        # Serie de números generada.
         self.generated_series = []
+        # Cantidad de números a generar en la serie.
         self.quantity = 0
+        # Cantidad de intervalos para el test.
         self.intervals = 0
+        # Intervalos generados.
         self.intervals_list = []
+        # Listado con las medias de los intervalos.
         self.intervals_average = []
+        # Listado con las frecuencias esperadas.
         self.expected_frequency = []
+        # Listado con las frecuencias reales obtenida de la serie.
         self.real_frequency = []
+        # Serie de números que cumple con la frecuencia esperada.
         self.expected_series = []
+        # Variable que almacena el tipo de generador a utilizar para los Switch Buttons.
         self.switch_variable = StringVar(value="os")
 
         btn_back = Button(self, text="Volver",
@@ -359,6 +475,7 @@ class TestChiSquare(Frame):
             self.frequency_table.heading(col, text=col)
         self.switch_method()
 
+    # Define las acciones a realizar al cambiar el método de generación de la serie de números aleatorios.
     def switch_method(self):
         if self.switch_variable.get() == OS:
             self.a_input.configure(state=DISABLED)
@@ -372,10 +489,14 @@ class TestChiSquare(Frame):
             self.seed_input.configure(state=NORMAL)
             self.c_input.configure(state=NORMAL)
 
+    # Define las acciones a realizar al apretar el botón btn_calculate que genera la serie de números aleatorios.
     def generate_sequence(self):
+        # Realiza la validación de los inputs.
         valid, error = self.validate_inputs()
 
+        # "Autoexplicativo" =B
         if valid:
+            # Deshabilita inputs para que no se modifiquen los valores iniciales.
             self.quantity_input.configure(state=DISABLED)
             self.intervals_input.configure(state=DISABLED)
             self.m_input.configure(state=DISABLED)
@@ -385,6 +506,7 @@ class TestChiSquare(Frame):
             self.language_button.configure(state=DISABLED)
             self.congruential_button.configure(state=DISABLED)
 
+            # Asigna un valor al generador de acuerdo a la variable del switch del tipo de generador.
             if self.switch_variable.get() == OS:
                 self.generator = PythonRandomGenerator()
                 self.generated_series = self.generator.generate(self.quantity)
@@ -392,9 +514,13 @@ class TestChiSquare(Frame):
                 self.generator = MixedCongruentialGenerator(self.seed, self.m, self.a, self.c)
                 self.generated_series = self.generator.generate(self.quantity)
 
+            # Limpia el error.
             self.error_label.configure(text="")
+
+            # Deshabilita la opción de generación de la serie.
             self.btn_calculate.configure(state=DISABLED)
 
+            # Completa la table de la serie con los valores generados y cambia el label del total de generados.
             i = 1
             for num in self.generated_series:
                 self.serie_table.insert("", "end", values='{:.4f}'.format(num))
@@ -403,19 +529,30 @@ class TestChiSquare(Frame):
                 self.total_count.update()
                 i += 1
 
+            # Fuerza la renderización de la tabla.
             self.serie_table.update()
+
+            # Habilita el botón para realizar el test.
             self.btn_make_test.configure(state=NORMAL)
         else:
             self.error_label.configure(text=error)
             return
 
+    # Define las acciones a realizar cuando se presiona el botón btn_make_test.
     def make_test(self):
+        # Deshabilita el botón.
         self.btn_make_test.configure(state=DISABLED)
+
+        # Genera la lista de intervalos de acuerdo a la cantidad de intervalos establecida por el input.
         self.intervals_list, self.intervals_average = TestChiCuadrado.divide_intervals(self.intervals)
+
+        # Genera la lista de frecuencias esperadas y la frecuencia real para los intervalos obtenidos.
         self.expected_frequency, self.real_frequency = TestChiCuadrado.test_chi_cuadrado(
             self.generated_series,
             self.intervals_list)
 
+        # Completa la tabla formateando los números para su correcta visualización con la cantidad de decimales
+        # esperada.
         for i in range(len(self.intervals_list)):
             interval_min = '{:.4f}'.format(self.intervals_list[i][0])
             interval_max = '{:.4f}'.format(self.intervals_list[i][1])
@@ -425,27 +562,54 @@ class TestChiSquare(Frame):
 
             self.frequency_table.insert("", "end", values=(interval_min, interval_max, average, expected, real))
             self.frequency_table.update()
+
+        # Habilita el botón para generar la gráfica.
         self.btn_make_graph.configure(state=NORMAL)
 
+    # Define las acciones a realizar al presionar el botón btn_make_graph.
     def make_graph(self):
+        # Crea una serie de números que cumple con la frecuencia esperada.
         expected_series = TestChiCuadrado.generate_expected_distribution(self.intervals_average,
                                                                          self.expected_frequency[0],
                                                                          0,
                                                                          1)
+
+        # Crea una matriz con los datos de las serie esperada y de la serie generada.
         data = column_stack((expected_series, self.generated_series))
 
+        # Se crea una nueva ventana.
         window = Toplevel(self)
 
+        # Crea la figura donde se mostrará la gráfica.
         figure = Figure(figsize=(10, 9), dpi=100)
+
+        # Agrega un graficador a la figura.
         plot = figure.add_subplot(111)
+
+        # Crea el histograma con los datos almacenados en la matriz data.
         plot.hist(data, label=('Esperada', 'Real'), bins=10)
+
+        # Renderiza el histograma en la figura.
         scatter3 = FigureCanvasTkAgg(figure, window)
+
+        # Define la posición de la gráfica.
         scatter3.get_tk_widget().pack(fill=BOTH, padx=20, pady=20)
+
+        # Setea el título.
         plot.set_title('Distribución de Frecuencias', fontsize=14)
+
+        # Setea que se creen las leyendas correspondientes.
         plot.legend()
+
+        # Setea el nombre de los ejes.
         plot.set_xlabel('Intervalo', fontsize=14)
         plot.set_ylabel('Frecuencia', fontsize=14)
 
+    # Validación de los inputs.
+    #
+    # "Recorre" de arriba para abajo inputs de la UI. Al encontrar un error "corta" y devuelve False y el String de
+    # error.
+    # Si no encuentra ningún error, devuelve True y String vacío.
     def validate_inputs(self):
         self.quantity = self.quantity_input.get()
         self.intervals = self.intervals_input.get()
@@ -512,24 +676,42 @@ class TestChiSquare(Frame):
 
         return True, ""
 
+    # Método que define las acciones a realizar al presionar el botón btn_back.
     def go_back(self, controller):
+        # Rehabilita los botones.
         self.language_button.configure(state=NORMAL)
         self.congruential_button.configure(state=NORMAL)
+
+        # Setea la variable del tipo de generador en congruecial para poder limpiar los inputs.
         self.switch_variable.set = CONG_MIX
         self.switch_method()
+
+        # Limpia los inputs del método congruencial.
         self.m_input.delete(0, END)
         self.seed_input.delete(0, END)
         self.a_input.delete(0, END)
         self.c_input.delete(0, END)
+
+        # Vuelve a setear el tipo de generador en el determinado.
         self.switch_variable.set = OS
+
+        # Rehabilita los inputs de generación.
         self.quantity_input.configure(state=NORMAL)
         self.intervals_input.configure(state=NORMAL)
+
+        # Limpia los inputs de generación
         self.quantity_input.delete(0, END)
         self.intervals_input.delete(0, END)
+
+        # Limpia las tablas
         self.serie_table.delete(*self.serie_table.get_children())
         self.frequency_table.delete(*self.serie_table.get_children())
+
+        # Setea los botones en su estado inicial.
         self.btn_calculate.configure(state=NORMAL)
         self.btn_make_test.configure(state=DISABLED)
+
+        # Setea las variables en su estado inicial.
         self.total_count.configure(text="")
         self.generated_series = []
         self.quantity = 0
@@ -538,6 +720,8 @@ class TestChiSquare(Frame):
         self.intervals_average = []
         self.expected_frequency = []
         self.real_frequency = []
+
+        # Regresa a la página original.
         controller.show_frame(StartPage)
 
 

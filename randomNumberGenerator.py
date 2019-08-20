@@ -1,7 +1,10 @@
 import argparse
 import random
 
-# configuracion del parser para tomar argumentos por linea de comandos
+# Deprecado. Moví los métodos a models/__init__.py para poder inicializar clases con las variables que se necesitan y
+# que puedan persistir para hacer el agregado de a un número.
+
+# configuración del parser para tomar argumentos por linea de comandos
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-s', '--semilla', help="semilla con la que se van a generar los numeros")
