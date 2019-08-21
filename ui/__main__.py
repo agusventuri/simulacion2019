@@ -1,8 +1,11 @@
 from tkinter import Frame, Label, Radiobutton, DISABLED, Entry, Button, Tk, X, Toplevel, END, BOTH, NORMAL, StringVar
 from matplotlib.pyplot import Figure
-from numpy import *
+import numpy as np
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import ttk
+
+from pandas import DataFrame
+
 from models import TestChiCuadrado, PythonRandomGenerator, MultiplicativeCongruentialGenerator, \
     MixedCongruentialGenerator
 
@@ -568,14 +571,15 @@ class TestChiSquare(Frame):
 
     # Define las acciones a realizar al presionar el botón btn_make_graph.
     def make_graph(self):
-        # Crea una serie de números que cumple con la frecuencia esperada.
-        expected_series = TestChiCuadrado.generate_expected_distribution(self.intervals_average,
-                                                                         self.expected_frequency[0],
-                                                                         0,
-                                                                         1)
+        y_str = []
+        for i in self.intervals_list:
+            y_str.append('[' + str('{:.4f}'.format(i[0])) + ' , ' + str('{:.4f}'.format(i[1])) + ')')
 
-        # Crea una matriz con los datos de las serie esperada y de la serie generada.
-        data = column_stack((expected_series, self.generated_series))
+        x = np.array(y_str)
+        v = np.array(self.real_frequency)
+        v2 = np.array(self.expected_frequency)
+
+        data = DataFrame({'Intervalos': x, 'Frecuencia Real': v, 'Frecuencia Esperada': v2})
 
         # Se crea una nueva ventana.
         window = Toplevel(self)
@@ -586,14 +590,14 @@ class TestChiSquare(Frame):
         # Agrega un graficador a la figura.
         plot = figure.add_subplot(111)
 
-        # Crea el histograma con los datos almacenados en la matriz data.
-        plot.hist(data, label=('Esperada', 'Real'), bins=10)
+        # Crea el gráfico de barras con los datos almacenados en la matriz data.
+        data.plot(x='Intervalos', y=['Frecuencia Real', 'Frecuencia Esperada'], ax=plot, kind='bar')
 
-        # Renderiza el histograma en la figura.
-        scatter3 = FigureCanvasTkAgg(figure, window)
+        # Renderiza la figura en un canvas.
+        canvas = FigureCanvasTkAgg(figure, window)
 
-        # Define la posición de la gráfica.
-        scatter3.get_tk_widget().pack(fill=BOTH, padx=20, pady=20)
+        # Define la posición del canvas.
+        canvas.get_tk_widget().pack(fill=BOTH, padx=20, pady=20)
 
         # Setea el título.
         plot.set_title('Distribución de Frecuencias', fontsize=14)
@@ -601,9 +605,11 @@ class TestChiSquare(Frame):
         # Setea que se creen las leyendas correspondientes.
         plot.legend()
 
-        # Setea el nombre de los ejes.
-        plot.set_xlabel('Intervalo', fontsize=14)
-        plot.set_ylabel('Frecuencia', fontsize=14)
+        # Se agrega la grilla.
+        plot.grid(True, which='major', axis='y', linestyle='dotted', alpha=0.6)
+
+        # Se modifican los labelsdel eje X.
+        plot.set_xticklabels(y_str, rotation=30, fontdict={'fontsize': 7})
 
     # Validación de los inputs.
     #
@@ -705,11 +711,12 @@ class TestChiSquare(Frame):
 
         # Limpia las tablas
         self.serie_table.delete(*self.serie_table.get_children())
-        self.frequency_table.delete(*self.serie_table.get_children())
+        self.frequency_table.delete(*self.frequency_table.get_children())
 
         # Setea los botones en su estado inicial.
         self.btn_calculate.configure(state=NORMAL)
         self.btn_make_test.configure(state=DISABLED)
+        self.btn_make_graph.configure(state=DISABLED)
 
         # Setea las variables en su estado inicial.
         self.total_count.configure(text="")

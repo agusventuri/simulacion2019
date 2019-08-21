@@ -119,7 +119,8 @@ class TestChiCuadrado:
     @staticmethod
     def test_chi_cuadrado(series, intervals):
         intervals_quantity = len(intervals)
-        expected_frequency = [int(len(series) / intervals_quantity)] * len(intervals)
+        expected_freq = round(float(len(series) / intervals_quantity), 4)
+        expected_frequency = [expected_freq] * len(intervals)
         real_frequency = []
 
         for i in intervals:
