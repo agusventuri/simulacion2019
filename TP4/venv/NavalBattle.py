@@ -51,31 +51,21 @@ class Cell(object):
 
 
 def create_grid(occupied_positions={}):
-    grid = [[(0, 0, 131) for x in range(100)] for x in range(100)]
+    grid = [[(0, 0, 131) for x in range(0, 100)] for x in range(0, 100)]
 
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            if (j, i) in occupied_positions:
-                c = occupied_positions[(j, i)]
-                grid[i][j] = c
+    for key in occupied_positions:
+        grid[key[0]][key[1]] = occupied_positions[key]
+
+    #for x in range(0, 100):
+    #    for y in range(0, 100):
+    #        if (y, x) in occupied_positions:
+    #            c = occupied_positions[(y, x)]
+    #            grid[x][y] = c
     return grid
 
 
-def valid_space(shape, grid):
-    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(20)]
-    accepted_positions = [j for sub in accepted_positions for j in sub]
-    formatted = convert_shape_format(shape)
-
-    for pos in formatted:
-        if pos not in accepted_positions:
-            if pos[1] > -1:
-                return False
-
-    return True
-
-
 def draw_grid(surface, row, col):
-    sx1 = s_width - 25 -  play_width
+    sx1 = s_width - 25 - play_width
     sx2 = 25
     sy = top_left_y + y_offset
 
@@ -103,13 +93,13 @@ def draw_window(surface):
     sx1 = s_width - 25 - play_width
     sx2 = 25
 
-    for i in range(len(grid1)):
-        for j in range(len(grid1[i])):
+    for i in range(0, 100):
+        for j in range(0, 100):
             pygame.draw.rect(surface, grid1[i][j], (sx1 + j * block_size, top_left_y + i * block_size + y_offset,
                                                     block_size, block_size), 0)
 
-    for o in range(len(grid2)):
-        for k in range(len(grid2[o])):
+    for o in range(0, 100):
+        for k in range(0, 100):
             pygame.draw.rect(surface, grid2[o][k], (sx2 + k * block_size, top_left_y + o * block_size + y_offset,
                                                     block_size, block_size), 0)
 

@@ -41,23 +41,24 @@ class Boat:
         hit_index = 0
 
         if self.vertical:
-            if x != self.x:
-                return "E"
             if self.y <= y < self.y + self.size:
                 hit = True
                 hit_index = y - self.y
         else:
-            if y != self.y:
-                return "E"
             if self.x <= x < self.x + self.size:
                 hit = True
                 hit_index = x - self.x
 
         if hit:
+            print("self")
+            print(self.x)
+            print(self.y)
+            print("atk")
+            print(x)
+            print(y)
+            print("-------------------------------")
             self.STATE[hit_index] = "G"
             for s in self.STATE:
                 if s != "G":
                     return "G"
             return "H"
-
-        return "E"

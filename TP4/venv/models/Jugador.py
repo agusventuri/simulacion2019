@@ -5,16 +5,20 @@ from models.Strategy import IStrategy
 
 class Jugador:
     occupied_positions = {}
+    boats_positions = {}
 
     def __init__(self, strategy):
-        self.barcos = self.crear_barcos()
         self.strategy = strategy
         self.occupied_positions = {}
+        self.boats_positions = {}
+        self.atacado = True
+        self.barcos = []
+        self.barcos = self.crear_barcos()
 
     def crear_barcos(self):
         # 5 tipos de barco, creo 2 x cada uno
         bar = []
-        for i in range(2, 7):
+        for i in range(2, 40):
             b = Boat(random.getrandbits(1), i)
             b1 = Boat(random.getrandbits(1), i)
             bar.append(self.posicionar_barco(b))
@@ -29,22 +33,25 @@ class Jugador:
             x = random.randrange(0, 100)
             y = random.randrange(0, 100)
 
-            if not self.posicionValida(x, y, barco):
+            if not self.posicion_valida(x, y, barco):
                 continue
             else:
                 barco.set_x(x)
                 barco.set_y(y)
+                self.boats_positions[(x, y)] = None
                 self.occupied_positions[(x, y)] = (128, 128, 128)
                 for i in range(1, barco.size):
                     if barco.vertical:
                         self.occupied_positions[(x, y + i)] = (128, 128, 128)
+                        self.boats_positions[(x, y + i)] = None
                     else:
                         self.occupied_positions[(x + i, y)] = (128, 128, 128)
+                        self.boats_positions[(x + i, y)] = None
                 valida = True
 
         return barco
 
-    def posicionValida(self, x, y, barco):
+    def posicion_valida(self, x, y, barco):
         # primero chequeo que no exista ya esa entrada
         if (x, y) in self.occupied_positions:
             return False
@@ -69,21 +76,26 @@ class Jugador:
         return True
 
     def get_occupied_positions(self):
-        for item in self.barcos:
-            self.occupied_positions = item.get_cell(self.occupied_positions)
+        #if self.atacado:
+        #    self.atacado = False
+        #    for item in self.barcos:
+        #        self.occupied_positions = item.get_cell(self.occupied_positions)
         return self.occupied_positions
 
     def recibir_ataque(self, x, y):
-        result = "E"
+        print("recib")
+        print(x)
+        print(y)
+        if (x, y) not in self.boats_positions:
+            self.occupied_positions[(x, y)] = (0, 0, 0)
+            return "E"
 
         for barco in self.barcos:
+            self.atacado = True
             result = barco.recibir_ataque(x, y)
-            if result is not "E":
-                break
-
-        if result is "E":
-            self.occupied_positions[(x, y)] = (0, 0, 0)
-        return result
+            if result is "G" or result is "H":
+                self.occupied_positions = barco.get_cell(self.occupied_positions)
+                return result
 
     def atacar(self):
         # esta funcion debe devolver un par x o y segun la estrategia usada
