@@ -18,7 +18,7 @@ class Jugador:
     def crear_barcos(self):
         # 5 tipos de barco, creo 2 x cada uno
         bar = []
-        for i in range(2, 40):
+        for i in range(2, 7):
             b = Boat(random.getrandbits(1), i)
             b1 = Boat(random.getrandbits(1), i)
             bar.append(self.posicionar_barco(b))
@@ -28,7 +28,6 @@ class Jugador:
 
     def posicionar_barco(self, barco):
         valida = False
-
         while not valida:
             x = random.randrange(0, 100)
             y = random.randrange(0, 100)
@@ -76,16 +75,9 @@ class Jugador:
         return True
 
     def get_occupied_positions(self):
-        #if self.atacado:
-        #    self.atacado = False
-        #    for item in self.barcos:
-        #        self.occupied_positions = item.get_cell(self.occupied_positions)
         return self.occupied_positions
 
     def recibir_ataque(self, x, y):
-        print("recib")
-        print(x)
-        print(y)
         if (x, y) not in self.boats_positions:
             self.occupied_positions[(x, y)] = (0, 0, 0)
             return "E"
@@ -95,6 +87,7 @@ class Jugador:
             result = barco.recibir_ataque(x, y)
             if result is "G" or result is "H":
                 self.occupied_positions = barco.get_cell(self.occupied_positions)
+                del self.boats_positions[x, y]
                 return result
 
     def atacar(self):

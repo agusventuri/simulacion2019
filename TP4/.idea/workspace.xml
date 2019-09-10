@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53b8e78b-50d4-41a3-8120-c709e017c921" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/NavalBattle.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/NavalBattle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/models/Boat.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/models/Boat.py" afterDir="false" />
@@ -182,7 +181,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
