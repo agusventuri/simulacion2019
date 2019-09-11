@@ -4,8 +4,6 @@ from models.Strategy import IStrategy
 
 
 class Jugador:
-    occupied_positions = {}
-    boats_positions = {}
 
     def __init__(self, strategy):
         self.strategy = strategy
@@ -18,7 +16,7 @@ class Jugador:
     def crear_barcos(self):
         # 5 tipos de barco, creo 2 x cada uno
         bar = []
-        for i in range(2, 7):
+        for i in range(2, 30):
             b = Boat(random.getrandbits(1), i)
             b1 = Boat(random.getrandbits(1), i)
             bar.append(self.posicionar_barco(b))
@@ -78,6 +76,9 @@ class Jugador:
         return self.occupied_positions
 
     def recibir_ataque(self, x, y):
+        if len(self.boats_positions) == 0:
+            return "L"
+
         if (x, y) not in self.boats_positions:
             self.occupied_positions[(x, y)] = (0, 0, 0)
             return "E"
@@ -94,3 +95,6 @@ class Jugador:
         # esta funcion debe devolver un par x o y segun la estrategia usada
         x, y = self.strategy.obtener_siguiente_ataque()
         return x, y
+
+    def recibir_resultado(self, result):
+        self.strategy.recibir_resultado(result)

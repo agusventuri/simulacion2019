@@ -10,6 +10,9 @@ class IStrategy:
     @abstractmethod
     def obtener_siguiente_ataque(self): raise NotImplementedError
 
+    @abstractmethod
+    def recibir_resultado(self, result): raise NotImplementedError
+
 
 class RandomStrategy(IStrategy):
 
@@ -19,13 +22,75 @@ class RandomStrategy(IStrategy):
                 self.not_attacked[(x, y)] = None
 
     def obtener_siguiente_ataque(self):
-        x, y = random.choice(list(self.not_attacked.keys()))
-        del self.not_attacked[(x, y)]
-        self.attacked[(x, y)] = None
+        try:
+            x, y = random.choice(list(self.not_attacked.keys()))
+            del self.not_attacked[(x, y)]
+            self.attacked[(x, y)] = None
+        except IndexError:
+            return 0, 0
         return x, y
+
+    def recibir_resultado(self, result):
+        pass
 
 
 class HuntAndTargetStrategy(IStrategy):
 
+    def __init__(self):
+        self.attack_buffer = {}
+        self.last_x_attacked = None
+        self.last_y_attacked = None
+        for y in range(0, 100, 2):
+            for x in range(0, 100, 2):
+                self.not_attacked[(x, y)] = None
+
     def obtener_siguiente_ataque(self):
-        pass
+        if len(self.attack_buffer) != 0:
+            x, y = random.choice(list(self.attack_buffer.keys()))
+            del self.attack_buffer[(x, y)]
+            self.attacked[(x, y)] = None
+            self.last_y_attacked = y
+            self.last_x_attacked = x
+            return x, y
+
+        try:
+            x, y = random.choice(list(self.not_attacked.keys()))
+            del self.not_attacked[(x, y)]
+            self.attacked[(x, y)] = None
+        except IndexError:
+            self.last_y_attacked = 0
+            self.last_x_attacked = 0
+            return 0, 0
+        self.last_y_attacked = y
+        self.last_x_attacked = x
+        return x, y
+
+    def recibir_resultado(self, result):
+        if result == "G":
+            # si la celda adyacente no fue atacada aún y tampoco está en el buffer de ataque la agregamos al buffer
+            # y la quitamos de la lista de no atacados
+            # definimos celdas adyacentes
+            x1 = (self.last_x_attacked + 1, self.last_y_attacked)
+            x2 = (self.last_x_attacked - 1, self.last_y_attacked)
+            y1 = (self.last_x_attacked, self.last_y_attacked + 1)
+            y2 = (self.last_x_attacked, self.last_y_attacked - 1)
+
+            if x1 not in self.attacked and x1 not in self.attack_buffer and x1[0] < 100:
+                self.attack_buffer[x1] = None
+                if x1 in self.not_attacked:
+                    del self.not_attacked[x1]
+
+            if x2 not in self.attacked and x2 not in self.attack_buffer and x2[0] >= 0:
+                self.attack_buffer[x2] = None
+                if x2 in self.not_attacked:
+                    del self.not_attacked[x2]
+
+            if y1 not in self.attacked and y1 not in self.attack_buffer and y1[1] < 100:
+                self.attack_buffer[y1] = None
+                if y1 in self.not_attacked:
+                    del self.not_attacked[y1]
+
+            if y2 not in self.attacked and y2 not in self.attack_buffer and y2[1] >= 0:
+                self.attack_buffer[y2] = None
+                if y2 in self.not_attacked:
+                    del self.not_attacked[y2]

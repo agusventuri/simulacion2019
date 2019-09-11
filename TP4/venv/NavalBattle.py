@@ -152,7 +152,18 @@ def main():
         grid2 = create_grid(jugador2.get_occupied_positions())
 
         x, y = jugador1.atacar()
-        jugador2.recibir_ataque(x, y)
+        result = jugador2.recibir_ataque(x, y)
+        jugador1.recibir_resultado(result)
+
+        if result == "L":
+            print("Jugador 2 perdió")
+
+        x, y = jugador2.atacar()
+        result = jugador1.recibir_ataque(x, y)
+        jugador2.recibir_resultado(result)
+
+        if result == "L":
+            print("Jugador 1 perdió")
 
         draw_window(win)
         pygame.display.update()
