@@ -11,9 +11,17 @@ class IStrategy:
     @abstractmethod
     def recibir_resultado(self, result): raise NotImplementedError
 
+    @abstractmethod
+    def get_hits(self): raise NotImplementedError
+
+    @abstractmethod
+    def get_misses(self): raise NotImplementedError
+
 
 class RandomStrategy(IStrategy):
     not_attacked = {}
+    hits = 0
+    misses = 0
 
     def __init__(self):
         for y in range(0, 100):
@@ -29,19 +37,30 @@ class RandomStrategy(IStrategy):
         return x, y
 
     def recibir_resultado(self, result):
-        pass
+        if result == "G" or result == "H":
+            self.hits += 1
+        if result == "E":
+            self.misses += 1
+
+    def get_hits(self):
+        return self.hits
+
+    def get_misses(self):
+        return self.misses
 
 
 class HuntAndTargetStrategy(IStrategy):
     attacked = {}
     not_attacked = {}
+    hits = 0
+    misses = 0
 
     def __init__(self):
         self.attack_buffer = {}
         self.last_x_attacked = None
         self.last_y_attacked = None
-        for y in range(0, 100, 2):
-            for x in range(0, 100, 2):
+        for y in range(0, 100):
+            for x in range(0, 100):
                 if (x + y + 100 % 2 + 1) % 2:
                     self.not_attacked[(x, y)] = None
 
@@ -71,6 +90,7 @@ class HuntAndTargetStrategy(IStrategy):
 
     def recibir_resultado(self, result):
         if result == "G" or result == "H":
+            self.hits += 1
             # si la celda adyacente no fue atacada aún y tampoco está en el buffer de ataque la agregamos al buffer
             # y la quitamos de la lista de no atacados
             # definimos celdas adyacentes
@@ -90,3 +110,11 @@ class HuntAndTargetStrategy(IStrategy):
 
             if y2 not in self.attacked and y2 not in self.attack_buffer and y2[1] >= 0:
                 self.attack_buffer[y2] = None
+        if result == "E":
+            self.misses += 1
+
+    def get_hits(self):
+        return self.hits
+
+    def get_misses(self):
+        return self.misses

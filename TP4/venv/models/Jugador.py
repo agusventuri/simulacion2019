@@ -98,3 +98,9 @@ class Jugador:
 
     def recibir_resultado(self, result):
         self.strategy.recibir_resultado(result)
+
+    def get_hits(self):
+        return self.strategy.get_hits()
+
+    def get_misses(self):
+        return self.strategy.get_misses()
