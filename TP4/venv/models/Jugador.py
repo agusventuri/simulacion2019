@@ -16,7 +16,7 @@ class Jugador:
     def crear_barcos(self):
         # 5 tipos de barco, creo 2 x cada uno
         bar = []
-        for i in range(2, 6):
+        for i in range(2, 7):
             b = Boat(random.getrandbits(1), i)
             b1 = Boat(random.getrandbits(1), i)
             bar.append(self.posicionar_barco(b))

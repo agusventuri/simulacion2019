@@ -4,7 +4,6 @@
     <list default="true" id="53b8e78b-50d4-41a3-8120-c709e017c921" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/NavalBattle.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/NavalBattle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/NavalBattleNoGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/NavalBattleNoGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/models/Jugador.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/models/Jugador.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -227,6 +226,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/NavalBattle.py</url>
+          <line>190</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TP4$NavalBattle__1_.coverage" NAME="NavalBattle (1) Coverage Results" MODIFIED="1568241094626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />

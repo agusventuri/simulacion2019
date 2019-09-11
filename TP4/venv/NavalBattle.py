@@ -13,7 +13,7 @@ import NavalBattleNoGUI as noGui
 pygame.font.init()
 
 # GLOBALS VARS
-number_of_simulations = 10
+number_of_simulations = 1000
 s_width = 1300
 s_height = 700
 play_width = 600  # meaning 300 // 10 = 30 width per block
@@ -80,7 +80,7 @@ def draw_text_middle(text, size, color, surface, y_offset):
     for i in text:
         label = font.render(i, 1, color)
         surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2),
-                             top_left_y + (play_height / 2) - (label.get_height() / 2) + offset))
+                             top_left_y + (play_height / 2) - (label.get_height() / 2) + offset - 10))
         offset += y_offset
 
 
@@ -156,13 +156,15 @@ def main_menu():
     run = True
     while run:
         win.fill((0, 0, 0))
-        draw_text_middle(['Presiona A para modo automático', 'o S para semiautomático'], 60, (255, 255, 255), win, 30.0)
+        draw_text_middle(['Presiona A para modo automático', 'o S para semiautomático', "o ESC para salir"], 60, (255, 255, 255), win, 40.0)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
 
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    run = False
                 if event.key == pygame.K_s:
                     semi_automatic()
                 if event.key == pygame.K_a:
@@ -203,11 +205,21 @@ def main_menu():
                     result_to_show.append("Cantidad promedio de tiros errados con la estrategia random: " + str(
                         promedio_acum_misses_random))
                     result_to_show.append("El porcentaje de aciertos fue de: " + str(porc_hits_random) + "%")
+                    result_to_show.reverse()
+                    result_to_show.append("                                  ")
+                    result_to_show.append("Presione una tecla para volver al menu")
 
                     win.fill((0, 0, 0))
-                    draw_text_middle(result_to_show, 60,
-                                     (255, 255, 255), win, 30.0)
+                    draw_text_middle(result_to_show, 25,
+                                     (255, 255, 255), win, -30)
                     pygame.display.update()
+
+                    finished = False
+
+                    while not finished:
+                        for event in pygame.event.get():
+                            if event.type == pygame.KEYDOWN:
+                                finished = True
 
     pygame.quit()
 
