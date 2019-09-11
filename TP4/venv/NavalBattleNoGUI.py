@@ -18,17 +18,17 @@ jugador_random = Jugador(strategy_random)
 jugador_hunt = Jugador(strategy_parity_hunt)
 
 
-def automatic():
+def automatic(simulations_number):
     global jugador_random, jugador_hunt, strategy_random, strategy_parity_hunt
 
-    run = 10
+    run = simulations_number
 
     cantidad_wins_random = 0
     cantidad_wins_hunt_and_target = 0
-    cantidad_misses_random = []
-    cantidad_hits_random = []
-    cantidad_misses_hunt = []
-    cantidad_hits_hunt = []
+    cantidad_misses_random = 0
+    cantidad_hits_random = 0
+    cantidad_misses_hunt = 0
+    cantidad_hits_hunt = 0
 
     while run > 0:
         x, y = jugador_hunt.atacar()
@@ -37,10 +37,10 @@ def automatic():
 
         if result1 == "L":
             cantidad_wins_random += 1
-            cantidad_misses_random.append(jugador_random.get_misses())
-            cantidad_hits_random.append(jugador_random.get_hits())
-            cantidad_misses_hunt.append(jugador_hunt.get_misses())
-            cantidad_hits_hunt.append(jugador_hunt.get_hits())
+            cantidad_misses_random += jugador_random.get_misses()
+            cantidad_hits_random += jugador_random.get_hits()
+            cantidad_misses_hunt += jugador_hunt.get_misses()
+            cantidad_hits_hunt += jugador_hunt.get_hits()
             run -= 1
             reset()
             continue
@@ -51,26 +51,30 @@ def automatic():
 
         if result2 == "L":
             cantidad_wins_hunt_and_target += 1
-            cantidad_misses_random.append(jugador_random.get_misses())
-            cantidad_hits_random.append(jugador_random.get_hits())
-            cantidad_misses_hunt.append(jugador_hunt.get_misses())
-            cantidad_hits_hunt.append(jugador_hunt.get_hits())
+            cantidad_misses_random += jugador_random.get_misses()
+            cantidad_hits_random += jugador_random.get_hits()
+            cantidad_misses_hunt += jugador_hunt.get_misses()
+            cantidad_hits_hunt += jugador_hunt.get_hits()
             run -= 1
             reset()
             continue
 
-    winner = (strategy_parity_hunt.__class__.__name__, strategy_random.__class__.__name__)[cantidad_wins_random > cantidad_wins_hunt_and_target]
-    winner_points = (cantidad_wins_random, cantidad_wins_hunt_and_target)[winner == strategy_parity_hunt.__class__.__name__]
-    loser = (strategy_random.__class__.__name__, strategy_parity_hunt.__class__.__name__)[cantidad_wins_random > cantidad_wins_hunt_and_target]
-    loser_points = (cantidad_wins_random, cantidad_wins_hunt_and_target)[winner != strategy_parity_hunt.__class__.__name__]
-    return cantidad_misses_random,\
-        cantidad_hits_random, \
-        cantidad_misses_hunt, \
-        cantidad_hits_hunt,\
-        winner,\
-        winner_points, \
-        loser, \
-        loser_points
+    winner = (strategy_parity_hunt.__class__.__name__, strategy_random.__class__.__name__)[
+        cantidad_wins_random > cantidad_wins_hunt_and_target]
+    winner_points = (cantidad_wins_random, cantidad_wins_hunt_and_target)[
+        winner == strategy_parity_hunt.__class__.__name__]
+    loser = (strategy_random.__class__.__name__, strategy_parity_hunt.__class__.__name__)[
+        cantidad_wins_random > cantidad_wins_hunt_and_target]
+    loser_points = (cantidad_wins_random, cantidad_wins_hunt_and_target)[
+        winner != strategy_parity_hunt.__class__.__name__]
+    return cantidad_misses_random, \
+           cantidad_hits_random, \
+           cantidad_misses_hunt, \
+           cantidad_hits_hunt, \
+           winner, \
+           winner_points, \
+           loser, \
+           loser_points
 
 
 def reset():

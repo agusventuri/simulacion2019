@@ -7,11 +7,13 @@ from models.Jugador import Jugador
 from models.Strategy import RandomStrategy
 from models.Strategy import HuntAndTargetStrategy
 import NavalBattleNoGUI as noGui
+
 # from models import Strategy
 
 pygame.font.init()
 
 # GLOBALS VARS
+number_of_simulations = 10
 s_width = 1300
 s_height = 700
 play_width = 600  # meaning 300 // 10 = 30 width per block
@@ -86,7 +88,7 @@ def draw_window(surface):
     global grid1, grid2
     surface.fill((0, 0, 0))
     font = pygame.font.SysFont('comicsans', 40)
-    label = font.render('Batalla naval', 1, (255, 255, 255))
+    label = font.render('Batalla Naval', 1, (255, 255, 255))
 
     surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 10))
 
@@ -125,14 +127,14 @@ def semi_automatic():
         jugador1.recibir_resultado(result)
 
         if result == "L":
-            print("Jugador 2 perdió")
+            result_to_show.append("Jugador 2 perdió")
 
         x, y = jugador2.atacar()
         result = jugador1.recibir_ataque(x, y)
         jugador2.recibir_resultado(result)
 
         if result == "L":
-            print("Jugador 1 perdió")
+            result_to_show.append("Jugador 1 perdió")
 
         draw_window(win)
         pygame.display.update()
@@ -164,51 +166,53 @@ def main_menu():
                 if event.key == pygame.K_s:
                     semi_automatic()
                 if event.key == pygame.K_a:
-                    # draw_text_middle(['Simulando....'], 60, (255, 255, 255), win, 0)
-                    vector_misses_hunt, \
-                        vector_hits_hunt, \
-                        vector_misses_random, \
-                        vector_hits_random, \
-                        winner, \
-                        winner_points, \
-                        loser, \
-                        loser_points = noGui.automatic()
+                    win.fill((0, 0, 0))
+                    draw_text_middle(['Simulando....'], 60, (255, 255, 255), win, 0)
+                    pygame.display.update()
+                    acum_misses_hunt, \
+                    acum_hits_hunt, \
+                    acum_misses_random, \
+                    acum_hits_random, \
+                    winner, \
+                    winner_points, \
+                    loser, \
+                    loser_points = noGui.automatic(number_of_simulations)
 
-                    cantidad_misses_random = vector_misses_random[0]
-                    cantidad_hits_random = vector_hits_random[0]
-                    cantidad_misses_hunt = vector_misses_hunt[0]
-                    cantidad_hits_hunt = vector_hits_hunt[0]
+                    promedio_acum_misses_random = acum_misses_random / number_of_simulations
+                    promedio_acum_hits_random = acum_hits_random / number_of_simulations
+                    promedio_acum_misses_hunt = acum_misses_hunt / number_of_simulations
+                    promedio_acum_hits_hunt = acum_hits_hunt / number_of_simulations
 
-                    for i in range(1, len(vector_hits_hunt)):
-                        cantidad_misses_random = (((i - 1) * cantidad_misses_random) + vector_misses_random[i]) / i
-                        cantidad_hits_random = (((i - 1) * cantidad_hits_random) + vector_hits_random[i]) / i
-                        cantidad_misses_hunt = (((i - 1) * cantidad_misses_hunt) + vector_misses_hunt[i]) / i
-                        cantidad_hits_hunt = (((i - 1) * cantidad_hits_hunt) + vector_hits_hunt[i]) / i
+                    porc_hits_hunt = (acum_hits_hunt / (acum_hits_hunt + acum_misses_hunt)) * 100
+                    porc_hits_random = (acum_hits_random / (acum_hits_random + acum_misses_random)) * 100
 
-                    porc_hits_hunt = (cantidad_hits_hunt / (cantidad_hits_hunt + cantidad_misses_hunt)) * 100
-                    porc_hits_random = (cantidad_hits_random / (cantidad_hits_random + cantidad_misses_random)) * 100
+                    result_to_show = []
+                    result_to_show.append(
+                        "La estrategia ganadora es " + winner + " con " + str(winner_points) + " partidas ganadas.")
+                    result_to_show.append(
+                        "La estrategia perdedora es " + loser + " con " + str(loser_points) + " partidas ganadas.")
+                    result_to_show.append(
+                        "Cantidad promedio de tiros acertados con la estrategia hunt and target: " + str(
+                            promedio_acum_hits_hunt))
+                    result_to_show.append(
+                        "Cantidad promedio de tiros errados con la estrategia hunt and target: " + str(
+                            promedio_acum_misses_hunt))
+                    result_to_show.append("El porcentaje de aciertos fue de: " + str(porc_hits_hunt) + "%")
+                    result_to_show.append("Cantidad promedio de tiros acertados con la estrategia random: " + str(
+                        promedio_acum_hits_random))
+                    result_to_show.append("Cantidad promedio de tiros errados con la estrategia random: " + str(
+                        promedio_acum_misses_random))
+                    result_to_show.append("El porcentaje de aciertos fue de: " + str(porc_hits_random) + "%")
 
-                    print("La estrategia ganadora es " + winner + " con "
-                          + str(winner_points) + " partidas ganadas.")
-                    print("La estrategia perdedora es " + loser + " con "
-                          + str(loser_points) + " partidas ganadas.")
-                    print("Cantidad promedio de tiros acertados con la estrategia hunt and target: "
-                          + str(cantidad_hits_hunt))
-                    print("Cantidad promedio de tiros errados con la estrategia hunt and target: "
-                          + str(cantidad_misses_hunt))
-                    print("El porcentaje de aciertos fue de: "
-                          + str(porc_hits_hunt) + "%")
-                    print("Cantidad promedio de tiros acertados con la estrategia random: "
-                          + str(cantidad_hits_random))
-                    print("Cantidad promedio de tiros errados con la estrategia random: "
-                          + str(cantidad_misses_random))
-                    print("El porcentaje de aciertos fue de: "
-                          + str(porc_hits_random) + "%")
+                    win.fill((0, 0, 0))
+                    draw_text_middle(result_to_show, 60,
+                                     (255, 255, 255), win, 30.0)
+                    pygame.display.update()
 
     pygame.quit()
 
 
 win = pygame.display.set_mode((s_width, s_height))
-pygame.display.set_caption('Batalla naval')
+pygame.display.set_caption('Batalla Naval')
 
 main_menu()  # start game
