@@ -37,29 +37,25 @@ class Boat:
         self.y = y
 
     def recibir_ataque(self, x, y):
-        hit = False
-        hit_index = 0
-
         if self.vertical:
             if self.x != x:
                 return "E"
             if self.y <= y < self.y + self.size:
-                hit = True
-                hit_index = y - self.y
+                self.STATE[y - self.y] = "G"
+                for s in self.STATE:
+                    if s != "G":
+                        return "G"
+                return "H"
             else:
                 return "E"
         else:
             if self.y != y:
                 return "E"
             if self.x <= x < self.x + self.size:
-                hit = True
-                hit_index = x - self.x
+                self.STATE[x - self.x] = "G"
+                for s in self.STATE:
+                    if s != "G":
+                        return "G"
+                return "H"
             else:
                 return "E"
-
-        if hit:
-            self.STATE[hit_index] = "G"
-            for s in self.STATE:
-                if s != "G":
-                    return "G"
-            return "H"

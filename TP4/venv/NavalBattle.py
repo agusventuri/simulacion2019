@@ -99,51 +99,6 @@ def draw_window(surface):
 def main():
     global grid1, grid2, occupied_positions1, occupied_positions2, jugador1, jugador2
 
-    # occupied_positions = {}  # (x,y):(255,0,0)
-    # boat0 = Boat(True, 6, 90, 50, ["G", "G", "O", "G", "G", "O"])
-    # boat1 = Boat(False, 6, 80, 10, ["G", "O", "O", "G", "G", "O"])
-    # boat2 = Boat(True, 5, 70, 20, ["G", "G", "O", "G", "G"])
-    # boat3 = Boat(False, 5, 60, 30, ["G", "O", "O", "G", "G"])
-    # boat4 = Boat(True, 4, 50, 40, ["G", "G", "O", "G"])
-    # boat5 = Boat(False, 4, 40, 50, ["G", "G", "O", "G"])
-    # boat6 = Boat(True, 3, 30, 60, ["G", "G", "O"])
-    # boat7 = Boat(False, 3, 20, 70, ["G", "O", "O"])
-    # boat8 = Boat(True, 2, 10, 80, ["G", "G"])
-    # boat9 = Boat(False, 2, 50, 90, ["G", "O"])
-
-    # occupied_positions1 = boat0.get_cell(occupied_positions1)
-    # occupied_positions1 = boat1.get_cell(occupied_positions1)
-    # occupied_positions1 = boat2.get_cell(occupied_positions1)
-    # occupied_positions1 = boat3.get_cell(occupied_positions1)
-    # occupied_positions1 = boat4.get_cell(occupied_positions1)
-    # occupied_positions1 = boat5.get_cell(occupied_positions1)
-    # occupied_positions1 = boat6.get_cell(occupied_positions1)
-    # occupied_positions1 = boat7.get_cell(occupied_positions1)
-    # occupied_positions1 = boat8.get_cell(occupied_positions1)
-    # occupied_positions1 = boat9.get_cell(occupied_positions1)
-
-    # boat20 = Boat(True, 6, 50, 90, ["G", "G", "O", "G", "G", "O"])
-    # boat21 = Boat(False, 6, 10, 10, ["G", "O", "O", "G", "G", "O"])
-    # boat22 = Boat(True, 5, 20, 20, ["G", "G", "O", "G", "G"])
-    # boat23 = Boat(False, 5, 30, 30, ["G", "O", "O", "G", "G"])
-    # boat24 = Boat(True, 4, 40, 40, ["G", "G", "O", "G"])
-    # boat25 = Boat(False, 4, 50, 40, ["G", "G", "O", "G"])
-    # boat26 = Boat(True, 3, 60, 60, ["G", "G", "O"])
-    # boat27 = Boat(False, 3, 70, 70, ["G", "O", "O"])
-    # boat28 = Boat(True, 2, 80, 80, ["G", "G"])
-    # boat29 = Boat(False, 2, 90, 90, ["G", "O"])
-
-    # occupied_positions2 = boat20.get_cell(occupied_positions2)
-    # occupied_positions2 = boat21.get_cell(occupied_positions2)
-    # occupied_positions2 = boat22.get_cell(occupied_positions2)
-    # occupied_positions2 = boat23.get_cell(occupied_positions2)
-    # occupied_positions2 = boat24.get_cell(occupied_positions2)
-    # occupied_positions2 = boat25.get_cell(occupied_positions2)
-    # occupied_positions2 = boat26.get_cell(occupied_positions2)
-    # occupied_positions2 = boat27.get_cell(occupied_positions2)
-    # occupied_positions2 = boat28.get_cell(occupied_positions2)
-    # occupied_positions2 = boat29.get_cell(occupied_positions2)
-
     run = True
     clock = pygame.time.Clock()
 
@@ -181,23 +136,7 @@ def main():
     pygame.time.delay(1000)
 
 
-def main_menu():
-    main()
-    #run = True
-    #while run:
-    #    win.fill((0, 0, 0))
-    #    draw_text_middle('Press any key to begin.', 60, (255, 255, 255), win)
-    #    pygame.display.update()
-    #    for event in pygame.event.get():
-    #        if event.type == pygame.QUIT:
-    #            run = False
-
-    #        if event.type == pygame.KEYDOWN:
-    #            main()
-    #pygame.quit()
-
-
 win = pygame.display.set_mode((s_width, s_height))
 pygame.display.set_caption('Batalla naval')
 
-main_menu()  # start game
+main()  # start game

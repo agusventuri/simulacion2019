@@ -4,8 +4,6 @@ from abc import ABCMeta, abstractmethod
 
 class IStrategy:
     __metaclass__ = ABCMeta
-    attacked = {}
-    not_attacked = {}
 
     @abstractmethod
     def obtener_siguiente_ataque(self): raise NotImplementedError
@@ -15,6 +13,7 @@ class IStrategy:
 
 
 class RandomStrategy(IStrategy):
+    not_attacked = {}
 
     def __init__(self):
         for y in range(0, 100):
@@ -25,7 +24,6 @@ class RandomStrategy(IStrategy):
         try:
             x, y = random.choice(list(self.not_attacked.keys()))
             del self.not_attacked[(x, y)]
-            self.attacked[(x, y)] = None
         except IndexError:
             return 0, 0
         return x, y
@@ -35,6 +33,8 @@ class RandomStrategy(IStrategy):
 
 
 class HuntAndTargetStrategy(IStrategy):
+    attacked = {}
+    not_attacked = {}
 
     def __init__(self):
         self.attack_buffer = {}
@@ -42,12 +42,16 @@ class HuntAndTargetStrategy(IStrategy):
         self.last_y_attacked = None
         for y in range(0, 100, 2):
             for x in range(0, 100, 2):
-                self.not_attacked[(x, y)] = None
+                if (x + y + 100 % 2 + 1) % 2:
+                    self.not_attacked[(x, y)] = None
 
     def obtener_siguiente_ataque(self):
         if len(self.attack_buffer) != 0:
             x, y = random.choice(list(self.attack_buffer.keys()))
             del self.attack_buffer[(x, y)]
+            try:
+                del self.not_attacked[(x, y)]
+            except: pass
             self.attacked[(x, y)] = None
             self.last_y_attacked = y
             self.last_x_attacked = x
@@ -66,7 +70,7 @@ class HuntAndTargetStrategy(IStrategy):
         return x, y
 
     def recibir_resultado(self, result):
-        if result == "G":
+        if result == "G" or result == "H":
             # si la celda adyacente no fue atacada aún y tampoco está en el buffer de ataque la agregamos al buffer
             # y la quitamos de la lista de no atacados
             # definimos celdas adyacentes
@@ -77,20 +81,12 @@ class HuntAndTargetStrategy(IStrategy):
 
             if x1 not in self.attacked and x1 not in self.attack_buffer and x1[0] < 100:
                 self.attack_buffer[x1] = None
-                if x1 in self.not_attacked:
-                    del self.not_attacked[x1]
 
             if x2 not in self.attacked and x2 not in self.attack_buffer and x2[0] >= 0:
                 self.attack_buffer[x2] = None
-                if x2 in self.not_attacked:
-                    del self.not_attacked[x2]
 
             if y1 not in self.attacked and y1 not in self.attack_buffer and y1[1] < 100:
                 self.attack_buffer[y1] = None
-                if y1 in self.not_attacked:
-                    del self.not_attacked[y1]
 
             if y2 not in self.attacked and y2 not in self.attack_buffer and y2[1] >= 0:
                 self.attack_buffer[y2] = None
-                if y2 in self.not_attacked:
-                    del self.not_attacked[y2]
