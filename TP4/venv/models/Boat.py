@@ -6,7 +6,7 @@ import random
 # L = LIBRE
 # H = HUNDIDO
 STATES = ["G", "E", "O", "L"]
-state_colors = [(255, 0, 0), (0, 0, 0), (128, 128, 128), (0, 0, 131)]
+state_colors = [(255, 0, 0), (0, 0, 131), (128, 128, 128), (0, 0, 131)]
 
 
 class Boat:

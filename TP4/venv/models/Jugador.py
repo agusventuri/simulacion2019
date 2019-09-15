@@ -16,7 +16,7 @@ class Jugador:
     def crear_barcos(self):
         # 5 tipos de barco, creo 2 x cada uno
         bar = []
-        for i in range(2, 7):
+        for i in range(2, 30):
             b = Boat(random.getrandbits(1), i)
             b1 = Boat(random.getrandbits(1), i)
             bar.append(self.posicionar_barco(b))
@@ -80,7 +80,7 @@ class Jugador:
             return "L"
 
         if (x, y) not in self.boats_positions:
-            self.occupied_positions[(x, y)] = (0, 0, 0)
+            self.occupied_positions[(x, y)] = (0, 0, 131)
             return "E"
 
         for barco in self.barcos:

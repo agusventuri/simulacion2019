@@ -31,7 +31,7 @@ top_left_y = s_height - play_height
 # L = "LIBRE"
 
 STATES = ["G", "E", "O", "L"]
-state_colors = [(255, 0, 0), (0, 0, 0), (128, 128, 128), (0, 0, 131)]
+state_colors = [(255, 0, 0), (0, 0, 131), (128, 128, 128), (0, 255, 221)]
 
 occupied_positions1 = {}
 occupied_positions2 = {}
@@ -47,7 +47,7 @@ grid2 = []
 
 
 def create_grid(occupied_positions={}):
-    grid = [[(0, 0, 131) for x in range(0, 100)] for x in range(0, 100)]
+    grid = [[(0, 255, 221) for x in range(0, 100)] for x in range(0, 100)]
 
     for key in occupied_positions:
         grid[key[1]][key[0]] = occupied_positions[key]
