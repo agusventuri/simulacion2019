@@ -1,6 +1,7 @@
 import random
 
 class Camion:
+    # variables comunes a todos los objetos Camion
     cantidadColaBalanza = [0] * 30
     cantidadColaRecepcion = [0] * 30
     cantidadColaDarsenas = [0] * 30
