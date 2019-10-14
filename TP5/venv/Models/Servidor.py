@@ -35,39 +35,38 @@ class Servidor:
 
 
 class Recepcion(Servidor):
-    a=180
-    b=420
+    a = 180
+    b = 420
 
     def calcularProxFinAtencion(self):
-        return a+random()*(b-a)
+        return self.a + random.random() * (self.b - self.a)
 
 
 class Balanza(Servidor):
-    a=300
-    b=420
+    a = 300
+    b = 420
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion balanza
-        return a+random()*(b-a)
+        return self.a + random.random() * (self.b - self.a)
 
 
 class Darsena(Servidor):
-    cantidadCamiones=0
-    a=900
-    b=1200
+    cantidadCamiones = 0
+    a = 900
+    b = 1200
 
     #falta implementarlo completo
     def obtenerTiempoRecalibrado(self):
-        media=600
-        varianza=72
-        z=-2*math.log()
-        ri=random()
-        return media+(-2*math.log(ri)*math.cos(2*pi()*ri+1))*math.sqrt(varianza)
+        media = 600
+        varianza = 72
+        ri = random.random()
+        return media + (-2 * math.log(ri) * math.cos(2 * math.pi * ri + 1)) * math.sqrt(varianza)
 
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion darsena
-        if Darsena.cantidadCamiones==15:
-            Darsena.cantidadCamiones=0
-            return a+random()*(b-a) + obtenerTiempoobtenerTiempoRecalibrado()
+        if Darsena.cantidadCamiones == 15:
+            Darsena.cantidadCamiones = 0
+            return self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado()
         else:
-            Darsena.cantidadCamiones+=1
-            return a+random()*(b-a)
+            Darsena.cantidadCamiones += 1
+            return self.a + random.random() * (self.b - self.a)
