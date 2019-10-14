@@ -51,18 +51,23 @@ class Balanza(Servidor):
 
 
 class Darsena(Servidor):
+    cantidadCamiones=0
     a=900
     b=1200
 
-    media=600
-    varianza=72
-    z=-2*math.log()
-
     #falta implementarlo completo
     def obtenerTiempoRecalibrado(self):
+        media=600
+        varianza=72
+        z=-2*math.log()
         ri=random()
         return media+(-2*math.log(ri)*math.cos(2*pi()*ri+1))*math.sqrt(varianza)
 
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion darsena
-        return a+random()*(b-a)
+        if Darsena.cantidadCamiones==15:
+            Darsena.cantidadCamiones=0
+            return a+random()*(b-a) + obtenerTiempoobtenerTiempoRecalibrado()
+        else:
+            Darsena.cantidadCamiones+=1
+            return a+random()*(b-a)

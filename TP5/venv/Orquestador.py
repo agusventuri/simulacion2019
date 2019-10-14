@@ -11,10 +11,11 @@ colaBalanza = deque()
 colaDarsena = deque()
 
 dia = 1
-hora = 0
+hora = 0 #5 am
 segundos = 0
 lambdallegadas=450 # 7,5 minutos
-
+cantidadDuermenAfuera=[0]*30
+finRecepcion=False
 
 servidorRecepcion = Recepcion()
 servidorBalanza = Balanza()
@@ -29,33 +30,49 @@ def obtenerTiempoProxCamion():
 proximoCamion = obtenerTiempoProxCamion()
 
 while dia <= 30:
+    #si sale el ultimo camion se termina d trabajar y se pasa al otro dia
+
+    #control del dia
+    if (segundos % 3600 == 0):
+        hora += 1
+        if (hora == 13): #18 hs
+            finRecepcion=True
+            cantidadDuermenAfuera[dia-1]= len(colaRecepcion)
+            #hora = 0
+            #dia += 1
+        elif (hora==7): #12 am, empiezan a llegar
+            finRecepcion=False
+
     segundos += 1
 
-    if (proximoCamion != 0):
-        proximoCamion -= 1
-    else:
-        colaRecepcion.append(Camion(segundos, random.random() > 0.35))
-        proximoCamion = obtenerTiempoProxCamion()
+    #si son menos de las 18, siguen entrando camiones
+    if finRecepcion==False:
 
-     # TODO: Pasar camion al servidor de recepcion o a la cola de recepcion
-
-    c = servidorRecepcion.obtenerEvento()
-    if (c is not None):
-        if (c.getPropio()):
-            colaDarsena.append(c)
+        if (proximoCamion != 0):
+            proximoCamion -= 1
         else:
-            colaBalanza.append(c)
-        if(len(colaRecepcion) > 0):
-            servidorRecepcion.recibirCamion(colaRecepcion.popleft())
-            
-        print("---------------------------")
-        print(len(colaRecepcion))
-        print(len(colaBalanza))
-        print(len(colaDarsena))
+            colaRecepcion.append(Camion(segundos, random.random() > 0.35))
+            proximoCamion = obtenerTiempoProxCamion()
 
-    if (not servidorRecepcion.getOcupado()):
-        if (len(colaRecepcion) > 0):
-            servidorRecepcion.recibirCamion(colaRecepcion.popleft())
+        # TODO: Pasar camion al servidor de recepcion o a la cola de recepcion
+
+        c = servidorRecepcion.obtenerEvento()
+        if (c is not None):
+            if (c.getPropio()):
+                colaDarsena.append(c)
+            else:
+                colaBalanza.append(c)
+            if(len(colaRecepcion) > 0):
+                servidorRecepcion.recibirCamion(colaRecepcion.popleft())
+            
+            print("---------------------------")
+            print(len(colaRecepcion))
+            print(len(colaBalanza))
+            print(len(colaDarsena))
+
+        if (not servidorRecepcion.getOcupado()):
+            if (len(colaRecepcion) > 0):
+                servidorRecepcion.recibirCamion(colaRecepcion.popleft())
 
     #servidor balanza
     cBalanza = servidorBalanza.obtenerEvento()
@@ -71,7 +88,6 @@ while dia <= 30:
     if (not servidorBalanza.getOcupado()):
         if (len(colaBalanza) > 0):
             servidorBalanza.recibirCamion(colaBalanza.popleft())
-
 
     #servidores darsena
     cDarsena1 = servidorDarsena1.obtenerEvento()
@@ -90,29 +106,9 @@ while dia <= 30:
             else:
                 servidorDarsena2.recibirCamion(colaDarsena.popleft())
 
-
-
-
-
-    if (cBalanza is not None):
-        if(len(colaBalanza) > 0):
-            servidorBalanza.recibirCamion(colaBalanza.popleft())
-
         print("---------------------------")
         print(len(colaRecepcion))
         print(len(colaBalanza))
         print(len(colaDarsena))
 
-    if (not servidorBalanza.getOcupado()):
-        if (len(colaBalanza) > 0):
-            servidorBalanza.recibirCamion(colaBalanza.popleft())
 
-
-
-
-
-    if (segundos % 3600 == 0):
-        hora += 1
-        if (hora == 24):
-            hora = 0
-            dia += 1
