@@ -2,25 +2,19 @@ import random
 
 class Camion:
     # variables comunes a todos los objetos Camion
-    cantidadColaBalanza = [0] * 30
-    cantidadColaRecepcion = [0] * 30
-    cantidadColaDarsenas = [0] * 30
-    cantidadColaTerminados = [0] * 30
     cantidadTotal = 0
 
-    def __init__(self, dia):
-        self.cola = 1
-        self.dia = dia
-        self.posicion = Camion.cantidadColaRecepcion[dia - 1] + 1
-        Camion.cantidadColaRecepcion[dia - 1] += 1
+    def __init__(self, horaEntrada, camionPropio):
         self.nroCamion = Camion.cantidadTotal + 1
         Camion.cantidadTotal += 1
-        self.propio = True
-        if (random.random() > 0.35):
-            self.propio = False
+        self.propio = camionPropio
+        self.horaEntrada = horaEntrada
 
     def getPropio(self):
         return self.propio
+
+    def setHoraSalida(self, hora):
+        self.horaSalida = hora
 
     def avanzarPosicion(self):
         self.posicion -= 1

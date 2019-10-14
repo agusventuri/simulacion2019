@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53b8e78b-50d4-41a3-8120-c709e017c921" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../TP5/venv/Models/Servidor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TP5/venv/Models/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TP5/venv/Models/Camion.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TP5/venv/Models/Camion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP5/venv/Models/Servidor.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TP5/venv/Models/Servidor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP5/venv/Orquestador.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TP5/venv/Orquestador.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
