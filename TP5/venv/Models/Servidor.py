@@ -1,4 +1,5 @@
 import random
+import math
 from abc import ABCMeta, abstractmethod
 
 
@@ -34,20 +35,34 @@ class Servidor:
 
 
 class Recepcion(Servidor):
+    a=180
+    b=420
 
     def calcularProxFinAtencion(self):
-        return random.randrange(90, 420)
+        return a+random()*(b-a)
 
 
 class Balanza(Servidor):
-
+    a=300
+    b=420
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion balanza
-        return 40
+        return a+random()*(b-a)
 
 
 class Darsena(Servidor):
+    a=900
+    b=1200
+
+    media=600
+    varianza=72
+    z=-2*math.log()
+
+    #falta implementarlo completo
+    def obtenerTiempoRecalibrado(self):
+        ri=random()
+        return media+(-2*math.log(ri)*math.cos(2*pi()*ri+1))*math.sqrt(varianza)
 
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion darsena
-        return 40
+        return a+random()*(b-a)
