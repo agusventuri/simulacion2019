@@ -12,7 +12,7 @@ colaBalanza = deque()
 colaDarsena = deque()
 
 dia = 1
-hora = 0 #5 am
+hora = 5
 segundos = 0
 lambdallegadas = 450 # 7,5 minutos
 cantidadDuermenAfuera = [0]*30
@@ -29,8 +29,8 @@ flagRecibirCamiones = False
 
 def obtenerTiempoProxCamion():
     #formula gen var aleatoria exponencial
-    #t = (-1 / lambdallegadas) * math.log(1 - random.random())
-    t = 40
+    #t = (-1 / lambdallegadas) * math.log(1 - random.random(),math.e)
+    t=15
     return t
 
 # tiempo en segundos hasta la llegada del proximo camion
@@ -40,7 +40,7 @@ while dia <= 30:
     #si sale el ultimo camion se termina d trabajar y se pasa al otro dia
 
     #control del tiempo
-    if (segundos % 3600 == 0):
+    if (segundos!=0 and segundos % 3600 == 0):
         hora += 1
         # permitir llegada de camiones
         if (hora >= 12 and hora <= 18):
@@ -68,7 +68,8 @@ while dia <= 30:
             dia += 1
 
     #si esta entre las 12 y las 18, siguen llegando camiones
-    if (not flagLleganCamiones):
+    if (flagLleganCamiones):
+
         if (proximoCamion != 0):
             proximoCamion -= 1
         else:

@@ -10,7 +10,7 @@ class Servidor:
         self.tiempoFinAtencion = 0
         self.ocupado = False
 
-    def obtenerEvento(self):
+    def obtenerEvento(self):                    
         if (self.camion is not None):
             if (self.tiempoFinAtencion > 0):
                 self.tiempoFinAtencion -= 1
@@ -39,7 +39,8 @@ class Recepcion(Servidor):
     b = 420
 
     def calcularProxFinAtencion(self):
-        return self.a + random.random() * (self.b - self.a)
+        #return self.a + random.random() * (self.b - self.a)
+        return 90
 
 
 class Balanza(Servidor):
@@ -47,7 +48,8 @@ class Balanza(Servidor):
     b = 420
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion balanza
-        return self.a + random.random() * (self.b - self.a)
+        #return self.a + random.random() * (self.b - self.a)
+        return 120
 
 
 class Darsena(Servidor):
@@ -66,7 +68,9 @@ class Darsena(Servidor):
         # lo debe calcular segun atencion darsena
         if Darsena.cantidadCamiones == 15:
             Darsena.cantidadCamiones = 0
-            return self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado()
+            #return self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado()
+            return 140 + 50
         else:
             Darsena.cantidadCamiones += 1
-            return self.a + random.random() * (self.b - self.a)
+            #return self.a + random.random() * (self.b - self.a)
+            return 140
