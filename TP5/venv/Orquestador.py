@@ -32,7 +32,6 @@ atendidosdar2=0
 
 # bandera que permite la llegada de camiones (entre las 12 hs y las 18)
 flagLleganCamiones = False
-flagPuertasAbiertas = False
 flagRecibirCamiones = False
 
 def obtenerTiempoProxCamion():
@@ -47,7 +46,7 @@ def obtenerTiempoProxCamion():
 proximoCamion = obtenerTiempoProxCamion()
 
 while dia <= 30:
-    if dia==1 and hora==16:
+    if dia==1 and hora==14:
         print("segundos: "+ str(segundos))
         exit()
 
@@ -63,12 +62,12 @@ while dia <= 30:
             flagLleganCamiones = False
 
         # permitir atencion de camiones
-        if (hora >= 5):
-            flagPuertasAbiertas = True
+        #if (hora >= 5):
+        #    flagPuertasAbiertas = True
 
         # almacenar la cantidad de camiones que duermen afuera
         if (hora >= 18):
-            cantidadDuermenAfuera[dia-1]= len(colaRecepcion)
+           cantidadDuermenAfuera[dia-1]= len(colaRecepcion)
 
         # permitir recepcion de camiones
         if (hora >= 5 and hora <= 18):
@@ -87,7 +86,7 @@ while dia <= 30:
         if (proximoCamion > 0):
             proximoCamion -= 1
         else:
-            colaRecepcion.append(Camion(segundos, random.random() > 0.35))
+            colaRecepcion.append(Camion(segundos, random.random() < 0.35))
             proximoCamion = obtenerTiempoProxCamion()
     else:
         proximoCamion = obtenerTiempoProxCamion()
@@ -96,22 +95,23 @@ while dia <= 30:
     print("prox camion" + str(proximoCamion))
 
     # si recepcion esta atendiendo a alguien lo sigue atendiendo, pero no recibe camiones pasadas las 18hs
-    c = servidorRecepcion.obtenerEvento()
-    if (c is not None):
-        if (c.getPropio()):
-            colaDarsena.append(c)
-        else:
-            colaBalanza.append(c)
-        if(len(colaRecepcion) > 0):
-            if (flagRecibirCamiones):
+    if (flagRecibirCamiones):
+        c = servidorRecepcion.obtenerEvento()
+        if (c is not None):
+            if (c.getPropio()):
+                colaDarsena.append(c)
+            else:
+                colaBalanza.append(c)
+            if(len(colaRecepcion) > 0):
+                if (flagRecibirCamiones):
+                    servidorRecepcion.recibirCamion(colaRecepcion.popleft())
+                    atendidosrec += 1
+
+        if (not servidorRecepcion.getOcupado()):
+            if (len(colaRecepcion) > 0):
                 servidorRecepcion.recibirCamion(colaRecepcion.popleft())
                 atendidosrec += 1
-
-    if (not servidorRecepcion.getOcupado()):
-         if (len(colaRecepcion) > 0):
-             servidorRecepcion.recibirCamion(colaRecepcion.popleft())
-             atendidosrec += 1
-
+    #La atencion de camiones se hace durante todo el dia
     #servidor balanza
     cBalanza = servidorBalanza.obtenerEvento()
     if (cBalanza is not None):
@@ -149,8 +149,8 @@ while dia <= 30:
 
 
 
-    if hora==12 and proximoCamion<=1 and ((servidorRecepcion.gettiempoFinAtencion()<=8 and servidorRecepcion.gettiempoFinAtencion()!=0) or (servidorBalanza.gettiempoFinAtencion()<=10 and servidorBalanza.gettiempoFinAtencion()!=0) or (servidorDarsena1.gettiempoFinAtencion()<=10 and servidorDarsena1.gettiempoFinAtencion()!=0)or (servidorDarsena2.gettiempoFinAtencion()<=10 and servidorDarsena2.gettiempoFinAtencion()!=0)):
-        time.sleep(10)
+    if hora==16 and proximoCamion<=1 and ((servidorRecepcion.gettiempoFinAtencion()<=8 and servidorRecepcion.gettiempoFinAtencion()!=0) or (servidorBalanza.gettiempoFinAtencion()<=10 and servidorBalanza.gettiempoFinAtencion()!=0) or (servidorDarsena1.gettiempoFinAtencion()<=10 and servidorDarsena1.gettiempoFinAtencion()!=0)or (servidorDarsena2.gettiempoFinAtencion()<=10 and servidorDarsena2.gettiempoFinAtencion()!=0)):
+        time.sleep(0)
 
     print("---------------------------")
     print("Dia:" + str(dia) + "Hora:"+ str(hora)+ "segundos: "+ str(segundos))
@@ -160,10 +160,10 @@ while dia <= 30:
     print("serv Balanza")
     if servidorBalanza.camion is not None:
         print("atendiendo camion : "+str(servidorBalanza.camion.getnroCamion())+  " prox fin atencion: "+str(servidorBalanza.gettiempoFinAtencion()))
-    print("serv darsena1")
+    print("serv darsena1" +" cantidad recalibrados: "+str(servidorDarsena1.getRecalibrados()))
     if servidorDarsena1.camion is not None:
         print("atendiendo camion : "+str(servidorDarsena1.camion.getnroCamion())+ " prox fin atencion: "+ str(servidorDarsena1.gettiempoFinAtencion()))
-    print("serv darsena2")
+    print("serv darsena2" +" cantidad recalibrados: "+str(servidorDarsena2.getRecalibrados()))
     if servidorDarsena2.camion is not None:
         print("atendiendo camion : "+str(servidorDarsena2.camion.getnroCamion())+  " prox fin atencion: "+str(servidorDarsena2.gettiempoFinAtencion()))
     print("colas:")
@@ -175,6 +175,8 @@ while dia <= 30:
     print(atendidosbal)
     print(atendidosdar1)
     print(atendidosdar2)
+
+    print("duermen afuera: "+ str(cantidadDuermenAfuera))
 
     segundos += 1
 

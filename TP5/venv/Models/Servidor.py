@@ -57,25 +57,33 @@ class Balanza(Servidor):
 
 
 class Darsena(Servidor):
-    cantidadCamiones = 0
     a = 15
     b = 20
+    def __init__(self):
+        Servidor.__init__(self)
+        self.cantidadCamiones = 0
+        self.cantRecalibrados= 0
+
+
+    def getRecalibrados(self):
+        return self.cantRecalibrados
 
     #falta implementarlo completo
     def obtenerTiempoRecalibrado(self):
         media = 10
         varianza = 1.2
         ri = random.random()
-        res= round((media + (-2 * math.log(ri) * math.cos(2 * math.pi * ri + 1)) * math.sqrt(varianza)),0)
-        return res*60
+        res= round((media + (-2 * math.log(ri) * math.cos(2 * math.pi * ri + 1)) * math.sqrt(varianza))*60,0)
+        return res
 
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion darsena
-        if Darsena.cantidadCamiones == 15:
-            Darsena.cantidadCamiones = 0
+        if self.cantidadCamiones == 15:
+            self.cantidadCamiones = 0
+            self.cantRecalibrados += 1
             return round((self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado())*60,0)
 
         else:
-            Darsena.cantidadCamiones += 1
+            self.cantidadCamiones += 1
             return round((self.a + random.random() * (self.b - self.a))*60,0)
 
