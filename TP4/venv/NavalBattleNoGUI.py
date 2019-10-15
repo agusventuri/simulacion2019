@@ -42,6 +42,7 @@ def automatic(simulations_number):
             cantidad_misses_hunt += jugador_hunt.get_misses()
             cantidad_hits_hunt += jugador_hunt.get_hits()
             run -= 1
+            print(run)
             reset()
             continue
 
@@ -56,6 +57,7 @@ def automatic(simulations_number):
             cantidad_misses_hunt += jugador_hunt.get_misses()
             cantidad_hits_hunt += jugador_hunt.get_hits()
             run -= 1
+            print(run)
             reset()
             continue
 

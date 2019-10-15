@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53b8e78b-50d4-41a3-8120-c709e017c921" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/NavalBattle.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/NavalBattle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/models/Jugador.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/models/Jugador.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/NavalBattleNoGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/NavalBattleNoGUI.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +52,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.NavalBattle (1)">
+  <component name="RunManager" selected="Python.desencruptar">
     <configuration name="Jugador" type="PythonConfigurationType" factoryName="Python">
       <module name="TP4" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,7 +141,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Tetris" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="desencruptar" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TP4" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -151,11 +150,11 @@
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Tetris" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/desencruptar.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -164,7 +163,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TP4" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -172,12 +171,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/models" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/models/__init__.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -188,11 +187,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.desencruptar" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.NavalBattle (1)" />
         <item itemvalue="Python.NavalBattleNoGUI" />
         <item itemvalue="Python.NavalBattle" />
-        <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.Tetris" />
       </list>
     </recent_temporary>
   </component>
@@ -208,6 +207,7 @@
       <updated>1567688524002</updated>
       <workItem from="1568227943863" duration="6119000" />
       <workItem from="1568236774415" duration="310000" />
+      <workItem from="1568244237125" duration="7057000" />
     </task>
     <servers />
   </component>
@@ -235,10 +235,22 @@
           <line>190</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/desencruptar.py</url>
+          <line>302</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/desencruptar.py</url>
+          <line>279</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/TP4$NavalBattle__1_.coverage" NAME="NavalBattle (1) Coverage Results" MODIFIED="1568241094626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/TP4$desencruptar.coverage" NAME="desencruptar Coverage Results" MODIFIED="1568387725746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/TP4$NavalBattle__1_.coverage" NAME="NavalBattle (1) Coverage Results" MODIFIED="1568382691450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/TP4$test.coverage" NAME="test Coverage Results" MODIFIED="1568386288914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
   </component>
 </project>

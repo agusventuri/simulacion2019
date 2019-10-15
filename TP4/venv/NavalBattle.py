@@ -13,7 +13,7 @@ import NavalBattleNoGUI as noGui
 pygame.font.init()
 
 # GLOBALS VARS
-number_of_simulations = 1000
+number_of_simulations = 10
 s_width = 1300
 s_height = 700
 play_width = 600  # meaning 300 // 10 = 30 width per block
