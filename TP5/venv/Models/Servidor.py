@@ -29,48 +29,53 @@ class Servidor:
 
     def getOcupado(self):
         return self.ocupado
+    
+    def gettiempoFinAtencion(self):
+        return self.tiempoFinAtencion
 
     def calcularProxFinAtencion(self):
         return 40
 
 
 class Recepcion(Servidor):
-    a = 180
-    b = 420
+    a = 3
+    b = 7
 
     def calcularProxFinAtencion(self):
-        #return self.a + random.random() * (self.b - self.a)
-        return 90
+        return round((self.a + random.random() * (self.b - self.a))*60,0)
+        #return 90
 
 
 class Balanza(Servidor):
-    a = 300
-    b = 420
+    a = 5
+    b = 7
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion balanza
-        #return self.a + random.random() * (self.b - self.a)
-        return 120
+        r=round((self.a + random.random() * (self.b - self.a))*60,0)
+        return r
+
 
 
 class Darsena(Servidor):
     cantidadCamiones = 0
-    a = 900
-    b = 1200
+    a = 15
+    b = 20
 
     #falta implementarlo completo
     def obtenerTiempoRecalibrado(self):
-        media = 600
-        varianza = 72
+        media = 10
+        varianza = 1.2
         ri = random.random()
-        return media + (-2 * math.log(ri) * math.cos(2 * math.pi * ri + 1)) * math.sqrt(varianza)
+        res= round((media + (-2 * math.log(ri) * math.cos(2 * math.pi * ri + 1)) * math.sqrt(varianza)),0)
+        return res*60
 
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion darsena
         if Darsena.cantidadCamiones == 15:
             Darsena.cantidadCamiones = 0
-            #return self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado()
-            return 140 + 50
+            return round((self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado())*60,0)
+
         else:
             Darsena.cantidadCamiones += 1
-            #return self.a + random.random() * (self.b - self.a)
-            return 140
+            return round((self.a + random.random() * (self.b - self.a))*60,0)
+

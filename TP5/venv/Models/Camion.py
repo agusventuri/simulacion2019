@@ -13,7 +13,13 @@ class Camion:
     def getPropio(self):
         return self.propio
 
-    def setHoraSalida(self, hora):
+    def getnroCamion(self):
+        if self.nroCamion is not None:
+            return self.nroCamion
+        else:
+            return ""
+
+    def setHoraSalidaxc(self, hora):
         self.horaSalida = hora
 
     def avanzarPosicion(self):
