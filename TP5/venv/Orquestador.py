@@ -2,6 +2,7 @@ from Models.Camion import Camion
 from Models.Servidor import Recepcion
 from Models.Servidor import Balanza
 from Models.Servidor import Darsena
+
 from collections import deque
 import math
 import random
@@ -13,10 +14,12 @@ colaBalanza = deque()
 colaDarsena = deque()
 
 dia = 1
-hora = 4
-segundos = 18000
+hora = 11
+segundos = 43200
 lambdallegadas = 7.5 # 7,5 minutos
 cantidadDuermenAfuera = [0]*30
+
+tiempolleg =0
 
 servidorRecepcion = Recepcion()
 servidorBalanza = Balanza()
@@ -27,7 +30,9 @@ atendidosbal=0
 atendidosdar1=0
 atendidosdar2=0
 
-
+agregadosColaRecepcion=0
+agregadosColaBalanza=0
+agregadosColaDar=0
 
 
 # bandera que permite la llegada de camiones (entre las 12 hs y las 18)
@@ -39,6 +44,8 @@ def obtenerTiempoProxCamion():
     t = (-1 / lambdallegadas) * math.log(1 - random.random(),math.e)
     #t=15
     t=round((t*60),0)
+    global tiempolleg
+    tiempolleg=t
 
     return t
 
@@ -46,7 +53,7 @@ def obtenerTiempoProxCamion():
 proximoCamion = obtenerTiempoProxCamion()
 
 while dia <= 30:
-    if dia==1 and hora==14:
+    if dia==1 and hora==12 and segundos==43400:
         print("segundos: "+ str(segundos))
         exit()
 
@@ -87,6 +94,7 @@ while dia <= 30:
             proximoCamion -= 1
         else:
             colaRecepcion.append(Camion(segundos, random.random() < 0.35))
+            agregadosColaRecepcion+=1
             proximoCamion = obtenerTiempoProxCamion()
     else:
         proximoCamion = obtenerTiempoProxCamion()
@@ -100,8 +108,10 @@ while dia <= 30:
         if (c is not None):
             if (c.getPropio()):
                 colaDarsena.append(c)
+                agregadosColaDar+=1
             else:
                 colaBalanza.append(c)
+                agregadosColaBalanza+=1
             if(len(colaRecepcion) > 0):
                 if (flagRecibirCamiones):
                     servidorRecepcion.recibirCamion(colaRecepcion.popleft())
@@ -115,9 +125,11 @@ while dia <= 30:
     #servidor balanza
     cBalanza = servidorBalanza.obtenerEvento()
     if (cBalanza is not None):
+        colaDarsena.append(cBalanza)
         if(len(colaBalanza) > 0):
             servidorBalanza.recibirCamion(colaBalanza.popleft())
             atendidosbal += 1
+
 
     if (not servidorBalanza.getOcupado()):
         if (len(colaBalanza) > 0):
@@ -136,6 +148,12 @@ while dia <= 30:
         if (cDarsena2 is not None):
             servidorDarsena2.recibirCamion(colaDarsena.popleft())
             atendidosdar2 += 1
+    else:
+        if (cDarsena1 is not None):
+            atendidosdar1 += 1
+        if (cDarsena2 is not None):
+            atendidosdar2 += 1
+
 
     if (not servidorDarsena1.getOcupado()):
         if (len(colaDarsena) > 0):
@@ -146,6 +164,7 @@ while dia <= 30:
         if (len(colaDarsena) > 0):
             servidorDarsena2.recibirCamion(colaDarsena.popleft())
             atendidosdar2 += 1
+
 
 
 
@@ -175,8 +194,19 @@ while dia <= 30:
     print(atendidosbal)
     print(atendidosdar1)
     print(atendidosdar2)
+    print("agregados a colas:")
+    print(agregadosColaRecepcion)
+    print(agregadosColaBalanza)
+    print(agregadosColaDar)
 
-    print("duermen afuera: "+ str(cantidadDuermenAfuera))
+    print("proximo camion"+str(proximoCamion))
 
+    print("tiempos de atencion generados: ")
+    print("prox camion epec : "+str(tiempolleg))
+    print(Recepcion.tiemporec)
+    print(Balanza.tiempobal)
+    print(Darsena.tiempodar)
+
+    print(str(cantidadDuermenAfuera))
     segundos += 1
 

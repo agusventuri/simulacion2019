@@ -3,7 +3,12 @@ import math
 from abc import ABCMeta, abstractmethod
 
 
+
+
+
+
 class Servidor:
+
 
     def __init__(self):
         self.camion = None
@@ -40,18 +45,23 @@ class Servidor:
 class Recepcion(Servidor):
     a = 3
     b = 7
+    tiemporec=0
 
     def calcularProxFinAtencion(self):
-        return round((self.a + random.random() * (self.b - self.a))*60,0)
+        r= round((self.a + random.random() * (self.b - self.a))*60,0)
+        Recepcion.tiemporec=r
+        return r
         #return 90
 
 
 class Balanza(Servidor):
     a = 5
     b = 7
+    tiempobal=0
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion balanza
         r=round((self.a + random.random() * (self.b - self.a))*60,0)
+        Balanza.tiempobal=r
         return r
 
 
@@ -59,6 +69,7 @@ class Balanza(Servidor):
 class Darsena(Servidor):
     a = 15
     b = 20
+    tiempodar=0
     def __init__(self):
         Servidor.__init__(self)
         self.cantidadCamiones = 0
@@ -73,7 +84,7 @@ class Darsena(Servidor):
         media = 10
         varianza = 1.2
         ri = random.random()
-        res= round((media + (-2 * math.log(ri) * math.cos(2 * math.pi * ri + 1)) * math.sqrt(varianza))*60,0)
+        res= round((media + (-2 * math.log(ri,math.e) * math.cos(2 * math.pi * ri + 1)) * math.sqrt(varianza)),0)
         return res
 
     def calcularProxFinAtencion(self):
@@ -81,9 +92,13 @@ class Darsena(Servidor):
         if self.cantidadCamiones == 15:
             self.cantidadCamiones = 0
             self.cantRecalibrados += 1
-            return round((self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado())*60,0)
+            r=round((self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado())*60,0)
+            Darsena.tiempodar=r
+            return r
 
         else:
             self.cantidadCamiones += 1
-            return round((self.a + random.random() * (self.b - self.a))*60,0)
+            r=round((self.a + random.random() * (self.b - self.a))*60,0)
+            Darsena.tiempodar=r
+            return r
 
