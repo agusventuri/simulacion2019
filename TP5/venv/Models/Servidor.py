@@ -45,11 +45,9 @@ class Servidor:
 class Recepcion(Servidor):
     a = 3
     b = 7
-    tiemporec=0
 
     def calcularProxFinAtencion(self):
         r= round((self.a + random.random() * (self.b - self.a))*60,0)
-        Recepcion.tiemporec=r
         return r
         #return 90
 
@@ -57,11 +55,10 @@ class Recepcion(Servidor):
 class Balanza(Servidor):
     a = 5
     b = 7
-    tiempobal=0
+
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion balanza
         r=round((self.a + random.random() * (self.b - self.a))*60,0)
-        Balanza.tiempobal=r
         return r
 
 
@@ -69,12 +66,11 @@ class Balanza(Servidor):
 class Darsena(Servidor):
     a = 15
     b = 20
-    tiempodar=0
+
     def __init__(self):
         Servidor.__init__(self)
         self.cantidadCamiones = 0
         self.cantRecalibrados= 0
-
 
     def getRecalibrados(self):
         return self.cantRecalibrados
@@ -93,12 +89,10 @@ class Darsena(Servidor):
             self.cantidadCamiones = 0
             self.cantRecalibrados += 1
             r=round((self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado())*60,0)
-            Darsena.tiempodar=r
             return r
 
         else:
             self.cantidadCamiones += 1
             r=round((self.a + random.random() * (self.b - self.a))*60,0)
-            Darsena.tiempodar=r
             return r
 

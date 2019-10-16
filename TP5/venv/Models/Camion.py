@@ -19,7 +19,7 @@ class Camion:
         else:
             return ""
 
-    def setHoraSalidaxc(self, hora):
+    def setHoraSalida(self, hora):
         self.horaSalida = hora
 
     def avanzarPosicion(self):
