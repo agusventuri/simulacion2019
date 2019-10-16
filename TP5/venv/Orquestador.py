@@ -61,7 +61,7 @@ def obtenerTiempoProxCamion():
 # tiempo en segundos hasta la llegada del proximo camion
 proximoCamion = obtenerTiempoProxCamion()
 
-while dia <= 2:
+while dia <= 30:
     #si sale el ultimo camion se termina d trabajar y se pasa al otro dia
 
     #control del tiempo
@@ -155,23 +155,23 @@ while dia <= 2:
     cDarsena2 = servidorDarsena2.obtenerEvento()
     #ver a que darsena le tengo q pasar un camion
     if (len(colaDarsena)>0):
-        if (cDarsena1 is not None):
+        if (isinstance(cDarsena1, Camion)):
             cDarsena1.setHoraSalida(segundos)
             colaTerminados.append(cDarsena1)
             servidorDarsena1.recibirCamion(colaDarsena.popleft())
             atendidosdar1 += 1
 
-        if (cDarsena2 is not None):
+        if (isinstance(cDarsena2, Camion)):
             cDarsena2.setHoraSalida(segundos)
             colaTerminados.append(cDarsena2)
             servidorDarsena2.recibirCamion(colaDarsena.popleft())
             atendidosdar2 += 1
     else:
-        if (cDarsena1 is not None):
+        if (isinstance(cDarsena1, Camion)):
             cDarsena1.setHoraSalida(segundos)
             colaTerminados.append(cDarsena1)
             atendidosdar1 += 1
-        if (cDarsena2 is not None):
+        if (isinstance(cDarsena2, Camion)):
             colaTerminados.append(cDarsena2)
             cDarsena2.setHoraSalida(segundos)
             atendidosdar2 += 1
@@ -187,8 +187,8 @@ while dia <= 2:
             servidorDarsena2.recibirCamion(colaDarsena.popleft())
             atendidosdar2 += 1
 
-    if hora==16 and proximoCamion<=1 and ((servidorRecepcion.gettiempoFinAtencion()<=8 and servidorRecepcion.gettiempoFinAtencion()!=0) or (servidorBalanza.gettiempoFinAtencion()<=10 and servidorBalanza.gettiempoFinAtencion()!=0) or (servidorDarsena1.gettiempoFinAtencion()<=10 and servidorDarsena1.gettiempoFinAtencion()!=0)or (servidorDarsena2.gettiempoFinAtencion()<=10 and servidorDarsena2.gettiempoFinAtencion()!=0)):
-        time.sleep(0)
+    #if hora==16 and proximoCamion<=1 and ((servidorRecepcion.gettiempoFinAtencion()<=8 and servidorRecepcion.gettiempoFinAtencion()!=0) or (servidorBalanza.gettiempoFinAtencion()<=10 and servidorBalanza.gettiempoFinAtencion()!=0) or (servidorDarsena1.gettiempoFinAtencion()<=10 and servidorDarsena1.gettiempoFinAtencion()!=0)or (servidorDarsena2.gettiempoFinAtencion()<=10 and servidorDarsena2.gettiempoFinAtencion()!=0)):
+    #    time.sleep(0)
 
     #print("---------------------------")
     #print("Dia:" + str(dia) + "Hora:"+ str(hora)+ "segundos: "+ str(segundos))
