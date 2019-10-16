@@ -21,6 +21,9 @@ unoSobreLambda = 7.5 * 60 # 7,5 minutos
 cantidadDuermenAfuera = [0]*30
 cantidadAtendidos = [0]*30
 
+tiempoTotalPermanencia=0
+tiempoPromedioCamiones=0
+
 tiempolleg =0
 
 servidorRecepcion = Recepcion()
@@ -94,7 +97,7 @@ while dia <= 30:
         if (proximoCamion > 0):
             proximoCamion -= 1
         else:
-            colaRecepcion.append(Camion(segundos, random.random() < 0.35))
+            colaRecepcion.append(Camion(random.random() < 0.35))
             agregadosColaRecepcion+=1
             proximoCamion = obtenerTiempoProxCamion()
     else:
@@ -115,12 +118,16 @@ while dia <= 30:
                 agregadosColaBalanza+=1
             if(len(colaRecepcion) > 0):
                 if (flagRecibirCamiones):
-                    servidorRecepcion.recibirCamion(colaRecepcion.popleft())
+                    cam=colaRecepcion.popleft()
+                    cam.setHoraEntrada(segundos)
+                    servidorRecepcion.recibirCamion(cam)
                     atendidosrec += 1
 
         if (not servidorRecepcion.getOcupado()):
             if (len(colaRecepcion) > 0):
-                servidorRecepcion.recibirCamion(colaRecepcion.popleft())
+                cam=colaRecepcion.popleft()
+                cam.setHoraEntrada(segundos)
+                servidorRecepcion.recibirCamion(cam)
                 atendidosrec += 1
     #La atencion de camiones se hace durante todo el dia
     #servidor balanza
@@ -213,7 +220,24 @@ while dia <= 30:
     #print(str(cantidadDuermenAfuera))
     segundos += 1
 
+#calculamos promedio de tiempo permanencia camiones
+for i in colaTerminados:
+    tiempoTotalPermanencia += (i.horaSalida-i.horaEntrada)
+    print(i.horaSalida-i.horaEntrada)
+tiempoPromedioCamiones= tiempoTotalPermanencia/len(colaTerminados)
+
+
+print("Tiempo promedio permanencia: "+str(tiempoPromedioCamiones))
 print(len(colaTerminados))
 print(cantidadDuermenAfuera)
 print(cantidadAtendidos)
 
+#exportacion csv
+mostrar=[cantidadAtendidos,cantidadDuermenAfuera,tiempoPromedioCamiones]
+result= open("Resultados.csv","w")
+writer = csv.writer(result, delimiter=',')
+
+writer.writerow(cantidadAtendidos)
+writer.writerow(cantidadDuermenAfuera)
+writer.writerow([tiempoPromedioCamiones])
+result.close()

@@ -7,6 +7,10 @@ from collections import deque
 import math
 import random
 import time
+import pandas as pd
+import csv
+
+
 
 # creamos deques. Con append agregamos a la derecha, y con popleft sacamos desde la izquierda
 colaRecepcion = deque()
@@ -21,7 +25,10 @@ unoSobreLambda = 7.5 * 60 # 7,5 minutos
 cantidadDuermenAfuera = [0]*30
 cantidadAtendidos = [0]*30
 
-tiempolleg =0
+tiempoTotalPermanencia=0
+tiempoPromedioCamiones=0
+
+#tiempolleg =0
 
 servidorRecepcion = Recepcion()
 servidorBalanza = Balanza()
@@ -46,15 +53,15 @@ def obtenerTiempoProxCamion():
     t = (-unoSobreLambda) * math.log(1 - random.random(),math.e)
     #t=15
     t=round((t),0)
-    global tiempolleg
-    tiempolleg=t
+    #global tiempolleg
+    #tiempolleg=t
 
     return t
 
 # tiempo en segundos hasta la llegada del proximo camion
 proximoCamion = obtenerTiempoProxCamion()
 
-while dia <= 30:
+while dia <= 2:
     #si sale el ultimo camion se termina d trabajar y se pasa al otro dia
 
     #control del tiempo
@@ -96,7 +103,7 @@ while dia <= 30:
         if (proximoCamion > 0):
             proximoCamion -= 1
         else:
-            colaRecepcion.append(Camion(segundos, random.random() < 0.35))
+            colaRecepcion.append(Camion(random.random() < 0.35))
             agregadosColaRecepcion+=1
             proximoCamion = obtenerTiempoProxCamion()
     else:
@@ -117,12 +124,16 @@ while dia <= 30:
                 agregadosColaBalanza+=1
             if(len(colaRecepcion) > 0):
                 if (flagRecibirCamiones):
-                    servidorRecepcion.recibirCamion(colaRecepcion.popleft())
+                    cam=colaRecepcion.popleft()
+                    cam.setHoraEntrada(segundos)
+                    servidorRecepcion.recibirCamion(cam)
                     atendidosrec += 1
 
         if (not servidorRecepcion.getOcupado()):
             if (len(colaRecepcion) > 0):
-                servidorRecepcion.recibirCamion(colaRecepcion.popleft())
+                cam=colaRecepcion.popleft()
+                cam.setHoraEntrada(segundos)
+                servidorRecepcion.recibirCamion(cam)
                 atendidosrec += 1
     #La atencion de camiones se hace durante todo el dia
     #servidor balanza
@@ -215,7 +226,39 @@ while dia <= 30:
     #print(str(cantidadDuermenAfuera))
     segundos += 1
 
+#calculamos promedio de tiempo permanencia camiones
+for i in colaTerminados:
+    tiempoTotalPermanencia += (i.horaSalida-i.horaEntrada)
+    print(i.horaSalida-i.horaEntrada)
+
+tiempoPromedioCamiones= round(tiempoTotalPermanencia/len(colaTerminados),0)
+
+
+print("Tiempo promedio permanencia: "+str(tiempoPromedioCamiones))
 print(len(colaTerminados))
 print(cantidadDuermenAfuera)
 print(cantidadAtendidos)
+
+
+#exportacion csv
+mostrar=[cantidadAtendidos,cantidadDuermenAfuera,tiempoPromedioCamiones]
+result= open("Resultados.csv","w")
+writer = csv.writer(result, delimiter=',')
+
+writer.writerow(cantidadAtendidos)
+writer.writerow(cantidadDuermenAfuera)
+writer.writerow([tiempoPromedioCamiones])
+result.close()
+
+#with open('eggs.csv', 'wb') as csvfile:
+#   spamwriter = csv.writer(csvfile, delimiter=' ',
+#                           quotechar='|', quoting=csv.QUOTE_MINIMAL)
+#    spamwriter.writerow(cantidadAtendidos)
+    #spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
+
+#f = open('numbers2.csv', 'w')
+#with f:
+#    writer = csv.writer(f)
+#    for row in mostrar:
+#        writer.writerow(row)
 
