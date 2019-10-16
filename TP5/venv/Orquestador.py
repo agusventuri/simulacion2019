@@ -2,15 +2,15 @@ from Models.Camion import Camion
 from Models.Servidor import Recepcion
 from Models.Servidor import Balanza
 from Models.Servidor import Darsena
-
 from collections import deque
 import math
 import random
 import time
-import pandas as pd
+import datetime
 import csv
+import os
 
-
+print("Procesando estrategia 1...")
 
 # creamos deques. Con append agregamos a la derecha, y con popleft sacamos desde la izquierda
 colaRecepcion = deque()
@@ -22,8 +22,8 @@ dia = 1
 hora = 0
 segundos = 0
 unoSobreLambda = 7.5 * 60 # 7,5 minutos
-cantidadDuermenAfuera = [0]*30
-cantidadAtendidos = [0]*30
+cantidadDuermenAfuera = deque([0]*30)
+cantidadAtendidos = deque([0]*30)
 
 tiempoTotalPermanencia=0
 tiempoPromedioCamiones=0
@@ -191,7 +191,7 @@ while dia <= 2:
         time.sleep(0)
 
     #print("---------------------------")
-    print("Dia:" + str(dia) + "Hora:"+ str(hora)+ "segundos: "+ str(segundos))
+    #print("Dia:" + str(dia) + "Hora:"+ str(hora)+ "segundos: "+ str(segundos))
     #print("serv recepcion")
     #if servidorRecepcion.camion is not None:
     #    print("atendiendo camion : "+str(servidorRecepcion.camion.getnroCamion()) + " prox fin atencion: "+ str(servidorRecepcion.gettiempoFinAtencion()))
@@ -226,39 +226,54 @@ while dia <= 2:
     #print(str(cantidadDuermenAfuera))
     segundos += 1
 
+def convert_timedelta(seconds):
+    duration = datetime.timedelta(seconds=seconds)
+    days, seconds = duration.days, duration.seconds
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = (seconds % 60)
+    return days, hours, minutes, seconds
+
 #calculamos promedio de tiempo permanencia camiones
 for i in colaTerminados:
     tiempoTotalPermanencia += (i.horaSalida-i.horaEntrada)
-    print(i.horaSalida-i.horaEntrada)
 
-tiempoPromedioCamiones= round(tiempoTotalPermanencia/len(colaTerminados),0)
+tiempoPromedioCamiones = round(tiempoTotalPermanencia/len(colaTerminados),0)
+
+# lo pasamos a una cadena más entendible
+days, hours, minutes, seconds = convert_timedelta(tiempoPromedioCamiones)
+strTiempoPromedioCamiones = str(hours) + "hs " + str(minutes) + "min " + str(seconds) + "s"
+
+#creamos un array de dias
+i = 2
+dias = []
+dias.append("Días")
+while i < 32:
+    dias.append("Día " + str(i-1))
+    i += 1
 
 
-print("Tiempo promedio permanencia: "+str(tiempoPromedioCamiones))
-print(len(colaTerminados))
-print(cantidadDuermenAfuera)
-print(cantidadAtendidos)
+#print("Tiempo promedio permanencia: "+str(tiempoPromedioCamiones))
+#print(len(colaTerminados))
+#print(cantidadDuermenAfuera)
+#print(cantidadAtendidos)
 
+cantidadAtendidos.appendleft("Cant. atendidos p/día")
+cantidadDuermenAfuera.appendleft("Cant. duermen afuera p/día")
 
 #exportacion csv
-mostrar=[cantidadAtendidos,cantidadDuermenAfuera,tiempoPromedioCamiones]
-result= open("Resultados.csv","w")
-writer = csv.writer(result, delimiter=',')
+result = open("Resultados.csv","w", newline="")
+writer = csv.writer(result, delimiter=';')
 
+writer.writerow(["1er estrategia"])
+writer.writerow([""])
+writer.writerow(dias)
 writer.writerow(cantidadAtendidos)
 writer.writerow(cantidadDuermenAfuera)
-writer.writerow([tiempoPromedioCamiones])
+writer.writerow([""])
+writer.writerow(["Tiempo de permanencia promedio",strTiempoPromedioCamiones])
 result.close()
 
-#with open('eggs.csv', 'wb') as csvfile:
-#   spamwriter = csv.writer(csvfile, delimiter=' ',
-#                           quotechar='|', quoting=csv.QUOTE_MINIMAL)
-#    spamwriter.writerow(cantidadAtendidos)
-    #spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
+print("Listo")
 
-#f = open('numbers2.csv', 'w')
-#with f:
-#    writer = csv.writer(f)
-#    for row in mostrar:
-#        writer.writerow(row)
-
+os.system('python Orquestador2daEstrategia.py')

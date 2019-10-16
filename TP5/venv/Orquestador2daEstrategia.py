@@ -2,11 +2,14 @@ from Models.Camion import Camion
 from Models.Servidor import Recepcion
 from Models.Servidor import Balanza
 from Models.Servidor import Darsena
-
+import datetime
 from collections import deque
 import math
 import random
 import time
+import csv
+
+print("Procesando estrategia 2...")
 
 # creamos deques. Con append agregamos a la derecha, y con popleft sacamos desde la izquierda
 colaRecepcion = deque()
@@ -18,8 +21,8 @@ dia = 1
 hora = 0
 segundos = 0
 unoSobreLambda = 7.5 * 60 # 7,5 minutos
-cantidadDuermenAfuera = [0]*30
-cantidadAtendidos = [0]*30
+cantidadDuermenAfuera = deque([0]*30)
+cantidadAtendidos = deque([0]*30)
 
 tiempoTotalPermanencia=0
 tiempoPromedioCamiones=0
@@ -57,7 +60,7 @@ def obtenerTiempoProxCamion():
 # tiempo en segundos hasta la llegada del proximo camion
 proximoCamion = obtenerTiempoProxCamion()
 
-while dia <= 30:
+while dia <= 2:
     #si sale el ultimo camion se termina d trabajar y se pasa al otro dia
 
     #control del tiempo
@@ -185,7 +188,7 @@ while dia <= 30:
         time.sleep(0)
 
     #print("---------------------------")
-    print("Dia:" + str(dia) + "Hora:"+ str(hora)+ "segundos: "+ str(segundos))
+    #print("Dia:" + str(dia) + "Hora:"+ str(hora)+ "segundos: "+ str(segundos))
     #print("serv recepcion")
     #if servidorRecepcion.camion is not None:
     #    print("atendiendo camion : "+str(servidorRecepcion.camion.getnroCamion()) + " prox fin atencion: "+ str(servidorRecepcion.gettiempoFinAtencion()))
@@ -220,24 +223,54 @@ while dia <= 30:
     #print(str(cantidadDuermenAfuera))
     segundos += 1
 
+def convert_timedelta(seconds):
+    duration = datetime.timedelta(seconds=seconds)
+    days, seconds = duration.days, duration.seconds
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = (seconds % 60)
+    return days, hours, minutes, seconds
+
 #calculamos promedio de tiempo permanencia camiones
 for i in colaTerminados:
     tiempoTotalPermanencia += (i.horaSalida-i.horaEntrada)
-    print(i.horaSalida-i.horaEntrada)
-tiempoPromedioCamiones= tiempoTotalPermanencia/len(colaTerminados)
+
+tiempoPromedioCamiones = round(tiempoTotalPermanencia/len(colaTerminados),0)
+
+# lo pasamos a una cadena más entendible
+days, hours, minutes, seconds = convert_timedelta(tiempoPromedioCamiones)
+strTiempoPromedioCamiones = str(hours) + "hs " + str(minutes) + "min " + str(seconds) + "s"
+
+#creamos un array de dias
+i = 2
+dias = []
+dias.append("Días")
+while i < 32:
+    dias.append("Día " + str(i-1))
+    i += 1
 
 
-print("Tiempo promedio permanencia: "+str(tiempoPromedioCamiones))
-print(len(colaTerminados))
-print(cantidadDuermenAfuera)
-print(cantidadAtendidos)
+#("Tiempo promedio permanencia: "+str(tiempoPromedioCamiones))
+#print(len(colaTerminados))
+#print(cantidadDuermenAfuera)
+#print(cantidadAtendidos)
+
+cantidadAtendidos.appendleft("Cant. atendidos p/día")
+cantidadDuermenAfuera.appendleft("Cant. duermen afuera p/día")
 
 #exportacion csv
-mostrar=[cantidadAtendidos,cantidadDuermenAfuera,tiempoPromedioCamiones]
-result= open("Resultados.csv","w")
-writer = csv.writer(result, delimiter=',')
+result = open("Resultados.csv","a", newline="")
+writer = csv.writer(result, delimiter=';')
 
+writer.writerow([""])
+writer.writerow([""])
+writer.writerow(["2da estrategia"])
+writer.writerow([""])
+writer.writerow(dias)
 writer.writerow(cantidadAtendidos)
 writer.writerow(cantidadDuermenAfuera)
-writer.writerow([tiempoPromedioCamiones])
+writer.writerow([""])
+writer.writerow(["Tiempo de permanencia promedio",strTiempoPromedioCamiones])
 result.close()
+
+print("Listo")
