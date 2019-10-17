@@ -20,7 +20,7 @@ colaTerminados = deque()
 
 dia = 1
 hora = 0
-minutos = 0
+minutos = -1
 segundos = 0
 unoSobreLambda = 7.5 * 60 # 7,5 minutos
 cantidadDuermenAfuera = deque([0]*30)
@@ -48,6 +48,7 @@ agregadosColaDar=0
 # bandera que permite la llegada de camiones (entre las 12 hs y las 18)
 flagLleganCamiones = False
 flagRecibirCamiones = False
+flagUltimoCamion = False
 
 vectorEstados = deque()
 vectorEstados.append(["", "", "", "", "", "Recepcion", "", "", "", "Balanza", "", "", "", "Darsena 1", "", "", "","Darsena 2"])
@@ -68,7 +69,7 @@ def obtenerTiempoProxCamion():
     #formula gen var aleatoria exponencial
     t = (-unoSobreLambda) * math.log(1 - random.random(),math.e)
     t=round((t),0)
-    return t
+    return 180
 
 # tiempo en segundos hasta la llegada del proximo camion
 proximoCamion = obtenerTiempoProxCamion()
@@ -84,28 +85,36 @@ while dia <= 3:
     d, h, m, s = convert_timedelta(segundos)
 
     # control del tiempo
-    # avance de minutos
-    if (segundos % 60 == 0):
-        minutos += 1
 
     # prohibir llegada de camiones luego de las 18 clavados. Evita que lleguen durante las 18
-    if (hora == 18 and minutos == 0 and segundos % 60 == 0):
+    if (hora == 18 and minutos == 0 and segundos % 60 == 1):
         flagLleganCamiones = False
+        print("fafa")
+
+    # prohibir recepcion de camiones luego de las 18 clavados. Evita atenderlos durante las 18
+    if (hora == 19 and minutos == 0 and segundos % 60 == 0):
+        flagRecibirCamiones = False
+        if (servidorRecepcion.getOcupado()):
+            flagUltimoCamion = True
+
+    # marcar la apertura de puertas
+    if (hora == 12 and minutos == 0 and segundos % 60 == 0):
+        proximoCamion = obtenerTiempoProxCamion()
+        # generacion vector de estados
+        r = ["Apertura de puertas", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s", "----",
+             servidorRecepcion.getEstado(), "----", "----", str(len(colaRecepcion)),
+             servidorBalanza.getEstado(), "----", "----", str(len(colaBalanza)),
+             servidorDarsena1.getEstado(), "----", "----",
+             servidorDarsena2.getEstado(), "----", "----", str(len(colaDarsena))]
+        vectorEstados.append(r)
+        # fin generacion vector de estados
 
     # avance de horas
-    if (segundos % 3600 == 0):
-        minutos = 0
+    if (segundos % 3600 == 0 and segundos % 60 == 0):
+        minutos = -1
         # habilitar llegada de camiones. Se usan las 17 ya que la hora se actualiza al final
-        if (hora >= 12 and hora <= 17):
+        if (hora >= 12 and hora <= 18):
             flagLleganCamiones = True
-            # generacion vector de estados
-            r = ["Apertura de puertas", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s", "----",
-                 servidorRecepcion.getEstado(), "----", "----", str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), "----", "----", str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), "----", "----",
-                 servidorDarsena2.getEstado(), "----", "----", str(len(colaDarsena))]
-            vectorEstados.append(r)
-            # fin generacion vector de estados
         else:
             flagLleganCamiones = False
 
@@ -114,7 +123,7 @@ while dia <= 3:
            cantidadDuermenAfuera[dia-1]= len(colaRecepcion)
 
         # permitir recepcion de camiones
-        if (hora >= 5 and hora <= 18 ):
+        if (hora >= 5 and hora < 18 ):
             flagRecibirCamiones = True
             if (hora == 5):
                 # generacion vector de estados
@@ -149,6 +158,10 @@ while dia <= 3:
 
         hora += 1
 
+    # avance de minutos
+    if (segundos % 60 == 0):
+        minutos += 1
+
     #si esta entre las 12 y las 18, siguen llegando camiones
     if (flagLleganCamiones):
         if (proximoCamion > 0):
@@ -172,7 +185,7 @@ while dia <= 3:
         proximoCamion = obtenerTiempoProxCamion()
 
     # si recepcion esta atendiendo a alguien lo sigue atendiendo, pero no recibe camiones pasadas las 18hs
-    if (flagRecibirCamiones):
+    if (flagRecibirCamiones or (flagUltimoCamion and servidorRecepcion.getOcupado())):
         c = servidorRecepcion.obtenerEvento()
         if (c is not None):
             finAtencionServRecS = None
@@ -182,7 +195,7 @@ while dia <= 3:
             else:
                 colaBalanza.append(c)
                 agregadosColaBalanza+=1
-            if(len(colaRecepcion) > 0):
+            if(len(colaRecepcion) > 0 and not flagUltimoCamion):
                 if (flagRecibirCamiones):
                     cam=colaRecepcion.popleft()
                     cam.setHoraEntrada(segundos)
@@ -206,12 +219,15 @@ while dia <= 3:
             vectorEstados.append(r)
             # fin generacion vector de estados
 
-        if (not servidorRecepcion.getOcupado()):
+        if (not servidorRecepcion.getOcupado() and not flagUltimoCamion):
             if (len(colaRecepcion) > 0):
                 cam=colaRecepcion.popleft()
                 cam.setHoraEntrada(segundos)
                 servidorRecepcion.recibirCamion(cam)
                 atendidosrec += 1
+
+        if (c is not None and flagUltimoCamion):
+            flagUltimoCamion = False
 
     #La atencion de camiones se hace durante todo el dia
     #servidor balanza
