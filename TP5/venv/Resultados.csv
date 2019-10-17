@@ -1,7 +1,14 @@
 1er estrategia
 ""
 Días;Día 1;Día 2;Día 3;Día 4;Día 5;Día 6;Día 7;Día 8;Día 9;Día 10;Día 11;Día 12;Día 13;Día 14;Día 15;Día 16;Día 17;Día 18;Día 19;Día 20;Día 21;Día 22;Día 23;Día 24;Día 25;Día 26;Día 27;Día 28;Día 29;Día 30
-Cant. atendidos p/día;69;46;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-Cant. duermen afuera p/día;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0
+Cant. atendidos p/día;54;53;48;63;58;71;60;61;48;67;62;54;61;57;63;61;64;59;64;69;63;41;57;54;50;62;65;45;56;53
+Cant. duermen afuera p/día;1;3;0;0;0;2;1;0;1;2;1;1;0;3;0;0;1;1;0;0;0;0;1;0;0;2;0;1;0;3
 ""
-Tiempo de permanencia promedio;1hs 9min 10s
+Tiempo de permanencia promedio;0hs 40min 48s
+2da estrategia
+""
+Días;Día 1;Día 2;Día 3;Día 4;Día 5;Día 6;Día 7;Día 8;Día 9;Día 10;Día 11;Día 12;Día 13;Día 14;Día 15;Día 16;Día 17;Día 18;Día 19;Día 20;Día 21;Día 22;Día 23;Día 24;Día 25;Día 26;Día 27;Día 28;Día 29;Día 30
+Cant. atendidos p/día;111;112;112;112;111;112;111;110;112;111;112;111;111;112;111;112;110;111;112;111;111;111;111;111;111;112;111;112;112;110
+Cant. duermen afuera p/día;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0
+""
+Tiempo de permanencia promedio;0hs 43min 31s

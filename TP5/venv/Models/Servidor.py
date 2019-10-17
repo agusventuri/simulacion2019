@@ -1,6 +1,7 @@
 import random
 import math
 from abc import ABCMeta, abstractmethod
+import datetime
 
 
 class Servidor:
@@ -27,14 +28,32 @@ class Servidor:
         self.tiempoFinAtencion = self.calcularProxFinAtencion()
         self.ocupado = True
 
+    def getNroCliente(self):
+        if (self.camion is None):
+            return " - "
+        return self.camion.getnroCamion()
+
+    def getEstado(self):
+        if self.getOcupado():
+            return "Ocupado"
+        return "Libre"
+
     def getOcupado(self):
         return self.ocupado
     
     def gettiempoFinAtencion(self):
-        return self.tiempoFinAtencion
+        return self.convert_timedelta(self.tiempoFinAtencion)
 
     def calcularProxFinAtencion(self):
         return 40
+
+    def convert_timedelta(self, seconds):
+        duration = datetime.timedelta(seconds=seconds)
+        days, seconds = duration.days, duration.seconds
+        hours = seconds // 3600
+        minutes = (seconds % 3600) // 60
+        secs = (seconds % 60)
+        return days, hours, minutes, secs
 
 
 class Recepcion(Servidor):
