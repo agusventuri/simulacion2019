@@ -87,9 +87,8 @@ while dia <= 3:
     # control del tiempo
 
     # prohibir llegada de camiones luego de las 18 clavados. Evita que lleguen durante las 18
-    if (hora == 18 and minutos == 0 and segundos % 60 == 1):
+    if (hora == 19 and minutos == 0 and segundos % 60 == 1):
         flagLleganCamiones = False
-        print("fafa")
 
     # prohibir recepcion de camiones luego de las 18 clavados. Evita atenderlos durante las 18
     if (hora == 19 and minutos == 0 and segundos % 60 == 0):
@@ -112,8 +111,8 @@ while dia <= 3:
     # avance de horas
     if (segundos % 3600 == 0 and segundos % 60 == 0):
         minutos = -1
-        # habilitar llegada de camiones. Se usan las 17 ya que la hora se actualiza al final
-        if (hora >= 12 and hora <= 18):
+        # habilitar llegada de camiones.
+        if (hora >= 12 and hora < 18):
             flagLleganCamiones = True
         else:
             flagLleganCamiones = False
@@ -123,7 +122,7 @@ while dia <= 3:
            cantidadDuermenAfuera[dia-1]= len(colaRecepcion)
 
         # permitir recepcion de camiones
-        if (hora >= 5 and hora < 18 ):
+        if (hora >= 5 and hora <= 18 ):
             flagRecibirCamiones = True
             if (hora == 5):
                 # generacion vector de estados
