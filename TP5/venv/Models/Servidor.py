@@ -97,23 +97,31 @@ class Darsena(Servidor):
         res= round((media + (-2 * math.log(ri,math.e) * math.cos(2 * math.pi * ri + 1)) * math.sqrt(varianza)),0)
         return res
 
+    def getEstado(self):
+        if self.calibrando:
+            return "Calibrando"
+        if self.getOcupado():
+            return "Ocupado"
+        return "Libre"
+
     def obtenerEvento(self):
-        if (self.cantidadCamiones == 15):
-            self.cantidadCamiones = 0
+        if (self.cantidadCamiones == 15 and not self.calibrando):
             self.cantRecalibrados += 1
             r = round((self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado())*60,0)
             self.tiempoFinAtencion = r
             self.calibrando = True
             self.ocupado = True
+            return True
 
         if (self.calibrando):
             if (self.tiempoFinAtencion > 0):
                 self.tiempoFinAtencion -= 1
-                return "Calibrando..."
+                return None
             else:
+                self.cantidadCamiones = 0
                 self.calibrando = False
                 self.ocupado = False
-                return None
+                return False
 
         if (self.camion is not None):
             if (self.tiempoFinAtencion > 0):
@@ -123,12 +131,16 @@ class Darsena(Servidor):
                 c = self.camion
                 self.camion = None
                 self.ocupado = False
+                self.cantidadCamiones += 1
                 return c
         return None
 
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion darsena
-        self.cantidadCamiones += 1
         r = round((self.a + random.random() * (self.b - self.a))*60,0)
         return r
 
+    def getCalibrando(self):
+        if (self.cantidadCamiones == 15 or self.calibrando):
+            return True
+        return self.calibrando;

@@ -402,7 +402,7 @@ writer.writerow(["Tiempo de permanencia promedio",strTiempoPromedioCamiones])
 result.close()
 
 #exportacion csv
-result = open("Vector estados estrategia 2.csv","w", newline="")
+result = open("Vector estados 2da estrategia.csv","w", newline="")
 writer = csv.writer(result, delimiter=';')
 
 for evento in vectorEstados:

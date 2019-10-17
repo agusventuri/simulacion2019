@@ -85,7 +85,6 @@ while dia <= 3:
     d, h, m, s = convert_timedelta(segundos)
 
     # control del tiempo
-
     # prohibir llegada de camiones luego de las 18 clavados. Evita que lleguen durante las 18
     if (hora == 19 and minutos == 0 and segundos % 60 == 1):
         flagLleganCamiones = False
@@ -264,9 +263,10 @@ while dia <= 3:
     #servidores darsena
     cDarsena1 = servidorDarsena1.obtenerEvento()
     cDarsena2 = servidorDarsena2.obtenerEvento()
+
     #ver a que darsena le tengo q pasar un camion
     if (len(colaDarsena) >= 1):
-        if (isinstance(cDarsena1, Camion)):
+        if (isinstance(cDarsena1, Camion) and not servidorDarsena1.getCalibrando()):
             finAtencionServDar1S = None
             cDarsena1.setHoraSalida(segundos)
             colaTerminados.append(cDarsena1)
@@ -291,7 +291,7 @@ while dia <= 3:
             vectorEstados.append(r)
             # fin generacion vector de estados
 
-        if (isinstance(cDarsena2, Camion)):
+        if (isinstance(cDarsena2, Camion) and not servidorDarsena2.getCalibrando()):
             finAtencionServDar2S = None
             cDarsena2.setHoraSalida(segundos)
             colaTerminados.append(cDarsena2)
@@ -316,7 +316,7 @@ while dia <= 3:
             vectorEstados.append(r)
             # fin generacion vector de estados
     else:
-        if (isinstance(cDarsena1, Camion)):
+        if (isinstance(cDarsena1, Camion) and not servidorDarsena1.getCalibrando()):
             finAtencionServDar1S = None
             cDarsena1.setHoraSalida(segundos)
             colaTerminados.append(cDarsena1)
@@ -339,7 +339,7 @@ while dia <= 3:
             vectorEstados.append(r)
             # fin generacion vector de estados
 
-        if (isinstance(cDarsena2, Camion)):
+        if (isinstance(cDarsena2, Camion) and not servidorDarsena2.getCalibrando()):
             finAtencionServDar2S = None
             colaTerminados.append(cDarsena2)
             cDarsena2.setHoraSalida(segundos)
@@ -362,14 +362,104 @@ while dia <= 3:
             vectorEstados.append(r)
             # fin generacion vector de estados
 
+    if (cDarsena1 is not None and not isinstance(cDarsena1, Camion)):
+        if (cDarsena1):
+            # generacion vector de estados
+            d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
+            finAtencionServDar1S = servidorDarsena1.gettiempoFinAtencion()
+            if (finAtencionServDar1S is not None):
+                d2, h2, m2, s2 = finAtencionServDar1S
+            else:
+                h2 = ".."
+                m2 = ".."
+                s2 = ".."
+            r = ["Calibrando Darsena 1", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
+                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
+                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(),
+                 formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
+                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(),
+                 formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
+                 servidorDarsena1.getEstado(), "----",
+                 str(h2) + "hs " + str(m2) + "min " + str(s2) + "s",
+                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(),
+                 formatTime(servidorDarsena2.gettiempoFinAtencion()), str(len(colaDarsena))]
+            vectorEstados.append(r)
+            # fin generacion vector de estados
+        else:
+            # generacion vector de estados
+            d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
+            finAtencionServDar1S = servidorDarsena1.gettiempoFinAtencion()
+            if (finAtencionServDar1S is not None):
+                d2, h2, m2, s2 = finAtencionServDar1S
+            else:
+                h2 = ".."
+                m2 = ".."
+                s2 = ".."
+            r = ["Fin calibracion Darsena 1", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
+                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
+                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(),
+                 formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
+                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(),
+                 formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
+                 servidorDarsena1.getEstado(), "----",
+                 str(h2) + "hs " + str(m2) + "min " + str(s2) + "s",
+                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(),
+                 formatTime(servidorDarsena2.gettiempoFinAtencion()), str(len(colaDarsena))]
+            vectorEstados.append(r)
+            # fin generacion vector de estados
+
+    if (cDarsena2 is not None and not isinstance(cDarsena2, Camion)):
+        if (cDarsena2):
+            # generacion vector de estados
+            d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
+            finAtencionServDar2S = servidorDarsena2.gettiempoFinAtencion()
+            if (finAtencionServDar2S is not None):
+                d2, h2, m2, s2 = finAtencionServDar2S
+            else:
+                h2 = ".."
+                m2 = ".."
+                s2 = ".."
+            r = ["Calibrando Darsena 2", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
+                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
+                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(),
+                 formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
+                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(),
+                 formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
+                 servidorDarsena1.getEstado(), servidorDarsena2.getNroCliente(),
+                 str(h2) + "hs " + str(m2) + "min " + str(s2) + "s",
+                 servidorDarsena2.getEstado(), "----",
+                 formatTime(servidorDarsena2.gettiempoFinAtencion()), str(len(colaDarsena))]
+            vectorEstados.append(r)
+            # fin generacion vector de estados
+        else:
+            # generacion vector de estados
+            d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
+            finAtencionServDar2S = servidorDarsena2.gettiempoFinAtencion()
+            if (finAtencionServDar2S is not None):
+                d2, h2, m2, s2 = finAtencionServDar2S
+            else:
+                h2 = ".."
+                m2 = ".."
+                s2 = ".."
+            r = ["Fin calibracion Darsena 2", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
+                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
+                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(),
+                 formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
+                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(),
+                 formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
+                 servidorDarsena1.getEstado(), "----", formatTime(servidorDarsena1.gettiempoFinAtencion()),
+                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(),
+                 str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", str(len(colaDarsena))]
+            vectorEstados.append(r)
+            # fin generacion vector de estados
 
     if (not servidorDarsena1.getOcupado()):
-        if (len(colaDarsena) > 0):
+        if (len(colaDarsena) > 0 and not servidorDarsena1.getCalibrando()):
             servidorDarsena1.recibirCamion(colaDarsena.popleft())
             atendidosdar1 += 1
 
     if (not servidorDarsena2.getOcupado()):
-        if (len(colaDarsena) > 0):
+        if (len(colaDarsena) > 0 and not servidorDarsena1.getCalibrando()):
             servidorDarsena2.recibirCamion(colaDarsena.popleft())
             atendidosdar2 += 1
 
