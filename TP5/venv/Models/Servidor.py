@@ -76,7 +76,6 @@ class Balanza(Servidor):
         return r
 
 
-
 class Darsena(Servidor):
     a = 15
     b = 20
@@ -110,9 +109,9 @@ class Darsena(Servidor):
         if (self.calibrando):
             if (self.tiempoFinAtencion > 0):
                 self.tiempoFinAtencion -= 1
-                return None
+                return "Calibrando..."
             else:
-                self.calibrando
+                self.calibrando = False
                 self.ocupado = False
                 return None
 

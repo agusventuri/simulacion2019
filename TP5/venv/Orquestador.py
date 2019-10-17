@@ -50,7 +50,7 @@ flagLleganCamiones = False
 flagRecibirCamiones = False
 
 vectorEstados = deque()
-vectorEstados.append(["", "", "", "", "", "Recepcion", "", "", "", "","Balanza", "", "", "", "","Darsena 1", "", "", "","Darsena 2"])
+vectorEstados.append(["", "", "", "", "", "Recepcion", "", "", "", "Balanza", "", "", "", "Darsena 1", "", "", "","Darsena 2"])
 vectorEstados.append(["Evento", "Camion", "Dia", "Reloj", "Tiempo prox llegada", "Estado", "Camion", "Prox fin atencion", "Cola","Estado", "Camion", "Prox fin atencion", "Cola","Estado", "Camion", "Prox fin atencion","Estado", "Camion", "Prox fin atencion", "Cola"])
 
 def convert_timedelta(seconds):
@@ -67,49 +67,73 @@ def formatTime(time):
 def obtenerTiempoProxCamion():
     #formula gen var aleatoria exponencial
     t = (-unoSobreLambda) * math.log(1 - random.random(),math.e)
-    #t=15
     t=round((t),0)
-    #global tiempolleg
-    #tiempolleg=t
-
     return t
 
 # tiempo en segundos hasta la llegada del proximo camion
 proximoCamion = obtenerTiempoProxCamion()
 
-while dia <= 30:
-    estadoActual = []
+while dia <= 3:
     proximoCamionS = 0
     finAtencionServRecS = None
     finAtencionServBalS = None
     finAtencionServDar1S = None
     finAtencionServDar2S = None
-    #si sale el ultimo camion se termina d trabajar y se pasa al otro dia
 
-    #control del tiempo
+    # dia, hora, minuto y segundo actual
+    d, h, m, s = convert_timedelta(segundos)
+
+    # control del tiempo
+    # avance de minutos
     if (segundos % 60 == 0):
         minutos += 1
 
-    if (segundos!=0 and segundos % 3600 == 0):
-        hora += 1
+    # prohibir llegada de camiones luego de las 18 clavados. Evita que lleguen durante las 18
+    if (hora == 18 and minutos == 0 and segundos % 60 == 0):
+        flagLleganCamiones = False
+
+    # avance de horas
+    if (segundos % 3600 == 0):
         minutos = 0
-        # permitir llegada de camiones
-        if (hora >= 12 and hora <= 18):
+        # habilitar llegada de camiones. Se usan las 17 ya que la hora se actualiza al final
+        if (hora >= 12 and hora <= 17):
             flagLleganCamiones = True
+            # generacion vector de estados
+            r = ["Apertura de puertas", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s", "----",
+                 servidorRecepcion.getEstado(), "----", "----", str(len(colaRecepcion)),
+                 servidorBalanza.getEstado(), "----", "----", str(len(colaBalanza)),
+                 servidorDarsena1.getEstado(), "----", "----",
+                 servidorDarsena2.getEstado(), "----", "----", str(len(colaDarsena))]
+            vectorEstados.append(r)
+            # fin generacion vector de estados
         else:
             flagLleganCamiones = False
-
-        # permitir atencion de camiones
-        #if (hora >= 5):
-        #    flagPuertasAbiertas = True
 
         # almacenar la cantidad de camiones que duermen afuera
         if (hora >= 18):
            cantidadDuermenAfuera[dia-1]= len(colaRecepcion)
 
         # permitir recepcion de camiones
-        if (hora >= 5 and hora <= 18):
+        if (hora >= 5 and hora <= 18 ):
             flagRecibirCamiones = True
+            if (hora == 5):
+                # generacion vector de estados
+                r = ["Apertura de planta", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s", "----",
+                     servidorRecepcion.getEstado(), "----", "----", str(len(colaRecepcion)),
+                     servidorBalanza.getEstado(), "----", "----", str(len(colaBalanza)),
+                     servidorDarsena1.getEstado(), "----", "----",
+                     servidorDarsena2.getEstado(), "----", "----", str(len(colaDarsena))]
+                vectorEstados.append(r)
+                # fin generacion vector de estados
+            if (hora == 18):
+                # generacion vector de estados
+                r = ["Cierre de planta", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",  "----",
+                     servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
+                     servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
+                     servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()),
+                     servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion())]
+                vectorEstados.append(r)
+                # fin generacion vector de estados
         else:
             flagRecibirCamiones = False
 
@@ -123,16 +147,17 @@ while dia <= 30:
             hora = 0
             dia += 1
 
+        hora += 1
+
     #si esta entre las 12 y las 18, siguen llegando camiones
     if (flagLleganCamiones):
-
         if (proximoCamion > 0):
             proximoCamion -= 1
         else:
             camion = Camion(random.random() < 0.35)
             colaRecepcion.append(camion)
-            d, h, m, s = convert_timedelta(segundos)
             agregadosColaRecepcion+=1
+            # generacion vector de estados
             proximoCamion = obtenerTiempoProxCamion()
             proximoCamionS = proximoCamion
             d2, h2, m2, s2 = convert_timedelta(proximoCamionS)
@@ -142,11 +167,9 @@ while dia <= 30:
                  servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()),
                  servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), str(len(colaDarsena))]
             vectorEstados.append(r)
+            # fin generacion vector de estados
     else:
         proximoCamion = obtenerTiempoProxCamion()
-
-    #print("---------------")
-    #print("prox camion" + str(proximoCamion))
 
     # si recepcion esta atendiendo a alguien lo sigue atendiendo, pero no recibe camiones pasadas las 18hs
     if (flagRecibirCamiones):
@@ -166,7 +189,7 @@ while dia <= 30:
                     servidorRecepcion.recibirCamion(cam)
                     finAtencionServRecS = servidorRecepcion.gettiempoFinAtencion()
                     atendidosrec += 1
-            d, h, m, s = convert_timedelta(segundos)
+            # generacion vector de estados
             d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
             if ( finAtencionServRecS is not None):
                 d2, h2, m2, s2 = finAtencionServRecS
@@ -181,6 +204,7 @@ while dia <= 30:
                  servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()),
                  servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), str(len(colaDarsena))]
             vectorEstados.append(r)
+            # fin generacion vector de estados
 
         if (not servidorRecepcion.getOcupado()):
             if (len(colaRecepcion) > 0):
@@ -188,6 +212,7 @@ while dia <= 30:
                 cam.setHoraEntrada(segundos)
                 servidorRecepcion.recibirCamion(cam)
                 atendidosrec += 1
+
     #La atencion de camiones se hace durante todo el dia
     #servidor balanza
     cBalanza = servidorBalanza.obtenerEvento()
@@ -198,7 +223,7 @@ while dia <= 30:
             servidorBalanza.recibirCamion(colaBalanza.popleft())
             atendidosbal += 1
 
-        d, h, m, s = convert_timedelta(segundos)
+        # generacion vector de estados
         d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
         if (finAtencionServBalS is not None):
             d2, h2, m2, s2 = convert_timedelta(finAtencionServBalS)
@@ -213,6 +238,7 @@ while dia <= 30:
              servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()),
              servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), str(len(colaDarsena))]
         vectorEstados.append(r)
+        # fin generacion vector de estados
 
 
     if (not servidorBalanza.getOcupado()):
@@ -224,7 +250,7 @@ while dia <= 30:
     cDarsena1 = servidorDarsena1.obtenerEvento()
     cDarsena2 = servidorDarsena2.obtenerEvento()
     #ver a que darsena le tengo q pasar un camion
-    if (len(colaDarsena)>0):
+    if (len(colaDarsena) >= 1):
         if (isinstance(cDarsena1, Camion)):
             finAtencionServDar1S = None
             cDarsena1.setHoraSalida(segundos)
@@ -233,7 +259,7 @@ while dia <= 30:
             finAtencionServDar1S = servidorDarsena1.gettiempoFinAtencion()
             atendidosdar1 += 1
 
-            d, h, m, s = convert_timedelta(segundos)
+            # generacion vector de estados
             d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
             if (finAtencionServDar1S is not None):
                 d2, h2, m2, s2 = finAtencionServDar1S
@@ -248,6 +274,7 @@ while dia <= 30:
                  servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s",
                  servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), str(len(colaDarsena))]
             vectorEstados.append(r)
+            # fin generacion vector de estados
 
         if (isinstance(cDarsena2, Camion)):
             finAtencionServDar2S = None
@@ -257,7 +284,7 @@ while dia <= 30:
             finAtencionServDar2S = servidorDarsena1.gettiempoFinAtencion()
             atendidosdar2 += 1
 
-            d, h, m, s = convert_timedelta(segundos)
+            # generacion vector de estados
             d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
             if (finAtencionServDar2S is not None):
                 d2, h2, m2, s2 = finAtencionServDar2S
@@ -272,7 +299,7 @@ while dia <= 30:
                  servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()),
                  servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", str(len(colaDarsena))]
             vectorEstados.append(r)
-
+            # fin generacion vector de estados
     else:
         if (isinstance(cDarsena1, Camion)):
             finAtencionServDar1S = None
@@ -280,7 +307,7 @@ while dia <= 30:
             colaTerminados.append(cDarsena1)
             atendidosdar1 += 1
 
-            d, h, m, s = convert_timedelta(segundos)
+            # generacion vector de estados
             d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
             if (finAtencionServDar1S is not None):
                 d2, h2, m2, s2 = convert_timedelta(finAtencionServDar1S)
@@ -295,13 +322,15 @@ while dia <= 30:
                  servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s",
                  servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), str(len(colaDarsena))]
             vectorEstados.append(r)
+            # fin generacion vector de estados
+
         if (isinstance(cDarsena2, Camion)):
             finAtencionServDar2S = None
             colaTerminados.append(cDarsena2)
             cDarsena2.setHoraSalida(segundos)
             atendidosdar2 += 1
 
-            d, h, m, s = convert_timedelta(segundos)
+            # generacion vector de estados
             d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
             if (finAtencionServDar2S is not None):
                 d2, h2, m2, s2 = convert_timedelta(finAtencionServDar2S)
@@ -316,6 +345,7 @@ while dia <= 30:
                  servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()),
                  servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", str(len(colaDarsena))]
             vectorEstados.append(r)
+            # fin generacion vector de estados
 
 
     if (not servidorDarsena1.getOcupado()):
@@ -328,43 +358,6 @@ while dia <= 30:
             servidorDarsena2.recibirCamion(colaDarsena.popleft())
             atendidosdar2 += 1
 
-    #if hora==16 and proximoCamion<=1 and ((servidorRecepcion.gettiempoFinAtencion()<=8 and servidorRecepcion.gettiempoFinAtencion()!=0) or (servidorBalanza.gettiempoFinAtencion()<=10 and servidorBalanza.gettiempoFinAtencion()!=0) or (servidorDarsena1.gettiempoFinAtencion()<=10 and servidorDarsena1.gettiempoFinAtencion()!=0)or (servidorDarsena2.gettiempoFinAtencion()<=10 and servidorDarsena2.gettiempoFinAtencion()!=0)):
-    #    time.sleep(0)
-
-    #print("---------------------------")
-    #print("Dia:" + str(dia) + "Hora:"+ str(hora)+ "segundos: "+ str(segundos))
-    #print("serv recepcion")
-    #if servidorRecepcion.camion is not None:
-    #    print("atendiendo camion : "+str(servidorRecepcion.camion.getnroCamion()) + " prox fin atencion: "+ str(servidorRecepcion.gettiempoFinAtencion()))
-    #print("serv Balanza")
-    #if servidorBalanza.camion is not None:
-    #    print("atendiendo camion : "+str(servidorBalanza.camion.getnroCamion())+  " prox fin atencion: "+str(servidorBalanza.gettiempoFinAtencion()))
-    #print("serv darsena1" +" cantidad recalibrados: "+str(servidorDarsena1.getRecalibrados()))
-    #if servidorDarsena1.camion is not None:
-    #    print("atendiendo camion : "+str(servidorDarsena1.camion.getnroCamion())+ " prox fin atencion: "+ str(servidorDarsena1.gettiempoFinAtencion()))
-    #print("serv darsena2" +" cantidad recalibrados: "+str(servidorDarsena2.getRecalibrados()))
-    #if servidorDarsena2.camion is not None:
-    #    print("atendiendo camion : "+str(servidorDarsena2.camion.getnroCamion())+  " prox fin atencion: "+str(servidorDarsena2.gettiempoFinAtencion()))
-    #print("colas:")
-    #print(len(colaRecepcion))
-    #print(len(colaBalanza))
-    #print(len(colaDarsena))
-    #print("cantidad atendidos:")
-    #print(atendidosrec)
-    #print(atendidosbal)
-    #print(atendidosdar1)
-    #print(atendidosdar2)
-    #print("agregados a colas:")
-    #print(agregadosColaRecepcion)
-    #print(agregadosColaBalanza)
-    #print(agregadosColaDar)
-
-    #print("proximo camion"+str(proximoCamion))
-
-    #print("tiempos de atencion generados: ")
-    #print("prox camion epec : "+str(tiempolleg))
-
-    #print(str(cantidadDuermenAfuera))
     segundos += 1
 
 #calculamos promedio de tiempo permanencia camiones
@@ -385,12 +378,6 @@ while i < 32:
     dias.append("Día " + str(i-1))
     i += 1
 
-
-#print("Tiempo promedio permanencia: "+str(tiempoPromedioCamiones))
-#print(len(colaTerminados))
-#print(cantidadDuermenAfuera)
-#print(cantidadAtendidos)
-
 cantidadAtendidos.appendleft("Cant. atendidos p/día")
 cantidadDuermenAfuera.appendleft("Cant. duermen afuera p/día")
 
@@ -408,7 +395,7 @@ writer.writerow(["Tiempo de permanencia promedio",strTiempoPromedioCamiones])
 result.close()
 
 #exportacion csv
-result = open("Vector estados.csv","w", newline="")
+result = open("Vector estados 1er estrategia.csv","w", newline="")
 writer = csv.writer(result, delimiter=';')
 
 for evento in vectorEstados:

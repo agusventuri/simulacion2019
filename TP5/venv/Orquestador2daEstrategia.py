@@ -93,25 +93,19 @@ while dia <= 30:
     if (segundos!=0 and segundos % 3600 == 0):
         hora += 1
         minutos = 0
-        # permitir llegada de camiones
-        if (hora >= 5 and hora <= 18):
-            flagLleganCamiones = True
-        else:
-            flagLleganCamiones = False
-
-        # permitir atencion de camiones
-        #if (hora >= 5):
-        #    flagPuertasAbiertas = True
 
         # almacenar la cantidad de camiones que duermen afuera
         if (hora >= 18):
            cantidadDuermenAfuera[dia-1]= len(colaRecepcion)
 
+        # permitir llegada de camiones
         # permitir recepcion de camiones
-        if (hora >= 5 and hora <= 18):
+        if (hora >= 5 and (hora <= 18 and minutos < 1)):
             flagRecibirCamiones = True
+            flagLleganCamiones = True
         else:
             flagRecibirCamiones = False
+            flagLleganCamiones = False
 
         # avanzar dias
         if (hora == 24):

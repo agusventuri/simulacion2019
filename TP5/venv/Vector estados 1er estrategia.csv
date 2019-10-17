@@ -1,0 +1,557 @@
+;;;;;Recepcion;;;;Balanza;;;;Darsena 1;;;;Darsena 2
+Evento;Camion;Dia;Reloj;Tiempo prox llegada;Estado;Camion;Prox fin atencion;Cola;Estado;Camion;Prox fin atencion;Cola;Estado;Camion;Prox fin atencion;Estado;Camion;Prox fin atencion;Cola
+Apertura de planta;----;1;5hs 0min 0s;----;Libre;----;----;0;Libre;----;----;0;Libre;----;----;Libre;----;----;0
+Apertura de puertas;----;1;12hs 0min 0s;----;Libre;----;----;0;Libre;----;----;0;Libre;----;----;Libre;----;----;0
+Llega camion;1;1;12hs 3min 25s;0hs 2min 5s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Llega camion;2;1;12hs 5min 31s;0hs 1min 50s;Ocupado;1;0hs 1min 32s;1;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Fin atencion Recepcion;1;1;12hs 7min 3s;0hs 0min 0s;Ocupado;2;0hs 4min 7s;0;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Llega camion;3;1;12hs 7min 22s;0hs 4min 23s;Ocupado;2;0hs 3min 49s;1;Ocupado;1;0hs 5min 50s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Fin atencion Recepcion;2;1;12hs 11min 11s;0hs 0min 0s;Ocupado;3;0hs 4min 58s;0;Ocupado;1;0hs 2min 1s;1;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Llega camion;4;1;12hs 11min 46s;0hs 5min 12s;Ocupado;3;0hs 4min 24s;1;Ocupado;1;0hs 1min 26s;1;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Fin atencion Balanza;1;1;12hs 13min 12s;0hs 0min 0s;Ocupado;3;0hs 2min 57s;1;Ocupado;2;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;1
+Fin atencion Recepcion;3;1;12hs 16min 10s;0hs 0min 0s;Ocupado;4;0hs 6min 33s;0;Ocupado;2;0hs 3min 30s;0;Ocupado;1;0hs 15min 50s;Libre; - ;0hs 0min 0s;1
+Llega camion;5;1;12hs 16min 59s;0hs 3min 6s;Ocupado;4;0hs 5min 45s;1;Ocupado;2;0hs 2min 41s;0;Ocupado;1;0hs 15min 1s;Ocupado;3;0hs 17min 57s;0
+Fin atencion Balanza;2;1;12hs 19min 40s;0hs 0min 0s;Ocupado;4;0hs 3min 3s;1;Libre; - ;..hs ..min ..s;0;Ocupado;1;0hs 12min 20s;Ocupado;3;0hs 15min 16s;1
+Llega camion;6;1;12hs 20min 6s;0hs 0min 53s;Ocupado;4;0hs 2min 38s;2;Libre; - ;0hs 0min 0s;0;Ocupado;1;0hs 11min 54s;Ocupado;3;0hs 14min 50s;1
+Llega camion;7;1;12hs 21min 0s;0hs 0min 7s;Ocupado;4;0hs 1min 44s;3;Libre; - ;0hs 0min 0s;0;Ocupado;1;0hs 11min 0s;Ocupado;3;0hs 13min 56s;1
+Llega camion;8;1;12hs 21min 8s;0hs 3min 26s;Ocupado;4;0hs 1min 36s;4;Libre; - ;0hs 0min 0s;0;Ocupado;1;0hs 10min 52s;Ocupado;3;0hs 13min 48s;1
+Fin atencion Recepcion;4;1;12hs 22min 44s;0hs 0min 0s;Ocupado;5;0hs 6min 36s;3;Libre; - ;0hs 0min 0s;1;Ocupado;1;0hs 9min 16s;Ocupado;3;0hs 12min 12s;1
+Llega camion;9;1;12hs 24min 35s;0hs 2min 29s;Ocupado;5;0hs 4min 46s;4;Ocupado;4;0hs 4min 16s;0;Ocupado;1;0hs 7min 25s;Ocupado;3;0hs 10min 21s;1
+Llega camion;10;1;12hs 27min 5s;0hs 1min 56s;Ocupado;5;0hs 2min 16s;5;Ocupado;4;0hs 1min 46s;0;Ocupado;1;0hs 4min 55s;Ocupado;3;0hs 7min 51s;1
+Fin atencion Balanza;4;1;12hs 28min 51s;0hs 0min 0s;Ocupado;5;0hs 0min 29s;5;Libre; - ;..hs ..min ..s;0;Ocupado;1;0hs 3min 9s;Ocupado;3;0hs 6min 5s;2
+Llega camion;11;1;12hs 29min 2s;0hs 8min 3s;Ocupado;5;0hs 0min 19s;6;Libre; - ;0hs 0min 0s;0;Ocupado;1;0hs 2min 58s;Ocupado;3;0hs 5min 54s;2
+Fin atencion Recepcion;5;1;12hs 29min 21s;0hs 0min 0s;Ocupado;6;0hs 6min 41s;5;Libre; - ;0hs 0min 0s;0;Ocupado;1;0hs 2min 39s;Ocupado;3;0hs 5min 35s;3
+Fin atencion Darsena 1;1;1;12hs 32min 0s;0hs 0min 0s;Ocupado;6;0hs 4min 2s;5;Libre; - ;0hs 0min 0s;0;Ocupado;2;0hs 16min 23s;Ocupado;3;0hs 2min 55s;2
+Fin atencion Darsena 2;3;1;12hs 34min 56s;0hs 0min 0s;Ocupado;6;0hs 1min 6s;5;Libre; - ;0hs 0min 0s;0;Ocupado;2;0hs 13min 27s;Ocupado;4;0hs 13min 27s;1
+Fin atencion Recepcion;6;1;12hs 36min 3s;0hs 0min 0s;Ocupado;7;0hs 6min 17s;4;Libre; - ;0hs 0min 0s;0;Ocupado;2;0hs 12min 21s;Ocupado;4;0hs 18min 1s;2
+Llega camion;12;1;12hs 37min 6s;0hs 2min 23s;Ocupado;7;0hs 5min 15s;5;Libre; - ;0hs 0min 0s;0;Ocupado;2;0hs 11min 18s;Ocupado;4;0hs 16min 58s;2
+Llega camion;13;1;12hs 39min 30s;0hs 8min 22s;Ocupado;7;0hs 2min 51s;6;Libre; - ;0hs 0min 0s;0;Ocupado;2;0hs 8min 54s;Ocupado;4;0hs 14min 34s;2
+Fin atencion Recepcion;7;1;12hs 42min 21s;0hs 0min 0s;Ocupado;8;0hs 5min 51s;5;Libre; - ;0hs 0min 0s;1;Ocupado;2;0hs 6min 3s;Ocupado;4;0hs 11min 43s;2
+Llega camion;14;1;12hs 47min 53s;0hs 6min 54s;Ocupado;8;0hs 0min 20s;6;Ocupado;7;0hs 0min 55s;0;Ocupado;2;0hs 0min 31s;Ocupado;4;0hs 6min 11s;2
+Fin atencion Recepcion;8;1;12hs 48min 13s;0hs 0min 0s;Ocupado;9;0hs 6min 27s;5;Ocupado;7;0hs 0min 35s;1;Ocupado;2;0hs 0min 11s;Ocupado;4;0hs 5min 51s;2
+Fin atencion Darsena 1;2;1;12hs 48min 24s;0hs 0min 0s;Ocupado;9;0hs 6min 16s;5;Ocupado;7;0hs 0min 23s;1;Ocupado;5;0hs 17min 35s;Ocupado;4;0hs 5min 39s;1
+Fin atencion Balanza;7;1;12hs 48min 48s;0hs 0min 0s;Ocupado;9;0hs 5min 52s;5;Ocupado;8;..hs ..min ..s;0;Ocupado;5;0hs 17min 12s;Ocupado;4;0hs 5min 16s;2
+Fin atencion Darsena 2;4;1;12hs 54min 4s;0hs 0min 0s;Ocupado;9;0hs 0min 36s;5;Ocupado;8;0hs 0min 9s;0;Ocupado;5;0hs 11min 55s;Ocupado;6;0hs 11min 55s;1
+Fin atencion Balanza;8;1;12hs 54min 14s;0hs 0min 0s;Ocupado;9;0hs 0min 26s;5;Libre; - ;..hs ..min ..s;0;Ocupado;5;0hs 11min 46s;Ocupado;6;0hs 18min 14s;2
+Fin atencion Recepcion;9;1;12hs 54min 41s;0hs 0min 0s;Ocupado;10;0hs 4min 58s;4;Libre; - ;0hs 0min 0s;0;Ocupado;5;0hs 11min 19s;Ocupado;6;0hs 17min 47s;3
+Llega camion;15;1;12hs 54min 48s;0hs 5min 33s;Ocupado;10;0hs 4min 52s;5;Libre; - ;0hs 0min 0s;0;Ocupado;5;0hs 11min 12s;Ocupado;6;0hs 17min 40s;3
+Fin atencion Recepcion;10;1;12hs 59min 40s;0hs 0min 0s;Ocupado;11;0hs 6min 26s;4;Libre; - ;0hs 0min 0s;1;Ocupado;5;0hs 6min 20s;Ocupado;6;0hs 12min 48s;3
+Apertura de puertas;----;1;13hs 0min 0s;----;Ocupado;----;----;4;Ocupado;----;----;0;Ocupado;----;----;Ocupado;----;----;3
+Llega camion;16;1;13hs 0min 22s;0hs 6min 37s;Ocupado;11;0hs 5min 45s;5;Ocupado;10;0hs 4min 44s;0;Ocupado;5;0hs 5min 38s;Ocupado;6;0hs 12min 6s;3
+Fin atencion Balanza;10;1;13hs 5min 6s;0hs 0min 0s;Ocupado;11;0hs 1min 0s;5;Libre; - ;..hs ..min ..s;0;Ocupado;5;0hs 0min 54s;Ocupado;6;0hs 7min 22s;4
+Fin atencion Darsena 1;5;1;13hs 6min 0s;0hs 0min 0s;Ocupado;11;0hs 0min 6s;5;Libre; - ;0hs 0min 0s;0;Ocupado;7;0hs 18min 9s;Ocupado;6;0hs 6min 27s;3
+Fin atencion Recepcion;11;1;13hs 6min 7s;0hs 0min 0s;Ocupado;12;0hs 6min 20s;4;Libre; - ;0hs 0min 0s;1;Ocupado;7;0hs 18min 3s;Ocupado;6;0hs 6min 21s;3
+Llega camion;17;1;13hs 7min 0s;0hs 1min 15s;Ocupado;12;0hs 5min 28s;5;Ocupado;11;0hs 4min 46s;0;Ocupado;7;0hs 17min 10s;Ocupado;6;0hs 5min 28s;3
+Llega camion;18;1;13hs 8min 16s;0hs 1min 16s;Ocupado;12;0hs 4min 12s;6;Ocupado;11;0hs 3min 30s;0;Ocupado;7;0hs 15min 54s;Ocupado;6;0hs 4min 12s;3
+Llega camion;19;1;13hs 9min 33s;0hs 3min 6s;Ocupado;12;0hs 2min 55s;7;Ocupado;11;0hs 2min 13s;0;Ocupado;7;0hs 14min 37s;Ocupado;6;0hs 2min 55s;3
+Fin atencion Balanza;11;1;13hs 11min 46s;0hs 0min 0s;Ocupado;12;0hs 0min 41s;7;Libre; - ;..hs ..min ..s;0;Ocupado;7;0hs 12min 24s;Ocupado;6;0hs 0min 42s;4
+Fin atencion Recepcion;12;1;13hs 12min 28s;0hs 0min 0s;Ocupado;13;0hs 6min 27s;6;Libre; - ;0hs 0min 0s;1;Ocupado;7;0hs 11min 42s;Ocupado;6;0hs 0min 0s;4
+Fin atencion Darsena 2;6;1;13hs 12min 28s;0hs 0min 0s;Ocupado;13;0hs 6min 27s;6;Ocupado;12;0hs 5min 49s;0;Ocupado;7;0hs 11min 41s;Ocupado;8;0hs 11min 41s;3
+Llega camion;20;1;13hs 12min 40s;0hs 12min 35s;Ocupado;13;0hs 6min 16s;7;Ocupado;12;0hs 5min 38s;0;Ocupado;7;0hs 11min 30s;Ocupado;8;0hs 18min 12s;3
+Fin atencion Balanza;12;1;13hs 18min 18s;0hs 0min 0s;Ocupado;13;0hs 0min 37s;7;Libre; - ;..hs ..min ..s;0;Ocupado;7;0hs 5min 52s;Ocupado;8;0hs 12min 34s;4
+Fin atencion Recepcion;13;1;13hs 18min 56s;0hs 0min 0s;Ocupado;14;0hs 3min 56s;6;Libre; - ;0hs 0min 0s;0;Ocupado;7;0hs 5min 14s;Ocupado;8;0hs 11min 56s;5
+Fin atencion Recepcion;14;1;13hs 22min 53s;0hs 0min 0s;Ocupado;15;0hs 5min 5s;5;Libre; - ;0hs 0min 0s;1;Ocupado;7;0hs 1min 17s;Ocupado;8;0hs 7min 59s;5
+Fin atencion Darsena 1;7;1;13hs 24min 10s;0hs 0min 0s;Ocupado;15;0hs 3min 48s;5;Ocupado;14;0hs 4min 53s;0;Ocupado;9;0hs 19min 22s;Ocupado;8;0hs 6min 41s;4
+Llega camion;21;1;13hs 25min 16s;0hs 13min 22s;Ocupado;15;0hs 2min 43s;6;Ocupado;14;0hs 3min 48s;0;Ocupado;9;0hs 18min 17s;Ocupado;8;0hs 5min 36s;4
+Fin atencion Recepcion;15;1;13hs 27min 59s;0hs 0min 0s;Ocupado;16;0hs 6min 50s;5;Ocupado;14;0hs 1min 5s;0;Ocupado;9;0hs 15min 34s;Ocupado;8;0hs 2min 53s;5
+Fin atencion Balanza;14;1;13hs 29min 4s;0hs 0min 0s;Ocupado;16;0hs 5min 45s;5;Libre; - ;..hs ..min ..s;0;Ocupado;9;0hs 14min 29s;Ocupado;8;0hs 1min 48s;6
+Fin atencion Darsena 2;8;1;13hs 30min 52s;0hs 0min 0s;Ocupado;16;0hs 3min 57s;5;Libre; - ;0hs 0min 0s;0;Ocupado;9;0hs 12min 40s;Ocupado;10;0hs 12min 40s;5
+Fin atencion Recepcion;16;1;13hs 34min 50s;0hs 0min 0s;Ocupado;17;0hs 3min 26s;4;Libre; - ;0hs 0min 0s;1;Ocupado;9;0hs 8min 43s;Ocupado;10;0hs 14min 30s;5
+Fin atencion Recepcion;17;1;13hs 38min 17s;0hs 0min 0s;Ocupado;18;0hs 5min 17s;3;Ocupado;16;0hs 1min 45s;1;Ocupado;9;0hs 5min 16s;Ocupado;10;0hs 11min 3s;5
+Llega camion;22;1;13hs 38min 39s;0hs 2min 56s;Ocupado;18;0hs 4min 56s;4;Ocupado;16;0hs 1min 23s;1;Ocupado;9;0hs 4min 54s;Ocupado;10;0hs 10min 41s;5
+Fin atencion Balanza;16;1;13hs 40min 2s;0hs 0min 0s;Ocupado;18;0hs 3min 32s;4;Ocupado;17;..hs ..min ..s;0;Ocupado;9;0hs 3min 31s;Ocupado;10;0hs 9min 18s;6
+Llega camion;23;1;13hs 41min 36s;0hs 5min 54s;Ocupado;18;0hs 1min 59s;5;Ocupado;17;0hs 3min 33s;0;Ocupado;9;0hs 1min 57s;Ocupado;10;0hs 7min 44s;6
+Fin atencion Darsena 1;9;1;13hs 43min 33s;0hs 0min 0s;Ocupado;18;0hs 0min 1s;5;Ocupado;17;0hs 1min 35s;0;Ocupado;11;0hs 17min 49s;Ocupado;10;0hs 5min 46s;5
+Fin atencion Recepcion;18;1;13hs 43min 35s;0hs 0min 0s;Ocupado;19;0hs 3min 7s;4;Ocupado;17;0hs 1min 34s;1;Ocupado;11;0hs 17min 48s;Ocupado;10;0hs 5min 45s;5
+Fin atencion Balanza;17;1;13hs 45min 9s;0hs 0min 0s;Ocupado;19;0hs 1min 33s;4;Ocupado;18;..hs ..min ..s;0;Ocupado;11;0hs 16min 14s;Ocupado;10;0hs 4min 11s;6
+Fin atencion Recepcion;19;1;13hs 46min 43s;0hs 0min 0s;Ocupado;20;0hs 3min 31s;3;Ocupado;18;0hs 4min 49s;1;Ocupado;11;0hs 14min 40s;Ocupado;10;0hs 2min 37s;6
+Llega camion;24;1;13hs 47min 31s;0hs 12min 21s;Ocupado;20;0hs 2min 44s;4;Ocupado;18;0hs 4min 1s;1;Ocupado;11;0hs 13min 52s;Ocupado;10;0hs 1min 49s;6
+Fin atencion Darsena 2;10;1;13hs 49min 20s;0hs 0min 0s;Ocupado;20;0hs 0min 54s;4;Ocupado;18;0hs 2min 11s;1;Ocupado;11;0hs 12min 2s;Ocupado;12;0hs 12min 2s;5
+Fin atencion Recepcion;20;1;13hs 50min 15s;0hs 0min 0s;Ocupado;21;0hs 6min 58s;3;Ocupado;18;0hs 1min 17s;1;Ocupado;11;0hs 11min 8s;Ocupado;12;0hs 19min 0s;6
+Fin atencion Balanza;18;1;13hs 51min 32s;0hs 0min 0s;Ocupado;21;0hs 5min 41s;3;Ocupado;19;..hs ..min ..s;0;Ocupado;11;0hs 9min 51s;Ocupado;12;0hs 17min 43s;7
+Fin atencion Recepcion;21;1;13hs 57min 14s;0hs 0min 0s;Ocupado;22;0hs 3min 32s;2;Ocupado;19;0hs 0min 44s;0;Ocupado;11;0hs 4min 9s;Ocupado;12;0hs 12min 1s;8
+Fin atencion Balanza;19;1;13hs 57min 58s;0hs 0min 0s;Ocupado;22;0hs 2min 48s;2;Libre; - ;..hs ..min ..s;0;Ocupado;11;0hs 3min 25s;Ocupado;12;0hs 11min 17s;9
+Llega camion;25;1;13hs 59min 53s;0hs 11min 0s;Ocupado;22;0hs 0min 54s;3;Libre; - ;0hs 0min 0s;0;Ocupado;11;0hs 1min 30s;Ocupado;12;0hs 9min 22s;9
+Apertura de puertas;----;1;14hs 0min 0s;----;Ocupado;----;----;3;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;9
+Fin atencion Recepcion;22;1;14hs 0min 47s;0hs 0min 0s;Ocupado;23;0hs 6min 45s;2;Libre; - ;0hs 0min 0s;0;Ocupado;11;0hs 0min 36s;Ocupado;12;0hs 8min 28s;10
+Fin atencion Darsena 1;11;1;14hs 1min 23s;0hs 0min 0s;Ocupado;23;0hs 6min 9s;2;Libre; - ;0hs 0min 0s;0;Ocupado;13;0hs 18min 33s;Ocupado;12;0hs 7min 51s;9
+Fin atencion Recepcion;23;1;14hs 7min 33s;0hs 0min 0s;Ocupado;24;0hs 5min 59s;1;Libre; - ;0hs 0min 0s;1;Ocupado;13;0hs 12min 24s;Ocupado;12;0hs 1min 42s;9
+Fin atencion Darsena 2;12;1;14hs 9min 15s;0hs 0min 0s;Ocupado;24;0hs 4min 17s;1;Ocupado;23;0hs 4min 12s;0;Ocupado;13;0hs 10min 41s;Ocupado;15;0hs 10min 41s;8
+Llega camion;26;1;14hs 10min 54s;0hs 1min 43s;Ocupado;24;0hs 2min 39s;2;Ocupado;23;0hs 2min 34s;0;Ocupado;13;0hs 9min 3s;Ocupado;15;0hs 14min 6s;8
+Llega camion;27;1;14hs 12min 38s;0hs 26min 33s;Ocupado;24;0hs 0min 55s;3;Ocupado;23;0hs 0min 50s;0;Ocupado;13;0hs 7min 19s;Ocupado;15;0hs 12min 22s;8
+Fin atencion Balanza;23;1;14hs 13min 28s;0hs 0min 0s;Ocupado;24;0hs 0min 4s;3;Libre; - ;..hs ..min ..s;0;Ocupado;13;0hs 6min 29s;Ocupado;15;0hs 11min 32s;9
+Fin atencion Recepcion;24;1;14hs 13min 33s;0hs 0min 0s;Ocupado;25;0hs 3min 37s;2;Libre; - ;0hs 0min 0s;1;Ocupado;13;0hs 6min 24s;Ocupado;15;0hs 11min 27s;9
+Fin atencion Recepcion;25;1;14hs 17min 11s;0hs 0min 0s;Ocupado;26;0hs 6min 34s;1;Ocupado;24;0hs 3min 14s;1;Ocupado;13;0hs 2min 46s;Ocupado;15;0hs 7min 49s;9
+Fin atencion Darsena 1;13;1;14hs 19min 57s;0hs 0min 0s;Ocupado;26;0hs 3min 48s;1;Ocupado;24;0hs 0min 27s;1;Ocupado;14;0hs 17min 16s;Ocupado;15;0hs 5min 2s;8
+Fin atencion Balanza;24;1;14hs 20min 25s;0hs 0min 0s;Ocupado;26;0hs 3min 20s;1;Ocupado;25;..hs ..min ..s;0;Ocupado;14;0hs 16min 49s;Ocupado;15;0hs 4min 35s;9
+Fin atencion Recepcion;26;1;14hs 23min 46s;0hs 0min 0s;Ocupado;27;0hs 3min 43s;0;Ocupado;25;0hs 3min 21s;1;Ocupado;14;0hs 13min 28s;Ocupado;15;0hs 1min 14s;9
+Fin atencion Darsena 2;15;1;14hs 25min 0s;0hs 0min 0s;Ocupado;27;0hs 2min 29s;0;Ocupado;25;0hs 2min 6s;1;Ocupado;14;0hs 12min 13s;Ocupado;16;0hs 12min 13s;8
+Fin atencion Balanza;25;1;14hs 27min 7s;0hs 0min 0s;Ocupado;27;0hs 0min 22s;0;Ocupado;26;..hs ..min ..s;0;Ocupado;14;0hs 10min 7s;Ocupado;16;0hs 16min 49s;9
+Fin atencion Recepcion;27;1;14hs 27min 30s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;26;0hs 6min 23s;1;Ocupado;14;0hs 9min 44s;Ocupado;16;0hs 16min 26s;9
+Fin atencion Balanza;26;1;14hs 33min 53s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;27;..hs ..min ..s;0;Ocupado;14;0hs 3min 21s;Ocupado;16;0hs 10min 3s;10
+Fin atencion Darsena 1;14;1;14hs 37min 14s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;27;0hs 2min 48s;0;Ocupado;17;0hs 17min 55s;Ocupado;16;0hs 6min 41s;9
+Llega camion;28;1;14hs 39min 12s;0hs 13min 48s;Libre; - ;0hs 0min 0s;1;Ocupado;27;0hs 0min 51s;0;Ocupado;17;0hs 15min 58s;Ocupado;16;0hs 4min 44s;9
+Fin atencion Balanza;27;1;14hs 40min 3s;0hs 0min 0s;Ocupado;28;0hs 5min 59s;0;Libre; - ;..hs ..min ..s;0;Ocupado;17;0hs 15min 7s;Ocupado;16;0hs 3min 53s;10
+Fin atencion Darsena 2;16;1;14hs 43min 56s;0hs 0min 0s;Ocupado;28;0hs 2min 6s;0;Libre; - ;0hs 0min 0s;0;Ocupado;17;0hs 11min 13s;Ocupado;20;0hs 11min 13s;9
+Fin atencion Recepcion;28;1;14hs 46min 3s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;17;0hs 9min 7s;Ocupado;20;0hs 17min 22s;9
+Fin atencion Balanza;28;1;14hs 52min 45s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;17;0hs 2min 25s;Ocupado;20;0hs 10min 40s;10
+Llega camion;29;1;14hs 53min 1s;0hs 7min 4s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;17;0hs 2min 9s;Ocupado;20;0hs 10min 24s;10
+Fin atencion Darsena 1;17;1;14hs 55min 10s;0hs 0min 0s;Ocupado;29;0hs 2min 54s;0;Libre; - ;0hs 0min 0s;0;Ocupado;18;0hs 15min 41s;Ocupado;20;0hs 8min 14s;9
+Fin atencion Recepcion;29;1;14hs 58min 5s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;0;Ocupado;18;0hs 12min 47s;Ocupado;20;0hs 5min 20s;10
+Apertura de puertas;----;1;15hs 0min 0s;----;Libre;----;----;0;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;10
+Llega camion;30;1;15hs 0min 6s;0hs 2min 29s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;18;0hs 10min 46s;Ocupado;20;0hs 3min 19s;10
+Llega camion;31;1;15hs 2min 36s;0hs 4min 9s;Ocupado;30;0hs 0min 45s;1;Libre; - ;0hs 0min 0s;0;Ocupado;18;0hs 8min 16s;Ocupado;20;0hs 0min 49s;10
+Fin atencion Recepcion;30;1;15hs 3min 21s;0hs 0min 0s;Ocupado;31;0hs 5min 19s;0;Libre; - ;0hs 0min 0s;1;Ocupado;18;0hs 7min 31s;Ocupado;20;0hs 0min 4s;10
+Fin atencion Darsena 2;20;1;15hs 3min 25s;0hs 0min 0s;Ocupado;31;0hs 5min 15s;0;Ocupado;30;0hs 6min 32s;0;Ocupado;18;0hs 7min 26s;Ocupado;21;0hs 7min 26s;9
+Llega camion;32;1;15hs 6min 46s;0hs 9min 39s;Ocupado;31;0hs 1min 55s;1;Ocupado;30;0hs 3min 12s;0;Ocupado;18;0hs 4min 6s;Ocupado;21;0hs 15min 47s;9
+Fin atencion Recepcion;31;1;15hs 8min 41s;0hs 0min 0s;Ocupado;32;0hs 3min 14s;0;Ocupado;30;0hs 1min 17s;1;Ocupado;18;0hs 2min 11s;Ocupado;21;0hs 13min 52s;9
+Fin atencion Balanza;30;1;15hs 9min 58s;0hs 0min 0s;Ocupado;32;0hs 1min 57s;0;Ocupado;31;..hs ..min ..s;0;Ocupado;18;0hs 0min 54s;Ocupado;21;0hs 12min 35s;10
+Fin atencion Darsena 1;18;1;15hs 10min 52s;0hs 0min 0s;Ocupado;32;0hs 1min 3s;0;Ocupado;31;0hs 5min 31s;0;Ocupado;19;0hs 18min 53s;Ocupado;21;0hs 11min 40s;9
+Fin atencion Recepcion;32;1;15hs 11min 56s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;31;0hs 4min 28s;1;Ocupado;19;0hs 17min 50s;Ocupado;21;0hs 10min 37s;9
+Fin atencion Balanza;31;1;15hs 16min 24s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;32;..hs ..min ..s;0;Ocupado;19;0hs 13min 22s;Ocupado;21;0hs 6min 9s;10
+Llega camion;33;1;15hs 16min 26s;0hs 6min 57s;Libre; - ;0hs 0min 0s;1;Ocupado;32;0hs 5min 24s;0;Ocupado;19;0hs 13min 20s;Ocupado;21;0hs 6min 7s;10
+Fin atencion Recepcion;33;1;15hs 20min 45s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;32;0hs 1min 5s;0;Ocupado;19;0hs 9min 1s;Ocupado;21;0hs 1min 48s;11
+Fin atencion Balanza;32;1;15hs 21min 50s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;19;0hs 7min 56s;Ocupado;21;0hs 0min 43s;12
+Fin atencion Darsena 2;21;1;15hs 22min 33s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;19;0hs 7min 12s;Ocupado;22;0hs 7min 12s;11
+Llega camion;34;1;15hs 23min 24s;0hs 10min 19s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;19;0hs 6min 22s;Ocupado;22;0hs 17min 56s;11
+Fin atencion Recepcion;34;1;15hs 28min 33s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;19;0hs 1min 13s;Ocupado;22;0hs 12min 47s;11
+Fin atencion Darsena 1;19;1;15hs 29min 46s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;34;0hs 5min 29s;0;Ocupado;23;0hs 18min 16s;Ocupado;22;0hs 11min 33s;10
+Llega camion;35;1;15hs 33min 44s;0hs 16min 46s;Libre; - ;0hs 0min 0s;1;Ocupado;34;0hs 1min 32s;0;Ocupado;23;0hs 14min 19s;Ocupado;22;0hs 7min 36s;10
+Fin atencion Balanza;34;1;15hs 35min 16s;0hs 0min 0s;Ocupado;35;0hs 2min 44s;0;Libre; - ;..hs ..min ..s;0;Ocupado;23;0hs 12min 47s;Ocupado;22;0hs 6min 4s;11
+Fin atencion Recepcion;35;1;15hs 38min 1s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;0;Ocupado;23;0hs 10min 2s;Ocupado;22;0hs 3min 19s;12
+Fin atencion Darsena 2;22;1;15hs 41min 20s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;23;0hs 6min 42s;Ocupado;24;0hs 6min 42s;11
+Fin atencion Darsena 1;23;1;15hs 48min 3s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;25;0hs 18min 14s;Ocupado;24;0hs 11min 52s;10
+Llega camion;36;1;15hs 50min 31s;0hs 4min 10s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;25;0hs 15min 47s;Ocupado;24;0hs 9min 25s;10
+Fin atencion Recepcion;36;1;15hs 54min 12s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;25;0hs 12min 6s;Ocupado;24;0hs 5min 44s;10
+Llega camion;37;1;15hs 54min 42s;0hs 18min 44s;Libre; - ;0hs 0min 0s;1;Ocupado;36;0hs 4min 41s;0;Ocupado;25;0hs 11min 36s;Ocupado;24;0hs 5min 14s;10
+Fin atencion Balanza;36;1;15hs 59min 23s;0hs 0min 0s;Ocupado;37;0hs 1min 57s;0;Libre; - ;..hs ..min ..s;0;Ocupado;25;0hs 6min 55s;Ocupado;24;0hs 0min 33s;11
+Fin atencion Darsena 2;24;1;15hs 59min 56s;0hs 0min 0s;Ocupado;37;0hs 1min 24s;0;Libre; - ;0hs 0min 0s;0;Ocupado;25;0hs 6min 21s;Ocupado;26;0hs 6min 21s;10
+Apertura de puertas;----;1;16hs 0min 0s;----;Ocupado;----;----;0;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;10
+Fin atencion Recepcion;37;1;16hs 1min 21s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;25;0hs 4min 57s;Ocupado;26;0hs 14min 1s;10
+Fin atencion Darsena 1;25;1;16hs 6min 18s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;37;0hs 1min 44s;0;Ocupado;27;0hs 17min 11s;Ocupado;26;0hs 9min 3s;9
+Fin atencion Balanza;37;1;16hs 8min 3s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;27;0hs 15min 27s;Ocupado;26;0hs 7min 19s;10
+Llega camion;38;1;16hs 13min 27s;0hs 11min 58s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;27;0hs 10min 3s;Ocupado;26;0hs 1min 55s;10
+Fin atencion Darsena 2;26;1;16hs 15min 22s;0hs 0min 0s;Ocupado;38;0hs 2min 22s;0;Libre; - ;0hs 0min 0s;0;Ocupado;27;0hs 8min 7s;Ocupado;28;0hs 8min 7s;9
+Fin atencion Recepcion;38;1;16hs 17min 45s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;27;0hs 5min 45s;Ocupado;28;0hs 14min 35s;9
+Fin atencion Darsena 1;27;1;16hs 23min 30s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;38;0hs 0min 32s;0;Ocupado;29;0hs 15min 39s;Ocupado;28;0hs 8min 49s;8
+Fin atencion Balanza;38;1;16hs 24min 3s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;29;0hs 29min 16s;Ocupado;28;0hs 8min 17s;9
+Llega camion;39;1;16hs 25min 26s;0hs 4min 43s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;29;0hs 27min 53s;Ocupado;28;0hs 6min 54s;9
+Llega camion;40;1;16hs 30min 10s;0hs 12min 57s;Ocupado;39;0hs 1min 51s;1;Libre; - ;0hs 0min 0s;0;Ocupado;29;0hs 23min 9s;Ocupado;28;0hs 2min 10s;9
+Fin atencion Recepcion;39;1;16hs 32min 1s;0hs 0min 0s;Ocupado;40;0hs 6min 9s;0;Libre; - ;0hs 0min 0s;1;Ocupado;29;0hs 21min 18s;Ocupado;28;0hs 0min 19s;9
+Fin atencion Darsena 2;28;1;16hs 32min 20s;0hs 0min 0s;Ocupado;40;0hs 5min 50s;0;Ocupado;39;0hs 4min 53s;0;Ocupado;29;0hs 20min 58s;Ocupado;30;0hs 20min 58s;8
+Fin atencion Balanza;39;1;16hs 37min 14s;0hs 0min 0s;Ocupado;40;0hs 0min 56s;0;Libre; - ;..hs ..min ..s;0;Ocupado;29;0hs 16min 5s;Ocupado;30;0hs 20min 28s;9
+Fin atencion Recepcion;40;1;16hs 38min 11s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;0;Ocupado;29;0hs 15min 8s;Ocupado;30;0hs 19min 31s;10
+Llega camion;41;1;16hs 43min 8s;0hs 6min 13s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;29;0hs 10min 11s;Ocupado;30;0hs 14min 34s;10
+Llega camion;42;1;16hs 49min 22s;0hs 0min 31s;Ocupado;41;0hs 0min 40s;1;Libre; - ;0hs 0min 0s;0;Ocupado;29;0hs 3min 57s;Ocupado;30;0hs 8min 20s;10
+Llega camion;43;1;16hs 49min 54s;0hs 18min 59s;Ocupado;41;0hs 0min 8s;2;Libre; - ;0hs 0min 0s;0;Ocupado;29;0hs 3min 25s;Ocupado;30;0hs 7min 48s;10
+Fin atencion Recepcion;41;1;16hs 50min 2s;0hs 0min 0s;Ocupado;42;0hs 6min 36s;1;Libre; - ;0hs 0min 0s;1;Ocupado;29;0hs 3min 17s;Ocupado;30;0hs 7min 40s;10
+Fin atencion Balanza;41;1;16hs 56min 31s;0hs 0min 0s;Ocupado;42;0hs 0min 7s;1;Libre; - ;..hs ..min ..s;0;Ocupado;31;0hs 14min 17s;Ocupado;30;0hs 1min 11s;10
+Fin atencion Recepcion;42;1;16hs 56min 39s;0hs 0min 0s;Ocupado;43;0hs 3min 0s;0;Libre; - ;0hs 0min 0s;1;Ocupado;31;0hs 14min 9s;Ocupado;30;0hs 1min 3s;10
+Fin atencion Recepcion;43;1;16hs 59min 40s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;42;0hs 3min 1s;1;Ocupado;31;0hs 11min 8s;Ocupado;33;0hs 14min 47s;9
+Apertura de puertas;----;1;17hs 0min 0s;----;Libre;----;----;0;Ocupado;----;----;1;Ocupado;----;----;Ocupado;----;----;9
+Fin atencion Balanza;42;1;17hs 2min 41s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;43;..hs ..min ..s;0;Ocupado;31;0hs 8min 7s;Ocupado;33;0hs 11min 46s;10
+Llega camion;44;1;17hs 8min 54s;0hs 3min 32s;Libre; - ;0hs 0min 0s;1;Ocupado;43;0hs 0min 3s;0;Ocupado;31;0hs 1min 54s;Ocupado;33;0hs 5min 33s;10
+Fin atencion Balanza;43;1;17hs 8min 57s;0hs 0min 0s;Ocupado;44;0hs 4min 42s;0;Libre; - ;..hs ..min ..s;0;Ocupado;31;0hs 1min 51s;Ocupado;33;0hs 5min 30s;11
+Fin atencion Darsena 1;31;1;17hs 10min 48s;0hs 0min 0s;Ocupado;44;0hs 2min 51s;0;Libre; - ;0hs 0min 0s;0;Ocupado;32;0hs 15min 22s;Ocupado;33;0hs 3min 38s;10
+Llega camion;45;1;17hs 12min 27s;0hs 14min 57s;Ocupado;44;0hs 1min 13s;1;Libre; - ;0hs 0min 0s;0;Ocupado;32;0hs 13min 44s;Ocupado;33;0hs 2min 0s;10
+Fin atencion Recepcion;44;1;17hs 13min 40s;0hs 0min 0s;Ocupado;45;0hs 3min 59s;0;Libre; - ;0hs 0min 0s;0;Ocupado;32;0hs 12min 31s;Ocupado;33;0hs 0min 47s;11
+Fin atencion Darsena 2;33;1;17hs 14min 27s;0hs 0min 0s;Ocupado;45;0hs 3min 12s;0;Libre; - ;0hs 0min 0s;0;Ocupado;32;0hs 11min 43s;Ocupado;34;0hs 11min 43s;10
+Fin atencion Recepcion;45;1;17hs 17min 40s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;32;0hs 8min 31s;Ocupado;34;0hs 16min 24s;10
+Fin atencion Balanza;45;1;17hs 24min 13s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;32;0hs 1min 58s;Ocupado;34;0hs 9min 51s;11
+Fin atencion Darsena 1;32;1;17hs 26min 11s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;35;0hs 16min 11s;Ocupado;34;0hs 7min 52s;10
+Llega camion;46;1;17hs 27min 25s;0hs 3min 16s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;35;0hs 14min 58s;Ocupado;34;0hs 6min 39s;10
+Llega camion;47;1;17hs 30min 42s;0hs 1min 11s;Ocupado;46;0hs 3min 9s;1;Libre; - ;0hs 0min 0s;0;Ocupado;35;0hs 11min 41s;Ocupado;34;0hs 3min 22s;10
+Llega camion;48;1;17hs 31min 54s;0hs 1min 10s;Ocupado;46;0hs 1min 57s;2;Libre; - ;0hs 0min 0s;0;Ocupado;35;0hs 10min 29s;Ocupado;34;0hs 2min 10s;10
+Llega camion;49;1;17hs 33min 5s;0hs 6min 14s;Ocupado;46;0hs 0min 46s;3;Libre; - ;0hs 0min 0s;0;Ocupado;35;0hs 9min 18s;Ocupado;34;0hs 0min 59s;10
+Fin atencion Recepcion;46;1;17hs 33min 51s;0hs 0min 0s;Ocupado;47;0hs 5min 32s;2;Libre; - ;0hs 0min 0s;0;Ocupado;35;0hs 8min 32s;Ocupado;34;0hs 0min 13s;11
+Fin atencion Darsena 2;34;1;17hs 34min 4s;0hs 0min 0s;Ocupado;47;0hs 5min 19s;2;Libre; - ;0hs 0min 0s;0;Ocupado;35;0hs 8min 18s;Ocupado;36;0hs 8min 18s;10
+Llega camion;50;1;17hs 39min 20s;0hs 4min 58s;Ocupado;47;0hs 0min 4s;3;Libre; - ;0hs 0min 0s;0;Ocupado;35;0hs 3min 3s;Ocupado;36;0hs 13min 17s;10
+Fin atencion Recepcion;47;1;17hs 39min 24s;0hs 0min 0s;Ocupado;48;0hs 3min 35s;2;Libre; - ;0hs 0min 0s;1;Ocupado;35;0hs 2min 59s;Ocupado;36;0hs 13min 13s;10
+Fin atencion Darsena 1;35;1;17hs 42min 23s;0hs 0min 0s;Ocupado;48;0hs 0min 36s;2;Ocupado;47;0hs 2min 27s;0;Ocupado;37;0hs 17min 8s;Ocupado;36;0hs 10min 13s;9
+Fin atencion Recepcion;48;1;17hs 43min 0s;0hs 0min 0s;Ocupado;49;0hs 5min 16s;1;Ocupado;47;0hs 1min 51s;1;Ocupado;37;0hs 16min 32s;Ocupado;36;0hs 9min 37s;9
+Llega camion;51;1;17hs 44min 19s;0hs 4min 58s;Ocupado;49;0hs 3min 58s;2;Ocupado;47;0hs 0min 32s;1;Ocupado;37;0hs 15min 13s;Ocupado;36;0hs 8min 18s;9
+Fin atencion Balanza;47;1;17hs 44min 51s;0hs 0min 0s;Ocupado;49;0hs 3min 25s;2;Ocupado;48;..hs ..min ..s;0;Ocupado;37;0hs 14min 41s;Ocupado;36;0hs 7min 46s;10
+Fin atencion Recepcion;49;1;17hs 48min 17s;0hs 0min 0s;Ocupado;50;0hs 6min 49s;1;Ocupado;48;0hs 2min 16s;0;Ocupado;37;0hs 11min 15s;Ocupado;36;0hs 4min 20s;11
+Llega camion;52;1;17hs 49min 18s;0hs 0min 26s;Ocupado;50;0hs 5min 49s;2;Ocupado;48;0hs 1min 15s;0;Ocupado;37;0hs 10min 14s;Ocupado;36;0hs 3min 19s;11
+Llega camion;53;1;17hs 49min 45s;0hs 4min 12s;Ocupado;50;0hs 5min 22s;3;Ocupado;48;0hs 0min 48s;0;Ocupado;37;0hs 9min 47s;Ocupado;36;0hs 2min 52s;11
+Fin atencion Balanza;48;1;17hs 50min 33s;0hs 0min 0s;Ocupado;50;0hs 4min 33s;3;Libre; - ;..hs ..min ..s;0;Ocupado;37;0hs 8min 59s;Ocupado;36;0hs 2min 4s;12
+Fin atencion Darsena 2;36;1;17hs 52min 37s;0hs 0min 0s;Ocupado;50;0hs 2min 29s;3;Libre; - ;0hs 0min 0s;0;Ocupado;37;0hs 6min 54s;Ocupado;38;0hs 6min 54s;11
+Llega camion;54;1;17hs 53min 58s;0hs 13min 0s;Ocupado;50;0hs 1min 9s;4;Libre; - ;0hs 0min 0s;0;Ocupado;37;0hs 5min 34s;Ocupado;38;0hs 17min 4s;11
+Fin atencion Recepcion;50;1;17hs 55min 7s;0hs 0min 0s;Ocupado;51;0hs 6min 30s;3;Libre; - ;0hs 0min 0s;1;Ocupado;37;0hs 4min 25s;Ocupado;38;0hs 15min 55s;11
+Fin atencion Darsena 1;37;1;17hs 59min 32s;0hs 0min 0s;Ocupado;51;0hs 2min 5s;3;Ocupado;50;0hs 1min 6s;0;Ocupado;39;0hs 19min 10s;Ocupado;38;0hs 11min 29s;10
+Cierre de planta;----;1;18hs 0min 0s;----;Ocupado;51;0hs 1min 38s;3;Ocupado;50;0hs 0min 39s;0;Ocupado;39;0hs 18min 43s;Ocupado;38;0hs 11min 2s
+Fin atencion Balanza;50;1;18hs 0min 39s;0hs 0min 0s;Ocupado;51;0hs 0min 58s;3;Libre; - ;..hs ..min ..s;0;Ocupado;39;0hs 18min 4s;Ocupado;38;0hs 10min 23s;11
+Fin atencion Recepcion;51;1;18hs 1min 38s;0hs 0min 0s;Ocupado;52;0hs 4min 5s;2;Libre; - ;0hs 0min 0s;0;Ocupado;39;0hs 17min 5s;Ocupado;38;0hs 9min 24s;12
+Fin atencion Recepcion;52;1;18hs 5min 44s;0hs 0min 0s;Ocupado;53;0hs 6min 31s;1;Libre; - ;0hs 0min 0s;0;Ocupado;39;0hs 12min 59s;Ocupado;38;0hs 5min 18s;13
+Fin atencion Darsena 2;38;1;18hs 11min 2s;0hs 0min 0s;Ocupado;53;0hs 1min 13s;1;Libre; - ;0hs 0min 0s;0;Ocupado;39;0hs 7min 40s;Ocupado;40;0hs 7min 40s;12
+Fin atencion Recepcion;53;1;18hs 12min 16s;0hs 0min 0s;Ocupado;54;0hs 4min 3s;0;Libre; - ;0hs 0min 0s;0;Ocupado;39;0hs 6min 27s;Ocupado;40;0hs 16min 22s;13
+Fin atencion Recepcion;54;1;18hs 16min 20s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;39;0hs 2min 23s;Ocupado;40;0hs 12min 18s;13
+Fin atencion Darsena 1;39;1;18hs 18min 43s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;54;0hs 4min 33s;0;Ocupado;41;0hs 17min 46s;Ocupado;40;0hs 9min 54s;12
+Fin atencion Balanza;54;1;18hs 23min 17s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;41;0hs 13min 13s;Ocupado;40;0hs 5min 21s;13
+Fin atencion Darsena 2;40;1;18hs 28min 38s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;41;0hs 7min 51s;Ocupado;42;0hs 7min 51s;12
+Fin atencion Darsena 1;41;1;18hs 36min 30s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;43;0hs 15min 24s;Ocupado;42;0hs 11min 47s;11
+Fin atencion Darsena 2;42;1;18hs 48min 18s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;43;0hs 3min 36s;Ocupado;44;0hs 3min 36s;10
+Fin atencion Darsena 1;43;1;18hs 51min 55s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;45;0hs 17min 21s;Ocupado;44;0hs 16min 16s;9
+Fin atencion Darsena 2;44;1;19hs 8min 12s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;45;0hs 1min 4s;Ocupado;46;0hs 1min 4s;8
+Fin atencion Darsena 1;45;1;19hs 9min 17s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;47;0hs 15min 27s;Ocupado;46;0hs 18min 35s;7
+Fin atencion Darsena 1;47;1;19hs 24min 45s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;49;0hs 19min 16s;Ocupado;46;0hs 3min 7s;6
+Fin atencion Darsena 2;46;1;19hs 27min 53s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;49;0hs 16min 8s;Ocupado;48;0hs 16min 8s;5
+Fin atencion Darsena 1;49;1;19hs 44min 2s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;50;0hs 18min 22s;Ocupado;48;0hs 0min 40s;4
+Fin atencion Darsena 2;48;1;19hs 44min 43s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;50;0hs 17min 41s;Ocupado;51;0hs 17min 41s;3
+Fin atencion Darsena 1;50;1;20hs 2min 25s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;52;0hs 16min 30s;Ocupado;51;0hs 0min 8s;2
+Fin atencion Darsena 2;51;1;20hs 2min 34s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;52;0hs 16min 21s;Ocupado;53;0hs 16min 21s;1
+Fin atencion Darsena 2;53;1;20hs 17min 49s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;52;0hs 1min 6s;Ocupado;54;0hs 1min 6s;0
+Fin atencion Darsena 1;52;1;20hs 18min 56s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;Ocupado;54;0hs 17min 16s;0
+Fin atencion Darsena 2;54;1;20hs 36min 13s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;Libre; - ;..hs ..min ..s;0
+Apertura de planta;----;2;5hs 0min 0s;----;Libre;----;----;0;Libre;----;----;0;Libre;----;----;Libre;----;----;0
+Apertura de puertas;----;2;12hs 0min 0s;----;Libre;----;----;0;Libre;----;----;0;Libre;----;----;Libre;----;----;0
+Llega camion;55;2;12hs 0min 22s;0hs 3min 17s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Llega camion;56;2;12hs 3min 40s;0hs 2min 44s;Ocupado;55;0hs 1min 31s;1;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Fin atencion Recepcion;55;2;12hs 5min 11s;0hs 0min 0s;Ocupado;56;0hs 3min 55s;0;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Llega camion;57;2;12hs 6min 25s;0hs 9min 12s;Ocupado;56;0hs 2min 42s;1;Ocupado;55;0hs 4min 0s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Fin atencion Recepcion;56;2;12hs 9min 7s;0hs 0min 0s;Ocupado;57;0hs 4min 58s;0;Ocupado;55;0hs 1min 18s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;1
+Fin atencion Balanza;55;2;12hs 10min 25s;0hs 0min 0s;Ocupado;57;0hs 3min 40s;0;Libre; - ;..hs ..min ..s;0;Ocupado;56;0hs 16min 15s;Libre; - ;0hs 0min 0s;1
+Fin atencion Recepcion;57;2;12hs 14min 6s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;56;0hs 12min 34s;Ocupado;55;0hs 13min 18s;0
+Llega camion;58;2;12hs 15min 38s;0hs 2min 34s;Libre; - ;0hs 0min 0s;1;Ocupado;57;0hs 3min 47s;0;Ocupado;56;0hs 11min 2s;Ocupado;55;0hs 11min 46s;0
+Llega camion;59;2;12hs 18min 13s;0hs 8min 45s;Ocupado;58;0hs 3min 18s;1;Ocupado;57;0hs 1min 12s;0;Ocupado;56;0hs 8min 27s;Ocupado;55;0hs 9min 11s;0
+Fin atencion Balanza;57;2;12hs 19min 25s;0hs 0min 0s;Ocupado;58;0hs 2min 5s;1;Libre; - ;..hs ..min ..s;0;Ocupado;56;0hs 7min 15s;Ocupado;55;0hs 7min 59s;1
+Fin atencion Recepcion;58;2;12hs 21min 31s;0hs 0min 0s;Ocupado;59;0hs 6min 43s;0;Libre; - ;0hs 0min 0s;1;Ocupado;56;0hs 5min 9s;Ocupado;55;0hs 5min 53s;1
+Fin atencion Darsena 1;56;2;12hs 26min 40s;0hs 0min 0s;Ocupado;59;0hs 1min 34s;0;Ocupado;58;0hs 0min 6s;0;Ocupado;57;0hs 18min 21s;Ocupado;55;0hs 0min 43s;0
+Fin atencion Balanza;58;2;12hs 26min 47s;0hs 0min 0s;Ocupado;59;0hs 1min 27s;0;Libre; - ;..hs ..min ..s;0;Ocupado;57;0hs 18min 15s;Ocupado;55;0hs 0min 37s;1
+Llega camion;60;2;12hs 26min 59s;0hs 2min 56s;Ocupado;59;0hs 1min 16s;1;Libre; - ;0hs 0min 0s;0;Ocupado;57;0hs 18min 3s;Ocupado;55;0hs 0min 25s;1
+Fin atencion Darsena 2;55;2;12hs 27min 24s;0hs 0min 0s;Ocupado;59;0hs 0min 50s;1;Libre; - ;0hs 0min 0s;0;Ocupado;57;0hs 17min 37s;Ocupado;58;0hs 17min 37s;0
+Fin atencion Recepcion;59;2;12hs 28min 15s;0hs 0min 0s;Ocupado;60;0hs 6min 2s;0;Libre; - ;0hs 0min 0s;1;Ocupado;57;0hs 16min 47s;Ocupado;58;0hs 18min 49s;0
+Llega camion;61;2;12hs 29min 56s;0hs 3min 49s;Ocupado;60;0hs 4min 22s;1;Ocupado;59;0hs 3min 35s;0;Ocupado;57;0hs 15min 6s;Ocupado;58;0hs 17min 8s;0
+Fin atencion Balanza;59;2;12hs 33min 31s;0hs 0min 0s;Ocupado;60;0hs 0min 46s;1;Libre; - ;..hs ..min ..s;0;Ocupado;57;0hs 11min 31s;Ocupado;58;0hs 13min 33s;1
+Llega camion;62;2;12hs 33min 46s;0hs 25min 36s;Ocupado;60;0hs 0min 32s;2;Libre; - ;0hs 0min 0s;0;Ocupado;57;0hs 11min 16s;Ocupado;58;0hs 13min 18s;1
+Fin atencion Recepcion;60;2;12hs 34min 18s;0hs 0min 0s;Ocupado;61;0hs 6min 44s;1;Libre; - ;0hs 0min 0s;1;Ocupado;57;0hs 10min 44s;Ocupado;58;0hs 12min 46s;1
+Fin atencion Balanza;60;2;12hs 40min 34s;0hs 0min 0s;Ocupado;61;0hs 0min 28s;1;Libre; - ;..hs ..min ..s;0;Ocupado;57;0hs 4min 28s;Ocupado;58;0hs 6min 30s;2
+Fin atencion Recepcion;61;2;12hs 41min 3s;0hs 0min 0s;Ocupado;62;0hs 5min 8s;0;Libre; - ;0hs 0min 0s;1;Ocupado;57;0hs 3min 59s;Ocupado;58;0hs 6min 1s;2
+Fin atencion Darsena 1;57;2;12hs 45min 2s;0hs 0min 0s;Ocupado;62;0hs 1min 9s;0;Ocupado;61;0hs 1min 3s;0;Ocupado;59;0hs 18min 39s;Ocupado;58;0hs 2min 1s;1
+Fin atencion Balanza;61;2;12hs 46min 6s;0hs 0min 0s;Ocupado;62;0hs 0min 5s;0;Libre; - ;..hs ..min ..s;0;Ocupado;59;0hs 27min 9s;Ocupado;58;0hs 0min 58s;2
+Fin atencion Recepcion;62;2;12hs 46min 12s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;59;0hs 27min 3s;Ocupado;58;0hs 0min 52s;2
+Fin atencion Darsena 2;58;2;12hs 47min 4s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;62;0hs 5min 59s;0;Ocupado;59;0hs 26min 10s;Ocupado;60;0hs 26min 10s;1
+Fin atencion Balanza;62;2;12hs 53min 4s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;59;0hs 20min 11s;Ocupado;60;0hs 21min 36s;2
+Llega camion;63;2;12hs 59min 23s;0hs 2min 29s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;59;0hs 13min 52s;Ocupado;60;0hs 15min 17s;2
+Apertura de puertas;----;2;13hs 0min 0s;----;Ocupado;----;----;0;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;2
+Llega camion;64;2;13hs 1min 53s;0hs 9min 41s;Ocupado;63;0hs 0min 59s;1;Libre; - ;0hs 0min 0s;0;Ocupado;59;0hs 11min 22s;Ocupado;60;0hs 12min 47s;2
+Fin atencion Recepcion;63;2;13hs 2min 52s;0hs 0min 0s;Ocupado;64;0hs 3min 23s;0;Libre; - ;0hs 0min 0s;1;Ocupado;59;0hs 10min 23s;Ocupado;60;0hs 11min 48s;2
+Fin atencion Recepcion;64;2;13hs 6min 16s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;63;0hs 2min 28s;0;Ocupado;59;0hs 6min 59s;Ocupado;60;0hs 8min 24s;3
+Fin atencion Balanza;63;2;13hs 8min 44s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;59;0hs 4min 31s;Ocupado;60;0hs 5min 56s;4
+Llega camion;65;2;13hs 11min 35s;0hs 7min 22s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;59;0hs 1min 40s;Ocupado;60;0hs 3min 5s;4
+Fin atencion Recepcion;65;2;13hs 15min 36s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;0;Ocupado;61;0hs 15min 38s;Ocupado;62;0hs 16min 15s;3
+Llega camion;66;2;13hs 18min 58s;0hs 2min 4s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;61;0hs 12min 16s;Ocupado;62;0hs 12min 53s;3
+Llega camion;67;2;13hs 21min 3s;0hs 6min 52s;Ocupado;66;0hs 2min 6s;1;Libre; - ;0hs 0min 0s;0;Ocupado;61;0hs 10min 11s;Ocupado;62;0hs 10min 48s;3
+Fin atencion Recepcion;66;2;13hs 23min 9s;0hs 0min 0s;Ocupado;67;0hs 5min 19s;0;Libre; - ;0hs 0min 0s;0;Ocupado;61;0hs 8min 5s;Ocupado;62;0hs 8min 42s;4
+Llega camion;68;2;13hs 27min 56s;0hs 6min 4s;Ocupado;67;0hs 0min 33s;1;Libre; - ;0hs 0min 0s;0;Ocupado;61;0hs 3min 18s;Ocupado;62;0hs 3min 55s;4
+Fin atencion Recepcion;67;2;13hs 28min 29s;0hs 0min 0s;Ocupado;68;0hs 5min 1s;0;Libre; - ;0hs 0min 0s;1;Ocupado;61;0hs 2min 45s;Ocupado;62;0hs 3min 22s;4
+Fin atencion Darsena 1;61;2;13hs 31min 14s;0hs 0min 0s;Ocupado;68;0hs 2min 16s;0;Ocupado;67;0hs 2min 16s;0;Ocupado;64;0hs 17min 42s;Ocupado;62;0hs 0min 36s;3
+Fin atencion Darsena 2;62;2;13hs 31min 51s;0hs 0min 0s;Ocupado;68;0hs 1min 39s;0;Ocupado;67;0hs 1min 39s;0;Ocupado;64;0hs 17min 5s;Ocupado;63;0hs 17min 5s;2
+Fin atencion Recepcion;68;2;13hs 33min 31s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;67;0hs 0min 0s;1;Ocupado;64;0hs 15min 26s;Ocupado;63;0hs 16min 31s;2
+Fin atencion Balanza;67;2;13hs 33min 31s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;68;..hs ..min ..s;0;Ocupado;64;0hs 15min 26s;Ocupado;63;0hs 16min 31s;3
+Llega camion;69;2;13hs 34min 1s;0hs 6min 22s;Libre; - ;0hs 0min 0s;1;Ocupado;68;0hs 5min 53s;0;Ocupado;64;0hs 14min 56s;Ocupado;63;0hs 16min 1s;3
+Fin atencion Recepcion;69;2;13hs 38min 24s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;68;0hs 1min 30s;1;Ocupado;64;0hs 10min 33s;Ocupado;63;0hs 11min 38s;3
+Fin atencion Balanza;68;2;13hs 39min 54s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;69;..hs ..min ..s;0;Ocupado;64;0hs 9min 3s;Ocupado;63;0hs 10min 8s;4
+Llega camion;70;2;13hs 40min 24s;0hs 28min 27s;Libre; - ;0hs 0min 0s;1;Ocupado;69;0hs 5min 58s;0;Ocupado;64;0hs 8min 33s;Ocupado;63;0hs 9min 38s;4
+Fin atencion Recepcion;70;2;13hs 45min 43s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;69;0hs 0min 39s;1;Ocupado;64;0hs 3min 14s;Ocupado;63;0hs 4min 19s;4
+Fin atencion Balanza;69;2;13hs 46min 22s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;70;..hs ..min ..s;0;Ocupado;64;0hs 2min 35s;Ocupado;63;0hs 3min 40s;5
+Fin atencion Darsena 1;64;2;13hs 48min 57s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;70;0hs 3min 27s;0;Ocupado;65;0hs 16min 2s;Ocupado;63;0hs 1min 4s;4
+Fin atencion Darsena 2;63;2;13hs 50min 2s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;70;0hs 2min 22s;0;Ocupado;65;0hs 14min 57s;Ocupado;66;0hs 14min 57s;3
+Fin atencion Balanza;70;2;13hs 52min 25s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;65;0hs 12min 35s;Ocupado;66;0hs 15min 38s;4
+Apertura de puertas;----;2;14hs 0min 0s;----;Libre;----;----;0;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;4
+Fin atencion Darsena 1;65;2;14hs 5min 0s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;67;0hs 16min 10s;Ocupado;66;0hs 3min 2s;3
+Fin atencion Darsena 2;66;2;14hs 8min 3s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;67;0hs 13min 7s;Ocupado;68;0hs 13min 7s;2
+Llega camion;71;2;14hs 8min 52s;0hs 15min 16s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;67;0hs 12min 19s;Ocupado;68;0hs 16min 3s;2
+Fin atencion Recepcion;71;2;14hs 14min 39s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;0;Ocupado;67;0hs 6min 32s;Ocupado;68;0hs 10min 16s;3
+Fin atencion Darsena 1;67;2;14hs 21min 11s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;69;0hs 18min 12s;Ocupado;68;0hs 3min 43s;2
+Llega camion;72;2;14hs 24min 9s;0hs 12min 39s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;69;0hs 15min 15s;Ocupado;68;0hs 0min 46s;2
+Fin atencion Darsena 2;68;2;14hs 24min 55s;0hs 0min 0s;Ocupado;72;0hs 6min 5s;0;Libre; - ;0hs 0min 0s;0;Ocupado;69;0hs 14min 28s;Ocupado;70;0hs 14min 28s;1
+Fin atencion Recepcion;72;2;14hs 31min 1s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;69;0hs 8min 23s;Ocupado;70;0hs 12min 46s;1
+Fin atencion Balanza;72;2;14hs 36min 28s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;69;0hs 2min 56s;Ocupado;70;0hs 7min 19s;2
+Llega camion;73;2;14hs 36min 49s;0hs 12min 42s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;69;0hs 2min 35s;Ocupado;70;0hs 6min 58s;2
+Fin atencion Darsena 1;69;2;14hs 39min 24s;0hs 0min 0s;Ocupado;73;0hs 3min 55s;0;Libre; - ;0hs 0min 0s;0;Ocupado;71;0hs 15min 16s;Ocupado;70;0hs 4min 22s;1
+Fin atencion Recepcion;73;2;14hs 43min 20s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;71;0hs 11min 21s;Ocupado;70;0hs 0min 27s;1
+Fin atencion Darsena 2;70;2;14hs 43min 47s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;73;0hs 5min 41s;0;Ocupado;71;0hs 10min 53s;Ocupado;72;0hs 10min 53s;0
+Fin atencion Balanza;73;2;14hs 49min 29s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;71;0hs 5min 12s;Ocupado;72;0hs 10min 32s;1
+Llega camion;74;2;14hs 49min 32s;0hs 0min 52s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;71;0hs 5min 9s;Ocupado;72;0hs 10min 29s;1
+Llega camion;75;2;14hs 50min 25s;0hs 15min 56s;Ocupado;74;0hs 3min 34s;1;Libre; - ;0hs 0min 0s;0;Ocupado;71;0hs 4min 16s;Ocupado;72;0hs 9min 36s;1
+Fin atencion Recepcion;74;2;14hs 53min 59s;0hs 0min 0s;Ocupado;75;0hs 6min 13s;0;Libre; - ;0hs 0min 0s;0;Ocupado;71;0hs 0min 42s;Ocupado;72;0hs 6min 2s;2
+Fin atencion Darsena 1;71;2;14hs 54min 41s;0hs 0min 0s;Ocupado;75;0hs 5min 31s;0;Libre; - ;0hs 0min 0s;0;Ocupado;73;0hs 15min 13s;Ocupado;72;0hs 5min 19s;1
+Apertura de puertas;----;2;15hs 0min 0s;----;Ocupado;----;----;0;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;1
+Fin atencion Darsena 2;72;2;15hs 0min 1s;0hs 0min 0s;Ocupado;75;0hs 0min 11s;0;Libre; - ;0hs 0min 0s;0;Ocupado;73;0hs 9min 53s;Ocupado;74;0hs 9min 53s;0
+Fin atencion Recepcion;75;2;15hs 0min 13s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;0;Ocupado;73;0hs 9min 42s;Ocupado;74;0hs 16min 16s;1
+Llega camion;76;2;15hs 6min 22s;0hs 3min 22s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;73;0hs 3min 33s;Ocupado;74;0hs 10min 7s;1
+Llega camion;77;2;15hs 9min 45s;0hs 1min 50s;Ocupado;76;0hs 1min 28s;1;Libre; - ;0hs 0min 0s;0;Ocupado;73;0hs 0min 10s;Ocupado;74;0hs 6min 44s;1
+Fin atencion Darsena 1;73;2;15hs 9min 55s;0hs 0min 0s;Ocupado;76;0hs 1min 17s;1;Libre; - ;0hs 0min 0s;0;Ocupado;75;0hs 19min 44s;Ocupado;74;0hs 6min 33s;0
+Fin atencion Recepcion;76;2;15hs 11min 13s;0hs 0min 0s;Ocupado;77;0hs 3min 21s;0;Libre; - ;0hs 0min 0s;1;Ocupado;75;0hs 18min 27s;Ocupado;74;0hs 5min 16s;0
+Llega camion;78;2;15hs 11min 36s;0hs 8min 59s;Ocupado;77;0hs 2min 59s;1;Ocupado;76;0hs 5min 40s;0;Ocupado;75;0hs 18min 4s;Ocupado;74;0hs 4min 53s;0
+Fin atencion Recepcion;77;2;15hs 14min 35s;0hs 0min 0s;Ocupado;78;0hs 4min 34s;0;Ocupado;76;0hs 2min 41s;1;Ocupado;75;0hs 15min 5s;Ocupado;74;0hs 1min 54s;0
+Fin atencion Darsena 2;74;2;15hs 16min 29s;0hs 0min 0s;Ocupado;78;0hs 2min 40s;0;Ocupado;76;0hs 0min 46s;1;Ocupado;75;0hs 13min 10s;Libre; - ;..hs ..min ..s;0
+Fin atencion Balanza;76;2;15hs 17min 16s;0hs 0min 0s;Ocupado;78;0hs 1min 53s;0;Ocupado;77;..hs ..min ..s;0;Ocupado;75;0hs 12min 24s;Libre; - ;0hs 0min 0s;1
+Fin atencion Recepcion;78;2;15hs 19min 10s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;77;0hs 4min 7s;0;Ocupado;75;0hs 10min 30s;Ocupado;76;0hs 13min 9s;1
+Llega camion;79;2;15hs 20min 36s;0hs 5min 45s;Libre; - ;0hs 0min 0s;1;Ocupado;77;0hs 2min 41s;0;Ocupado;75;0hs 9min 4s;Ocupado;76;0hs 11min 43s;1
+Fin atencion Balanza;77;2;15hs 23min 17s;0hs 0min 0s;Ocupado;79;0hs 2min 11s;0;Libre; - ;..hs ..min ..s;0;Ocupado;75;0hs 6min 23s;Ocupado;76;0hs 9min 2s;2
+Fin atencion Recepcion;79;2;15hs 25min 29s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;0;Ocupado;75;0hs 4min 11s;Ocupado;76;0hs 6min 50s;3
+Llega camion;80;2;15hs 26min 22s;0hs 2min 13s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;75;0hs 3min 18s;Ocupado;76;0hs 5min 57s;3
+Llega camion;81;2;15hs 28min 36s;0hs 2min 32s;Ocupado;80;0hs 4min 21s;1;Libre; - ;0hs 0min 0s;0;Ocupado;75;0hs 1min 4s;Ocupado;76;0hs 3min 43s;3
+Fin atencion Darsena 1;75;2;15hs 29min 40s;0hs 0min 0s;Ocupado;80;0hs 3min 16s;1;Libre; - ;0hs 0min 0s;0;Ocupado;78;0hs 16min 6s;Ocupado;76;0hs 2min 38s;2
+Llega camion;82;2;15hs 31min 9s;0hs 6min 35s;Ocupado;80;0hs 1min 48s;2;Libre; - ;0hs 0min 0s;0;Ocupado;78;0hs 14min 38s;Ocupado;76;0hs 1min 10s;2
+Fin atencion Darsena 2;76;2;15hs 32min 19s;0hs 0min 0s;Ocupado;80;0hs 0min 37s;2;Libre; - ;0hs 0min 0s;0;Ocupado;78;0hs 13min 27s;Ocupado;77;0hs 13min 27s;1
+Fin atencion Recepcion;80;2;15hs 32min 57s;0hs 0min 0s;Ocupado;81;0hs 4min 58s;1;Libre; - ;0hs 0min 0s;0;Ocupado;78;0hs 12min 50s;Ocupado;77;0hs 14min 45s;2
+Llega camion;83;2;15hs 37min 45s;0hs 2min 1s;Ocupado;81;0hs 0min 11s;2;Libre; - ;0hs 0min 0s;0;Ocupado;78;0hs 8min 2s;Ocupado;77;0hs 9min 57s;2
+Fin atencion Recepcion;81;2;15hs 37min 56s;0hs 0min 0s;Ocupado;82;0hs 6min 15s;1;Libre; - ;0hs 0min 0s;1;Ocupado;78;0hs 7min 51s;Ocupado;77;0hs 9min 46s;2
+Llega camion;84;2;15hs 39min 47s;0hs 0min 16s;Ocupado;82;0hs 4min 25s;2;Ocupado;81;0hs 4min 5s;0;Ocupado;78;0hs 6min 0s;Ocupado;77;0hs 7min 55s;2
+Llega camion;85;2;15hs 40min 4s;0hs 18min 27s;Ocupado;82;0hs 4min 8s;3;Ocupado;81;0hs 3min 48s;0;Ocupado;78;0hs 5min 43s;Ocupado;77;0hs 7min 38s;2
+Fin atencion Balanza;81;2;15hs 43min 52s;0hs 0min 0s;Ocupado;82;0hs 0min 19s;3;Libre; - ;..hs ..min ..s;0;Ocupado;78;0hs 1min 55s;Ocupado;77;0hs 3min 50s;3
+Fin atencion Recepcion;82;2;15hs 44min 12s;0hs 0min 0s;Ocupado;83;0hs 6min 38s;2;Libre; - ;0hs 0min 0s;1;Ocupado;78;0hs 1min 35s;Ocupado;77;0hs 3min 30s;3
+Fin atencion Darsena 1;78;2;15hs 45min 47s;0hs 0min 0s;Ocupado;83;0hs 5min 3s;2;Ocupado;82;0hs 5min 0s;0;Ocupado;79;0hs 18min 22s;Ocupado;77;0hs 1min 54s;2
+Fin atencion Darsena 2;77;2;15hs 47min 42s;0hs 0min 0s;Ocupado;83;0hs 3min 8s;2;Ocupado;82;0hs 3min 5s;0;Ocupado;79;0hs 16min 27s;Ocupado;80;0hs 16min 27s;1
+Fin atencion Balanza;82;2;15hs 50min 48s;0hs 0min 0s;Ocupado;83;0hs 0min 2s;2;Libre; - ;..hs ..min ..s;0;Ocupado;79;0hs 13min 22s;Ocupado;80;0hs 15min 11s;2
+Fin atencion Recepcion;83;2;15hs 50min 51s;0hs 0min 0s;Ocupado;84;0hs 4min 45s;1;Libre; - ;0hs 0min 0s;0;Ocupado;79;0hs 13min 19s;Ocupado;80;0hs 15min 8s;3
+Fin atencion Recepcion;84;2;15hs 55min 37s;0hs 0min 0s;Ocupado;85;0hs 4min 53s;0;Libre; - ;0hs 0min 0s;0;Ocupado;79;0hs 8min 33s;Ocupado;80;0hs 10min 22s;4
+Llega camion;86;2;15hs 58min 32s;0hs 2min 7s;Ocupado;85;0hs 1min 59s;1;Libre; - ;0hs 0min 0s;0;Ocupado;79;0hs 5min 38s;Ocupado;80;0hs 7min 27s;4
+Apertura de puertas;----;2;16hs 0min 0s;----;Ocupado;----;----;1;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;4
+Fin atencion Recepcion;85;2;16hs 0min 31s;0hs 0min 0s;Ocupado;86;0hs 4min 57s;0;Libre; - ;0hs 0min 0s;1;Ocupado;79;0hs 3min 39s;Ocupado;80;0hs 5min 28s;4
+Llega camion;87;2;16hs 0min 40s;0hs 1min 25s;Ocupado;86;0hs 4min 49s;1;Ocupado;85;0hs 5min 35s;0;Ocupado;79;0hs 3min 30s;Ocupado;80;0hs 5min 19s;4
+Llega camion;88;2;16hs 2min 6s;0hs 2min 36s;Ocupado;86;0hs 3min 23s;2;Ocupado;85;0hs 4min 9s;0;Ocupado;79;0hs 2min 4s;Ocupado;80;0hs 3min 53s;4
+Fin atencion Darsena 1;79;2;16hs 4min 10s;0hs 0min 0s;Ocupado;86;0hs 1min 18s;2;Ocupado;85;0hs 2min 4s;0;Ocupado;81;0hs 18min 54s;Ocupado;80;0hs 1min 48s;3
+Llega camion;89;2;16hs 4min 43s;0hs 5min 36s;Ocupado;86;0hs 0min 46s;3;Ocupado;85;0hs 1min 32s;0;Ocupado;81;0hs 18min 22s;Ocupado;80;0hs 1min 16s;3
+Fin atencion Recepcion;86;2;16hs 5min 29s;0hs 0min 0s;Ocupado;87;0hs 6min 25s;2;Ocupado;85;0hs 0min 46s;1;Ocupado;81;0hs 17min 36s;Ocupado;80;0hs 0min 30s;3
+Fin atencion Darsena 2;80;2;16hs 5min 59s;0hs 0min 0s;Ocupado;87;0hs 5min 55s;2;Ocupado;85;0hs 0min 15s;1;Ocupado;81;0hs 17min 5s;Ocupado;82;0hs 17min 5s;2
+Fin atencion Balanza;85;2;16hs 6min 15s;0hs 0min 0s;Ocupado;87;0hs 5min 39s;2;Ocupado;86;..hs ..min ..s;0;Ocupado;81;0hs 16min 50s;Ocupado;82;0hs 17min 29s;3
+Llega camion;90;2;16hs 10min 20s;0hs 23min 42s;Ocupado;87;0hs 1min 35s;3;Ocupado;86;0hs 2min 44s;0;Ocupado;81;0hs 12min 45s;Ocupado;82;0hs 13min 24s;3
+Fin atencion Recepcion;87;2;16hs 11min 55s;0hs 0min 0s;Ocupado;88;0hs 6min 58s;2;Ocupado;86;0hs 1min 9s;0;Ocupado;81;0hs 11min 10s;Ocupado;82;0hs 11min 49s;4
+Fin atencion Balanza;86;2;16hs 13min 4s;0hs 0min 0s;Ocupado;88;0hs 5min 49s;2;Libre; - ;..hs ..min ..s;0;Ocupado;81;0hs 10min 1s;Ocupado;82;0hs 10min 40s;5
+Fin atencion Recepcion;88;2;16hs 18min 54s;0hs 0min 0s;Ocupado;89;0hs 5min 43s;1;Libre; - ;0hs 0min 0s;0;Ocupado;81;0hs 4min 11s;Ocupado;82;0hs 4min 50s;6
+Fin atencion Darsena 1;81;2;16hs 23min 5s;0hs 0min 0s;Ocupado;89;0hs 1min 32s;1;Libre; - ;0hs 0min 0s;0;Ocupado;83;0hs 15min 35s;Ocupado;82;0hs 0min 38s;5
+Fin atencion Darsena 2;82;2;16hs 23min 44s;0hs 0min 0s;Ocupado;89;0hs 0min 53s;1;Libre; - ;0hs 0min 0s;0;Ocupado;83;0hs 14min 56s;Ocupado;84;0hs 14min 56s;4
+Fin atencion Recepcion;89;2;16hs 24min 38s;0hs 0min 0s;Ocupado;90;0hs 4min 56s;0;Libre; - ;0hs 0min 0s;1;Ocupado;83;0hs 14min 3s;Ocupado;84;0hs 17min 49s;4
+Fin atencion Recepcion;90;2;16hs 29min 35s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;89;0hs 0min 18s;1;Ocupado;83;0hs 9min 6s;Ocupado;84;0hs 12min 52s;4
+Fin atencion Balanza;89;2;16hs 29min 53s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;90;..hs ..min ..s;0;Ocupado;83;0hs 8min 48s;Ocupado;84;0hs 12min 34s;5
+Llega camion;91;2;16hs 34min 3s;0hs 2min 20s;Libre; - ;0hs 0min 0s;1;Ocupado;90;0hs 0min 56s;0;Ocupado;83;0hs 4min 38s;Ocupado;84;0hs 8min 24s;5
+Fin atencion Balanza;90;2;16hs 34min 59s;0hs 0min 0s;Ocupado;91;0hs 3min 20s;0;Libre; - ;..hs ..min ..s;0;Ocupado;83;0hs 3min 42s;Ocupado;84;0hs 7min 28s;6
+Llega camion;92;2;16hs 36min 24s;0hs 1min 1s;Ocupado;91;0hs 1min 56s;1;Libre; - ;0hs 0min 0s;0;Ocupado;83;0hs 2min 17s;Ocupado;84;0hs 6min 3s;6
+Llega camion;93;2;16hs 37min 26s;0hs 0min 33s;Ocupado;91;0hs 0min 54s;2;Libre; - ;0hs 0min 0s;0;Ocupado;83;0hs 1min 15s;Ocupado;84;0hs 5min 1s;6
+Llega camion;94;2;16hs 38min 0s;0hs 15min 8s;Ocupado;91;0hs 0min 20s;3;Libre; - ;0hs 0min 0s;0;Ocupado;83;0hs 0min 41s;Ocupado;84;0hs 4min 27s;6
+Fin atencion Recepcion;91;2;16hs 38min 20s;0hs 0min 0s;Ocupado;92;0hs 5min 59s;2;Libre; - ;0hs 0min 0s;1;Ocupado;83;0hs 0min 21s;Ocupado;84;0hs 4min 7s;6
+Fin atencion Darsena 1;83;2;16hs 38min 41s;0hs 0min 0s;Ocupado;92;0hs 5min 38s;2;Ocupado;91;0hs 4min 54s;0;Ocupado;85;0hs 15min 17s;Ocupado;84;0hs 3min 45s;5
+Fin atencion Darsena 2;84;2;16hs 42min 27s;0hs 0min 0s;Ocupado;92;0hs 1min 52s;2;Ocupado;91;0hs 1min 8s;0;Ocupado;85;0hs 11min 31s;Ocupado;87;0hs 11min 31s;4
+Fin atencion Balanza;91;2;16hs 43min 36s;0hs 0min 0s;Ocupado;92;0hs 0min 43s;2;Libre; - ;..hs ..min ..s;0;Ocupado;85;0hs 10min 23s;Ocupado;87;0hs 16min 59s;5
+Fin atencion Recepcion;92;2;16hs 44min 20s;0hs 0min 0s;Ocupado;93;0hs 4min 8s;1;Libre; - ;0hs 0min 0s;1;Ocupado;85;0hs 9min 39s;Ocupado;87;0hs 16min 15s;5
+Fin atencion Recepcion;93;2;16hs 48min 29s;0hs 0min 0s;Ocupado;94;0hs 4min 30s;0;Ocupado;92;0hs 1min 55s;1;Ocupado;85;0hs 5min 30s;Ocupado;87;0hs 12min 6s;5
+Fin atencion Balanza;92;2;16hs 50min 24s;0hs 0min 0s;Ocupado;94;0hs 2min 35s;0;Ocupado;93;..hs ..min ..s;0;Ocupado;85;0hs 3min 35s;Ocupado;87;0hs 10min 11s;6
+Fin atencion Recepcion;94;2;16hs 53min 0s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;93;0hs 3min 49s;0;Ocupado;85;0hs 0min 59s;Ocupado;87;0hs 7min 35s;7
+Llega camion;95;2;16hs 53min 9s;0hs 2min 15s;Libre; - ;0hs 0min 0s;1;Ocupado;93;0hs 3min 40s;0;Ocupado;85;0hs 0min 50s;Ocupado;87;0hs 7min 26s;7
+Fin atencion Darsena 1;85;2;16hs 53min 59s;0hs 0min 0s;Ocupado;95;0hs 4min 40s;0;Ocupado;93;0hs 2min 49s;0;Ocupado;86;0hs 18min 23s;Ocupado;87;0hs 6min 35s;6
+Llega camion;96;2;16hs 55min 25s;0hs 3min 28s;Ocupado;95;0hs 3min 15s;1;Ocupado;93;0hs 1min 24s;0;Ocupado;86;0hs 16min 58s;Ocupado;87;0hs 5min 10s;6
+Fin atencion Balanza;93;2;16hs 56min 49s;0hs 0min 0s;Ocupado;95;0hs 1min 50s;1;Libre; - ;..hs ..min ..s;0;Ocupado;86;0hs 15min 34s;Ocupado;87;0hs 3min 46s;7
+Fin atencion Recepcion;95;2;16hs 58min 40s;0hs 0min 0s;Ocupado;96;0hs 3min 27s;0;Libre; - ;0hs 0min 0s;0;Ocupado;86;0hs 13min 43s;Ocupado;87;0hs 1min 55s;8
+Llega camion;97;2;16hs 58min 54s;0hs 5min 4s;Ocupado;96;0hs 3min 14s;1;Libre; - ;0hs 0min 0s;0;Ocupado;86;0hs 13min 29s;Ocupado;87;0hs 1min 41s;8
+Apertura de puertas;----;2;17hs 0min 0s;----;Ocupado;----;----;1;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;8
+Fin atencion Darsena 2;87;2;17hs 0min 35s;0hs 0min 0s;Ocupado;96;0hs 1min 32s;1;Libre; - ;0hs 0min 0s;0;Ocupado;86;0hs 11min 47s;Ocupado;88;0hs 11min 47s;7
+Fin atencion Recepcion;96;2;17hs 2min 8s;0hs 0min 0s;Ocupado;97;0hs 6min 49s;0;Libre; - ;0hs 0min 0s;1;Ocupado;86;0hs 10min 15s;Ocupado;88;0hs 15min 39s;7
+Llega camion;98;2;17hs 3min 59s;0hs 0min 14s;Ocupado;97;0hs 4min 59s;1;Ocupado;96;0hs 4min 44s;0;Ocupado;86;0hs 8min 24s;Ocupado;88;0hs 13min 48s;7
+Llega camion;99;2;17hs 4min 14s;0hs 4min 41s;Ocupado;97;0hs 4min 44s;2;Ocupado;96;0hs 4min 29s;0;Ocupado;86;0hs 8min 9s;Ocupado;88;0hs 13min 33s;7
+Fin atencion Balanza;96;2;17hs 8min 43s;0hs 0min 0s;Ocupado;97;0hs 0min 14s;2;Libre; - ;..hs ..min ..s;0;Ocupado;86;0hs 3min 40s;Ocupado;88;0hs 9min 4s;8
+Llega camion;100;2;17hs 8min 56s;0hs 2min 26s;Ocupado;97;0hs 0min 2s;3;Libre; - ;0hs 0min 0s;0;Ocupado;86;0hs 3min 27s;Ocupado;88;0hs 8min 51s;8
+Fin atencion Recepcion;97;2;17hs 8min 58s;0hs 0min 0s;Ocupado;98;0hs 6min 12s;2;Libre; - ;0hs 0min 0s;0;Ocupado;86;0hs 3min 25s;Ocupado;88;0hs 8min 49s;9
+Llega camion;101;2;17hs 11min 23s;0hs 3min 11s;Ocupado;98;0hs 3min 48s;3;Libre; - ;0hs 0min 0s;0;Ocupado;86;0hs 1min 0s;Ocupado;88;0hs 6min 24s;9
+Fin atencion Darsena 1;86;2;17hs 12min 23s;0hs 0min 0s;Ocupado;98;0hs 2min 47s;3;Libre; - ;0hs 0min 0s;0;Ocupado;89;0hs 18min 46s;Ocupado;88;0hs 5min 23s;8
+Llega camion;102;2;17hs 14min 35s;0hs 3min 16s;Ocupado;98;0hs 0min 36s;4;Libre; - ;0hs 0min 0s;0;Ocupado;89;0hs 26min 48s;Ocupado;88;0hs 3min 12s;8
+Fin atencion Recepcion;98;2;17hs 15min 11s;0hs 0min 0s;Ocupado;99;0hs 4min 28s;3;Libre; - ;0hs 0min 0s;0;Ocupado;89;0hs 26min 12s;Ocupado;88;0hs 2min 36s;9
+Fin atencion Darsena 2;88;2;17hs 17min 47s;0hs 0min 0s;Ocupado;99;0hs 1min 52s;3;Libre; - ;0hs 0min 0s;0;Ocupado;89;0hs 23min 35s;Ocupado;90;0hs 23min 35s;8
+Llega camion;103;2;17hs 17min 52s;0hs 0min 6s;Ocupado;99;0hs 1min 48s;4;Libre; - ;0hs 0min 0s;0;Ocupado;89;0hs 23min 31s;Ocupado;90;0hs 27min 15s;8
+Llega camion;104;2;17hs 17min 59s;0hs 3min 18s;Ocupado;99;0hs 1min 41s;5;Libre; - ;0hs 0min 0s;0;Ocupado;89;0hs 23min 24s;Ocupado;90;0hs 27min 8s;8
+Fin atencion Recepcion;99;2;17hs 19min 40s;0hs 0min 0s;Ocupado;100;0hs 4min 54s;4;Libre; - ;0hs 0min 0s;1;Ocupado;89;0hs 21min 43s;Ocupado;90;0hs 25min 27s;8
+Llega camion;105;2;17hs 21min 18s;0hs 10min 58s;Ocupado;100;0hs 3min 17s;5;Ocupado;99;0hs 4min 39s;0;Ocupado;89;0hs 20min 5s;Ocupado;90;0hs 23min 49s;8
+Fin atencion Recepcion;100;2;17hs 24min 35s;0hs 0min 0s;Ocupado;101;0hs 3min 58s;4;Ocupado;99;0hs 1min 22s;0;Ocupado;89;0hs 16min 48s;Ocupado;90;0hs 20min 32s;9
+Fin atencion Balanza;99;2;17hs 25min 57s;0hs 0min 0s;Ocupado;101;0hs 2min 36s;4;Libre; - ;..hs ..min ..s;0;Ocupado;89;0hs 15min 26s;Ocupado;90;0hs 19min 10s;10
+Fin atencion Recepcion;101;2;17hs 28min 34s;0hs 0min 0s;Ocupado;102;0hs 3min 25s;3;Libre; - ;0hs 0min 0s;0;Ocupado;89;0hs 12min 49s;Ocupado;90;0hs 16min 33s;11
+Fin atencion Recepcion;102;2;17hs 32min 0s;0hs 0min 0s;Ocupado;103;0hs 6min 5s;2;Libre; - ;0hs 0min 0s;1;Ocupado;89;0hs 9min 23s;Ocupado;90;0hs 13min 7s;11
+Llega camion;106;2;17hs 32min 17s;0hs 19min 18s;Ocupado;103;0hs 5min 49s;3;Ocupado;102;0hs 5min 59s;0;Ocupado;89;0hs 9min 6s;Ocupado;90;0hs 12min 50s;11
+Fin atencion Recepcion;103;2;17hs 38min 6s;0hs 0min 0s;Ocupado;104;0hs 5min 44s;2;Ocupado;102;0hs 0min 10s;0;Ocupado;89;0hs 3min 17s;Ocupado;90;0hs 7min 1s;12
+Fin atencion Balanza;102;2;17hs 38min 16s;0hs 0min 0s;Ocupado;104;0hs 5min 34s;2;Libre; - ;..hs ..min ..s;0;Ocupado;89;0hs 3min 7s;Ocupado;90;0hs 6min 51s;13
+Fin atencion Recepcion;104;2;17hs 43min 51s;0hs 0min 0s;Ocupado;105;0hs 4min 9s;1;Libre; - ;0hs 0min 0s;0;Ocupado;91;0hs 13min 39s;Ocupado;90;0hs 1min 16s;13
+Fin atencion Recepcion;105;2;17hs 48min 1s;0hs 0min 0s;Ocupado;106;0hs 6min 9s;0;Libre; - ;0hs 0min 0s;1;Ocupado;91;0hs 9min 29s;Ocupado;92;0hs 13min 0s;12
+Llega camion;107;2;17hs 51min 36s;0hs 9min 25s;Ocupado;106;0hs 2min 35s;1;Ocupado;105;0hs 3min 25s;0;Ocupado;91;0hs 5min 54s;Ocupado;92;0hs 9min 25s;12
+Fin atencion Recepcion;106;2;17hs 54min 11s;0hs 0min 0s;Ocupado;107;0hs 6min 28s;0;Ocupado;105;0hs 0min 50s;1;Ocupado;91;0hs 3min 19s;Ocupado;92;0hs 6min 50s;12
+Fin atencion Balanza;105;2;17hs 55min 1s;0hs 0min 0s;Ocupado;107;0hs 5min 38s;0;Ocupado;106;..hs ..min ..s;0;Ocupado;91;0hs 2min 29s;Ocupado;92;0hs 6min 0s;13
+Fin atencion Darsena 1;91;2;17hs 57min 30s;0hs 0min 0s;Ocupado;107;0hs 3min 9s;0;Ocupado;106;0hs 3min 56s;0;Ocupado;94;0hs 15min 18s;Ocupado;92;0hs 3min 30s;12
+Cierre de planta;----;2;18hs 0min 0s;----;Ocupado;107;0hs 0min 40s;0;Ocupado;106;0hs 1min 27s;0;Ocupado;94;0hs 12min 49s;Ocupado;92;0hs 1min 1s
+Fin atencion Recepcion;107;2;18hs 0min 40s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;106;0hs 0min 47s;1;Ocupado;94;0hs 12min 9s;Ocupado;92;0hs 0min 21s;12
+Fin atencion Darsena 2;92;2;18hs 1min 1s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;106;0hs 0min 25s;1;Ocupado;94;0hs 11min 47s;Ocupado;93;0hs 11min 47s;11
+Fin atencion Balanza;106;2;18hs 1min 27s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;107;..hs ..min ..s;0;Ocupado;94;0hs 11min 22s;Ocupado;93;0hs 19min 33s;12
+Fin atencion Balanza;107;2;18hs 7min 53s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;94;0hs 4min 56s;Ocupado;93;0hs 13min 7s;13
+Fin atencion Darsena 1;94;2;18hs 12min 49s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;95;0hs 19min 29s;Ocupado;93;0hs 8min 10s;12
+Fin atencion Darsena 2;93;2;18hs 21min 0s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;95;0hs 11min 18s;Ocupado;96;0hs 11min 18s;11
+Fin atencion Darsena 1;95;2;18hs 32min 19s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;97;0hs 15min 4s;Ocupado;96;0hs 6min 0s;10
+Fin atencion Darsena 2;96;2;18hs 38min 20s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;97;0hs 9min 3s;Ocupado;98;0hs 9min 3s;9
+Fin atencion Darsena 1;97;2;18hs 47min 24s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;100;0hs 18min 25s;Ocupado;98;0hs 10min 38s;8
+Fin atencion Darsena 2;98;2;18hs 58min 3s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;100;0hs 7min 46s;Ocupado;99;0hs 7min 46s;7
+Fin atencion Darsena 1;100;2;19hs 5min 50s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;101;0hs 16min 16s;Ocupado;99;0hs 9min 28s;6
+Fin atencion Darsena 2;99;2;19hs 15min 19s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;101;0hs 6min 47s;Ocupado;103;0hs 6min 47s;5
+Fin atencion Darsena 1;101;2;19hs 22min 7s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;102;0hs 16min 55s;Ocupado;103;0hs 8min 38s;4
+Fin atencion Darsena 2;103;2;19hs 30min 46s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;102;0hs 8min 16s;Ocupado;104;0hs 8min 16s;3
+Fin atencion Darsena 1;102;2;19hs 39min 3s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;105;0hs 19min 3s;Ocupado;104;0hs 8min 2s;2
+Fin atencion Darsena 2;104;2;19hs 47min 6s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;105;0hs 11min 0s;Ocupado;106;0hs 11min 0s;1
+Fin atencion Darsena 1;105;2;19hs 58min 7s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;107;0hs 15min 38s;Ocupado;106;0hs 5min 37s;0
+Fin atencion Darsena 2;106;2;20hs 3min 45s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;107;0hs 10min 0s;Libre; - ;..hs ..min ..s;0
+Fin atencion Darsena 1;107;2;20hs 13min 46s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;Libre; - ;0hs 0min 0s;0
+Apertura de planta;----;3;5hs 0min 0s;----;Libre;----;----;0;Libre;----;----;0;Libre;----;----;Libre;----;----;0
+Apertura de puertas;----;3;12hs 0min 0s;----;Libre;----;----;0;Libre;----;----;0;Libre;----;----;Libre;----;----;0
+Llega camion;108;3;12hs 10min 21s;0hs 3min 49s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Llega camion;109;3;12hs 14min 11s;0hs 7min 21s;Ocupado;108;0hs 1min 25s;1;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Fin atencion Recepcion;108;3;12hs 15min 36s;0hs 0min 0s;Ocupado;109;0hs 6min 32s;0;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;0
+Fin atencion Balanza;108;3;12hs 21min 14s;0hs 0min 0s;Ocupado;109;0hs 0min 54s;0;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;Libre; - ;0hs 0min 0s;1
+Llega camion;110;3;12hs 21min 33s;0hs 5min 47s;Ocupado;109;0hs 0min 36s;1;Libre; - ;0hs 0min 0s;0;Ocupado;108;0hs 16min 53s;Libre; - ;0hs 0min 0s;0
+Fin atencion Recepcion;109;3;12hs 22min 9s;0hs 0min 0s;Ocupado;110;0hs 5min 27s;0;Libre; - ;0hs 0min 0s;1;Ocupado;108;0hs 16min 17s;Libre; - ;0hs 0min 0s;0
+Llega camion;111;3;12hs 27min 21s;0hs 1min 34s;Ocupado;110;0hs 0min 16s;1;Ocupado;109;0hs 0min 52s;0;Ocupado;108;0hs 11min 5s;Libre; - ;0hs 0min 0s;0
+Fin atencion Recepcion;110;3;12hs 27min 37s;0hs 0min 0s;Ocupado;111;0hs 6min 57s;0;Ocupado;109;0hs 0min 36s;0;Ocupado;108;0hs 10min 49s;Libre; - ;0hs 0min 0s;1
+Fin atencion Balanza;109;3;12hs 28min 13s;0hs 0min 0s;Ocupado;111;0hs 6min 21s;0;Libre; - ;..hs ..min ..s;0;Ocupado;108;0hs 10min 13s;Ocupado;110;0hs 17min 3s;1
+Llega camion;112;3;12hs 28min 56s;0hs 17min 31s;Ocupado;111;0hs 5min 39s;1;Libre; - ;0hs 0min 0s;0;Ocupado;108;0hs 9min 30s;Ocupado;110;0hs 16min 20s;1
+Fin atencion Recepcion;111;3;12hs 34min 35s;0hs 0min 0s;Ocupado;112;0hs 7min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;108;0hs 3min 51s;Ocupado;110;0hs 10min 41s;2
+Fin atencion Darsena 1;108;3;12hs 38min 26s;0hs 0min 0s;Ocupado;112;0hs 3min 9s;0;Libre; - ;0hs 0min 0s;0;Ocupado;109;0hs 15min 51s;Ocupado;110;0hs 6min 49s;1
+Fin atencion Recepcion;112;3;12hs 41min 36s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;109;0hs 12min 42s;Ocupado;110;0hs 3min 40s;1
+Fin atencion Darsena 2;110;3;12hs 45min 16s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;112;0hs 1min 58s;0;Ocupado;109;0hs 9min 1s;Ocupado;111;0hs 9min 1s;0
+Llega camion;113;3;12hs 46min 28s;0hs 2min 52s;Libre; - ;0hs 0min 0s;1;Ocupado;112;0hs 0min 47s;0;Ocupado;109;0hs 7min 50s;Ocupado;111;0hs 16min 3s;0
+Fin atencion Balanza;112;3;12hs 47min 15s;0hs 0min 0s;Ocupado;113;0hs 2min 38s;0;Libre; - ;..hs ..min ..s;0;Ocupado;109;0hs 7min 3s;Ocupado;111;0hs 15min 16s;1
+Llega camion;114;3;12hs 49min 21s;0hs 5min 40s;Ocupado;113;0hs 0min 33s;1;Libre; - ;0hs 0min 0s;0;Ocupado;109;0hs 4min 57s;Ocupado;111;0hs 13min 10s;1
+Fin atencion Recepcion;113;3;12hs 49min 54s;0hs 0min 0s;Ocupado;114;0hs 4min 14s;0;Libre; - ;0hs 0min 0s;0;Ocupado;109;0hs 4min 24s;Ocupado;111;0hs 12min 37s;2
+Fin atencion Recepcion;114;3;12hs 54min 9s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;109;0hs 0min 9s;Ocupado;111;0hs 8min 22s;2
+Fin atencion Darsena 1;109;3;12hs 54min 18s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;114;0hs 5min 13s;0;Ocupado;112;0hs 17min 35s;Ocupado;111;0hs 8min 12s;1
+Llega camion;115;3;12hs 55min 2s;0hs 0min 29s;Libre; - ;0hs 0min 0s;1;Ocupado;114;0hs 4min 30s;0;Ocupado;112;0hs 16min 52s;Ocupado;111;0hs 7min 29s;1
+Llega camion;116;3;12hs 55min 32s;0hs 4min 53s;Ocupado;115;0hs 5min 18s;1;Ocupado;114;0hs 4min 0s;0;Ocupado;112;0hs 16min 22s;Ocupado;111;0hs 6min 59s;1
+Fin atencion Balanza;114;3;12hs 59min 32s;0hs 0min 0s;Ocupado;115;0hs 1min 17s;1;Libre; - ;..hs ..min ..s;0;Ocupado;112;0hs 12min 22s;Ocupado;111;0hs 2min 59s;2
+Apertura de puertas;----;3;13hs 0min 0s;----;Ocupado;----;----;1;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;2
+Llega camion;117;3;13hs 0min 26s;0hs 1min 51s;Ocupado;115;0hs 0min 24s;2;Libre; - ;0hs 0min 0s;0;Ocupado;112;0hs 11min 28s;Ocupado;111;0hs 2min 5s;2
+Fin atencion Recepcion;115;3;13hs 0min 50s;0hs 0min 0s;Ocupado;116;0hs 6min 5s;1;Libre; - ;0hs 0min 0s;0;Ocupado;112;0hs 11min 4s;Ocupado;111;0hs 1min 41s;3
+Llega camion;118;3;13hs 2min 18s;0hs 3min 34s;Ocupado;116;0hs 4min 38s;2;Libre; - ;0hs 0min 0s;0;Ocupado;112;0hs 9min 36s;Ocupado;111;0hs 0min 13s;3
+Fin atencion Darsena 2;111;3;13hs 2min 31s;0hs 0min 0s;Ocupado;116;0hs 4min 24s;2;Libre; - ;0hs 0min 0s;0;Ocupado;112;0hs 9min 22s;Ocupado;113;0hs 9min 22s;2
+Llega camion;119;3;13hs 5min 53s;0hs 0min 23s;Ocupado;116;0hs 1min 3s;3;Libre; - ;0hs 0min 0s;0;Ocupado;112;0hs 6min 1s;Ocupado;113;0hs 14min 5s;2
+Llega camion;120;3;13hs 6min 17s;0hs 5min 39s;Ocupado;116;0hs 0min 39s;4;Libre; - ;0hs 0min 0s;0;Ocupado;112;0hs 5min 37s;Ocupado;113;0hs 13min 41s;2
+Fin atencion Recepcion;116;3;13hs 6min 56s;0hs 0min 0s;Ocupado;117;0hs 4min 59s;3;Libre; - ;0hs 0min 0s;1;Ocupado;112;0hs 4min 58s;Ocupado;113;0hs 13min 2s;2
+Fin atencion Darsena 1;112;3;13hs 11min 54s;0hs 0min 0s;Ocupado;117;0hs 0min 1s;3;Ocupado;116;0hs 0min 29s;0;Ocupado;114;0hs 18min 14s;Ocupado;113;0hs 8min 3s;1
+Fin atencion Recepcion;117;3;13hs 11min 56s;0hs 0min 0s;Ocupado;118;0hs 3min 59s;2;Ocupado;116;0hs 0min 28s;1;Ocupado;114;0hs 18min 13s;Ocupado;113;0hs 8min 2s;1
+Llega camion;121;3;13hs 11min 57s;0hs 4min 5s;Ocupado;118;0hs 3min 59s;3;Ocupado;116;0hs 0min 27s;1;Ocupado;114;0hs 18min 12s;Ocupado;113;0hs 8min 1s;1
+Fin atencion Balanza;116;3;13hs 12min 24s;0hs 0min 0s;Ocupado;118;0hs 3min 31s;3;Ocupado;117;..hs ..min ..s;0;Ocupado;114;0hs 17min 45s;Ocupado;113;0hs 7min 34s;2
+Fin atencion Recepcion;118;3;13hs 15min 56s;0hs 0min 0s;Ocupado;119;0hs 4min 57s;2;Ocupado;117;0hs 2min 35s;1;Ocupado;114;0hs 14min 13s;Ocupado;113;0hs 4min 2s;2
+Llega camion;122;3;13hs 16min 3s;0hs 7min 8s;Ocupado;119;0hs 4min 51s;3;Ocupado;117;0hs 2min 28s;1;Ocupado;114;0hs 14min 6s;Ocupado;113;0hs 3min 55s;2
+Fin atencion Balanza;117;3;13hs 18min 31s;0hs 0min 0s;Ocupado;119;0hs 2min 22s;3;Ocupado;118;..hs ..min ..s;0;Ocupado;114;0hs 11min 38s;Ocupado;113;0hs 1min 27s;3
+Fin atencion Darsena 2;113;3;13hs 19min 58s;0hs 0min 0s;Ocupado;119;0hs 0min 55s;3;Ocupado;118;0hs 3min 57s;0;Ocupado;114;0hs 10min 10s;Ocupado;115;0hs 10min 10s;2
+Fin atencion Recepcion;119;3;13hs 20min 54s;0hs 0min 0s;Ocupado;120;0hs 4min 19s;2;Ocupado;118;0hs 3min 2s;1;Ocupado;114;0hs 9min 15s;Ocupado;115;0hs 16min 34s;2
+Llega camion;123;3;13hs 23min 12s;0hs 4min 57s;Ocupado;120;0hs 2min 2s;3;Ocupado;118;0hs 0min 44s;1;Ocupado;114;0hs 6min 57s;Ocupado;115;0hs 14min 16s;2
+Fin atencion Balanza;118;3;13hs 23min 56s;0hs 0min 0s;Ocupado;120;0hs 1min 17s;3;Ocupado;119;..hs ..min ..s;0;Ocupado;114;0hs 6min 13s;Ocupado;115;0hs 13min 32s;3
+Fin atencion Recepcion;120;3;13hs 25min 14s;0hs 0min 0s;Ocupado;121;0hs 6min 0s;2;Ocupado;119;0hs 3min 49s;1;Ocupado;114;0hs 4min 55s;Ocupado;115;0hs 12min 14s;3
+Llega camion;124;3;13hs 28min 10s;0hs 16min 8s;Ocupado;121;0hs 3min 5s;3;Ocupado;119;0hs 0min 53s;1;Ocupado;114;0hs 1min 59s;Ocupado;115;0hs 9min 18s;3
+Fin atencion Balanza;119;3;13hs 29min 3s;0hs 0min 0s;Ocupado;121;0hs 2min 11s;3;Ocupado;120;..hs ..min ..s;0;Ocupado;114;0hs 1min 6s;Ocupado;115;0hs 8min 25s;4
+Fin atencion Darsena 1;114;3;13hs 30min 9s;0hs 0min 0s;Ocupado;121;0hs 1min 5s;3;Ocupado;120;0hs 4min 38s;0;Ocupado;116;0hs 16min 24s;Ocupado;115;0hs 7min 18s;3
+Fin atencion Recepcion;121;3;13hs 31min 15s;0hs 0min 0s;Ocupado;122;0hs 3min 13s;2;Ocupado;120;0hs 3min 33s;0;Ocupado;116;0hs 15min 19s;Ocupado;115;0hs 6min 13s;4
+Fin atencion Recepcion;122;3;13hs 34min 29s;0hs 0min 0s;Ocupado;123;0hs 6min 41s;1;Ocupado;120;0hs 0min 19s;0;Ocupado;116;0hs 12min 5s;Ocupado;115;0hs 2min 59s;5
+Fin atencion Balanza;120;3;13hs 34min 48s;0hs 0min 0s;Ocupado;123;0hs 6min 22s;1;Libre; - ;..hs ..min ..s;0;Ocupado;116;0hs 11min 46s;Ocupado;115;0hs 2min 40s;6
+Fin atencion Darsena 2;115;3;13hs 37min 28s;0hs 0min 0s;Ocupado;123;0hs 3min 42s;1;Libre; - ;0hs 0min 0s;0;Ocupado;116;0hs 9min 5s;Ocupado;117;0hs 9min 5s;5
+Fin atencion Recepcion;123;3;13hs 41min 11s;0hs 0min 0s;Ocupado;124;0hs 4min 14s;0;Libre; - ;0hs 0min 0s;1;Ocupado;116;0hs 5min 23s;Ocupado;117;0hs 11min 23s;5
+Llega camion;125;3;13hs 44min 19s;0hs 22min 58s;Ocupado;124;0hs 1min 7s;1;Ocupado;123;0hs 3min 13s;0;Ocupado;116;0hs 2min 15s;Ocupado;117;0hs 8min 15s;5
+Fin atencion Recepcion;124;3;13hs 45min 26s;0hs 0min 0s;Ocupado;125;0hs 3min 32s;0;Ocupado;123;0hs 2min 6s;0;Ocupado;116;0hs 1min 8s;Ocupado;117;0hs 7min 8s;6
+Fin atencion Darsena 1;116;3;13hs 46min 34s;0hs 0min 0s;Ocupado;125;0hs 2min 24s;0;Ocupado;123;0hs 0min 57s;0;Ocupado;118;0hs 17min 32s;Ocupado;117;0hs 5min 59s;5
+Fin atencion Balanza;123;3;13hs 47min 32s;0hs 0min 0s;Ocupado;125;0hs 1min 26s;0;Libre; - ;..hs ..min ..s;0;Ocupado;118;0hs 26min 56s;Ocupado;117;0hs 5min 2s;6
+Fin atencion Recepcion;125;3;13hs 48min 59s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;118;0hs 25min 29s;Ocupado;117;0hs 3min 35s;6
+Fin atencion Darsena 2;117;3;13hs 52min 34s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;125;0hs 2min 34s;0;Ocupado;118;0hs 21min 53s;Ocupado;119;0hs 21min 53s;5
+Fin atencion Balanza;125;3;13hs 55min 9s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;118;0hs 19min 19s;Ocupado;119;0hs 16min 35s;6
+Apertura de puertas;----;3;14hs 0min 0s;----;Libre;----;----;0;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;6
+Llega camion;126;3;14hs 7min 18s;0hs 15min 31s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;118;0hs 7min 10s;Ocupado;119;0hs 4min 26s;6
+Fin atencion Darsena 2;119;3;14hs 11min 44s;0hs 0min 0s;Ocupado;126;0hs 1min 31s;0;Libre; - ;0hs 0min 0s;0;Ocupado;118;0hs 2min 43s;Ocupado;121;0hs 2min 43s;5
+Fin atencion Recepcion;126;3;14hs 13min 16s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;118;0hs 1min 12s;Ocupado;121;0hs 25min 8s;5
+Fin atencion Balanza;126;3;14hs 19min 58s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;122;0hs 11min 53s;Ocupado;121;0hs 18min 26s;5
+Llega camion;127;3;14hs 22min 50s;0hs 3min 34s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;122;0hs 9min 1s;Ocupado;121;0hs 15min 34s;5
+Llega camion;128;3;14hs 26min 25s;0hs 18min 50s;Ocupado;127;0hs 2min 25s;1;Libre; - ;0hs 0min 0s;0;Ocupado;122;0hs 5min 26s;Ocupado;121;0hs 11min 59s;5
+Fin atencion Recepcion;127;3;14hs 28min 50s;0hs 0min 0s;Ocupado;128;0hs 5min 23s;0;Libre; - ;0hs 0min 0s;1;Ocupado;122;0hs 3min 1s;Ocupado;121;0hs 9min 34s;5
+Fin atencion Darsena 1;122;3;14hs 31min 51s;0hs 0min 0s;Ocupado;128;0hs 2min 22s;0;Ocupado;127;0hs 3min 25s;0;Ocupado;120;0hs 19min 53s;Ocupado;121;0hs 6min 32s;4
+Fin atencion Recepcion;128;3;14hs 34min 14s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;127;0hs 1min 3s;1;Ocupado;120;0hs 17min 31s;Ocupado;121;0hs 4min 10s;4
+Fin atencion Balanza;127;3;14hs 35min 17s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;128;..hs ..min ..s;0;Ocupado;120;0hs 16min 28s;Ocupado;121;0hs 3min 7s;5
+Fin atencion Balanza;128;3;14hs 41min 37s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;120;0hs 10min 8s;Ocupado;124;0hs 12min 47s;5
+Llega camion;129;3;14hs 45min 16s;0hs 6min 18s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;120;0hs 6min 29s;Ocupado;124;0hs 9min 8s;5
+Fin atencion Recepcion;129;3;14hs 51min 1s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;0;Ocupado;120;0hs 0min 44s;Ocupado;124;0hs 3min 23s;6
+Llega camion;130;3;14hs 51min 35s;0hs 0min 5s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;120;0hs 0min 10s;Ocupado;124;0hs 2min 49s;6
+Llega camion;131;3;14hs 51min 41s;0hs 4min 17s;Ocupado;130;0hs 3min 7s;1;Libre; - ;0hs 0min 0s;0;Ocupado;120;0hs 0min 4s;Ocupado;124;0hs 2min 43s;6
+Fin atencion Darsena 1;120;3;14hs 51min 45s;0hs 0min 0s;Ocupado;130;0hs 3min 2s;1;Libre; - ;0hs 0min 0s;0;Ocupado;123;0hs 16min 30s;Ocupado;124;0hs 2min 38s;5
+Fin atencion Darsena 2;124;3;14hs 54min 24s;0hs 0min 0s;Ocupado;130;0hs 0min 23s;1;Libre; - ;0hs 0min 0s;0;Ocupado;123;0hs 13min 51s;Ocupado;125;0hs 13min 51s;4
+Fin atencion Recepcion;130;3;14hs 54min 48s;0hs 0min 0s;Ocupado;131;0hs 3min 31s;0;Libre; - ;0hs 0min 0s;1;Ocupado;123;0hs 13min 28s;Ocupado;125;0hs 17min 28s;4
+Llega camion;132;3;14hs 55min 59s;0hs 6min 3s;Ocupado;131;0hs 2min 21s;1;Ocupado;130;0hs 4min 21s;0;Ocupado;123;0hs 12min 17s;Ocupado;125;0hs 16min 17s;4
+Fin atencion Recepcion;131;3;14hs 58min 20s;0hs 0min 0s;Ocupado;132;0hs 3min 17s;0;Ocupado;130;0hs 2min 0s;1;Ocupado;123;0hs 9min 56s;Ocupado;125;0hs 13min 56s;4
+Apertura de puertas;----;3;15hs 0min 0s;----;Ocupado;----;----;0;Ocupado;----;----;1;Ocupado;----;----;Ocupado;----;----;4
+Fin atencion Balanza;130;3;15hs 0min 20s;0hs 0min 0s;Ocupado;132;0hs 1min 17s;0;Ocupado;131;..hs ..min ..s;0;Ocupado;123;0hs 7min 56s;Ocupado;125;0hs 11min 56s;5
+Fin atencion Recepcion;132;3;15hs 1min 38s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;131;0hs 4min 32s;1;Ocupado;123;0hs 6min 38s;Ocupado;125;0hs 10min 38s;5
+Llega camion;133;3;15hs 2min 3s;0hs 2min 39s;Libre; - ;0hs 0min 0s;1;Ocupado;131;0hs 4min 7s;1;Ocupado;123;0hs 6min 13s;Ocupado;125;0hs 10min 13s;5
+Llega camion;134;3;15hs 4min 43s;0hs 13min 13s;Ocupado;133;0hs 2min 43s;1;Ocupado;131;0hs 1min 27s;1;Ocupado;123;0hs 3min 33s;Ocupado;125;0hs 7min 33s;5
+Fin atencion Balanza;131;3;15hs 6min 10s;0hs 0min 0s;Ocupado;133;0hs 1min 15s;1;Ocupado;132;..hs ..min ..s;0;Ocupado;123;0hs 2min 6s;Ocupado;125;0hs 6min 6s;6
+Fin atencion Recepcion;133;3;15hs 7min 26s;0hs 0min 0s;Ocupado;134;0hs 4min 25s;0;Ocupado;132;0hs 4min 4s;1;Ocupado;123;0hs 0min 50s;Ocupado;125;0hs 4min 50s;6
+Fin atencion Darsena 1;123;3;15hs 8min 16s;0hs 0min 0s;Ocupado;134;0hs 3min 35s;0;Ocupado;132;0hs 3min 13s;1;Ocupado;126;0hs 16min 34s;Ocupado;125;0hs 3min 59s;5
+Fin atencion Balanza;132;3;15hs 11min 30s;0hs 0min 0s;Ocupado;134;0hs 0min 21s;0;Ocupado;133;..hs ..min ..s;0;Ocupado;126;0hs 13min 21s;Ocupado;125;0hs 0min 46s;6
+Fin atencion Recepcion;134;3;15hs 11min 52s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;133;0hs 5min 11s;0;Ocupado;126;0hs 12min 59s;Ocupado;125;0hs 0min 24s;7
+Fin atencion Darsena 2;125;3;15hs 12min 16s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;133;0hs 4min 46s;0;Ocupado;126;0hs 12min 34s;Ocupado;127;0hs 12min 34s;6
+Fin atencion Balanza;133;3;15hs 17min 3s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;126;0hs 7min 48s;Ocupado;127;0hs 12min 48s;7
+Llega camion;135;3;15hs 17min 57s;0hs 7min 28s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;126;0hs 6min 54s;Ocupado;127;0hs 11min 54s;7
+Fin atencion Recepcion;135;3;15hs 24min 29s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;126;0hs 0min 22s;Ocupado;127;0hs 5min 22s;7
+Fin atencion Darsena 1;126;3;15hs 24min 51s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;135;0hs 6min 24s;0;Ocupado;128;0hs 16min 59s;Ocupado;127;0hs 4min 59s;6
+Llega camion;136;3;15hs 25min 26s;0hs 21min 21s;Libre; - ;0hs 0min 0s;1;Ocupado;135;0hs 5min 50s;0;Ocupado;128;0hs 16min 25s;Ocupado;127;0hs 4min 25s;6
+Fin atencion Darsena 2;127;3;15hs 29min 51s;0hs 0min 0s;Ocupado;136;0hs 2min 17s;0;Ocupado;135;0hs 1min 24s;0;Ocupado;128;0hs 11min 59s;Ocupado;129;0hs 11min 59s;5
+Fin atencion Balanza;135;3;15hs 31min 16s;0hs 0min 0s;Ocupado;136;0hs 0min 52s;0;Libre; - ;..hs ..min ..s;0;Ocupado;128;0hs 10min 35s;Ocupado;129;0hs 15min 36s;6
+Fin atencion Recepcion;136;3;15hs 32min 9s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;128;0hs 9min 42s;Ocupado;129;0hs 14min 43s;6
+Fin atencion Balanza;136;3;15hs 38min 11s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;128;0hs 3min 40s;Ocupado;129;0hs 8min 41s;7
+Fin atencion Darsena 1;128;3;15hs 41min 51s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;130;0hs 19min 25s;Ocupado;129;0hs 5min 0s;6
+Llega camion;137;3;15hs 46min 48s;0hs 12min 31s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;130;0hs 14min 29s;Ocupado;129;0hs 0min 4s;6
+Fin atencion Darsena 2;129;3;15hs 46min 52s;0hs 0min 0s;Ocupado;137;0hs 3min 15s;0;Libre; - ;0hs 0min 0s;0;Ocupado;130;0hs 14min 24s;Ocupado;131;0hs 14min 24s;5
+Fin atencion Recepcion;137;3;15hs 50min 8s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;130;0hs 11min 9s;Ocupado;131;0hs 15min 30s;5
+Fin atencion Balanza;137;3;15hs 56min 51s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;130;0hs 4min 26s;Ocupado;131;0hs 8min 47s;6
+Llega camion;138;3;15hs 59min 20s;0hs 3min 22s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;130;0hs 1min 57s;Ocupado;131;0hs 6min 18s;6
+Apertura de puertas;----;3;16hs 0min 0s;----;Ocupado;----;----;0;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;6
+Fin atencion Darsena 1;130;3;16hs 1min 17s;0hs 0min 0s;Ocupado;138;0hs 4min 28s;0;Libre; - ;0hs 0min 0s;0;Ocupado;132;0hs 19min 13s;Ocupado;131;0hs 4min 20s;5
+Llega camion;139;3;16hs 2min 43s;0hs 1min 17s;Ocupado;138;0hs 3min 3s;1;Libre; - ;0hs 0min 0s;0;Ocupado;132;0hs 17min 48s;Ocupado;131;0hs 2min 55s;5
+Llega camion;140;3;16hs 4min 1s;0hs 8min 23s;Ocupado;138;0hs 1min 45s;2;Libre; - ;0hs 0min 0s;0;Ocupado;132;0hs 16min 30s;Ocupado;131;0hs 1min 37s;5
+Fin atencion Darsena 2;131;3;16hs 5min 38s;0hs 0min 0s;Ocupado;138;0hs 0min 7s;2;Libre; - ;0hs 0min 0s;0;Ocupado;132;0hs 14min 52s;Ocupado;134;0hs 14min 52s;4
+Fin atencion Recepcion;138;3;16hs 5min 46s;0hs 0min 0s;Ocupado;139;0hs 5min 36s;1;Libre; - ;0hs 0min 0s;0;Ocupado;132;0hs 14min 45s;Ocupado;134;0hs 16min 33s;5
+Fin atencion Recepcion;139;3;16hs 11min 23s;0hs 0min 0s;Ocupado;140;0hs 3min 2s;0;Libre; - ;0hs 0min 0s;1;Ocupado;132;0hs 9min 8s;Ocupado;134;0hs 10min 56s;5
+Llega camion;141;3;16hs 12min 25s;0hs 14min 17s;Ocupado;140;0hs 2min 1s;1;Ocupado;139;0hs 4min 54s;0;Ocupado;132;0hs 8min 6s;Ocupado;134;0hs 9min 54s;5
+Fin atencion Recepcion;140;3;16hs 14min 26s;0hs 0min 0s;Ocupado;141;0hs 4min 48s;0;Ocupado;139;0hs 2min 53s;1;Ocupado;132;0hs 6min 5s;Ocupado;134;0hs 7min 53s;5
+Fin atencion Balanza;139;3;16hs 17min 19s;0hs 0min 0s;Ocupado;141;0hs 1min 55s;0;Ocupado;140;..hs ..min ..s;0;Ocupado;132;0hs 3min 12s;Ocupado;134;0hs 5min 0s;6
+Fin atencion Recepcion;141;3;16hs 19min 15s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;140;0hs 3min 12s;0;Ocupado;132;0hs 1min 16s;Ocupado;134;0hs 3min 4s;7
+Fin atencion Darsena 1;132;3;16hs 20min 31s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;140;0hs 1min 55s;0;Ocupado;133;0hs 16min 4s;Ocupado;134;0hs 1min 47s;6
+Fin atencion Darsena 2;134;3;16hs 22min 19s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;140;0hs 0min 7s;0;Ocupado;133;0hs 14min 16s;Ocupado;135;0hs 14min 16s;5
+Fin atencion Balanza;140;3;16hs 22min 27s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;133;0hs 14min 9s;Ocupado;135;0hs 18min 24s;6
+Llega camion;142;3;16hs 26min 43s;0hs 11min 9s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;133;0hs 9min 53s;Ocupado;135;0hs 14min 8s;6
+Fin atencion Recepcion;142;3;16hs 31min 45s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;133;0hs 4min 51s;Ocupado;135;0hs 9min 6s;6
+Fin atencion Darsena 1;133;3;16hs 36min 36s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;142;0hs 1min 4s;0;Ocupado;136;0hs 16min 0s;Ocupado;135;0hs 4min 14s;5
+Fin atencion Balanza;142;3;16hs 37min 41s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;136;0hs 14min 56s;Ocupado;135;0hs 3min 10s;6
+Llega camion;143;3;16hs 37min 53s;0hs 37min 31s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;136;0hs 14min 44s;Ocupado;135;0hs 2min 58s;6
+Fin atencion Darsena 2;135;3;16hs 40min 51s;0hs 0min 0s;Ocupado;143;0hs 1min 43s;0;Libre; - ;0hs 0min 0s;0;Ocupado;136;0hs 11min 45s;Ocupado;137;0hs 11min 45s;5
+Fin atencion Recepcion;143;3;16hs 42min 35s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;136;0hs 10min 2s;Ocupado;137;0hs 16min 42s;5
+Fin atencion Balanza;143;3;16hs 48min 21s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;136;0hs 4min 16s;Ocupado;137;0hs 10min 56s;6
+Fin atencion Darsena 1;136;3;16hs 52min 37s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;138;0hs 18min 30s;Ocupado;137;0hs 6min 39s;5
+Fin atencion Darsena 2;137;3;16hs 59min 17s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;138;0hs 11min 50s;Ocupado;139;0hs 11min 50s;4
+Apertura de puertas;----;3;17hs 0min 0s;----;Libre;----;----;0;Libre;----;----;0;Ocupado;----;----;Ocupado;----;----;4
+Fin atencion Darsena 1;138;3;17hs 11min 8s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;141;0hs 15min 9s;Ocupado;139;0hs 8min 6s;3
+Llega camion;144;3;17hs 15min 25s;0hs 14min 13s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;141;0hs 10min 53s;Ocupado;139;0hs 3min 50s;3
+Fin atencion Darsena 2;139;3;17hs 19min 15s;0hs 0min 0s;Ocupado;144;0hs 3min 4s;0;Libre; - ;0hs 0min 0s;0;Ocupado;141;0hs 7min 2s;Ocupado;140;0hs 7min 2s;2
+Fin atencion Recepcion;144;3;17hs 22min 20s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;0;Ocupado;141;0hs 3min 58s;Ocupado;140;0hs 16min 42s;3
+Fin atencion Darsena 1;141;3;17hs 26min 18s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;142;0hs 16min 34s;Ocupado;140;0hs 12min 43s;2
+Llega camion;145;3;17hs 29min 39s;0hs 12min 6s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;142;0hs 13min 14s;Ocupado;140;0hs 9min 23s;2
+Fin atencion Recepcion;145;3;17hs 34min 46s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;142;0hs 8min 7s;Ocupado;140;0hs 4min 16s;2
+Fin atencion Darsena 2;140;3;17hs 39min 2s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;145;0hs 1min 20s;0;Ocupado;142;0hs 3min 50s;Ocupado;143;0hs 3min 50s;1
+Fin atencion Balanza;145;3;17hs 40min 23s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;142;0hs 2min 30s;Ocupado;143;0hs 18min 39s;2
+Llega camion;146;3;17hs 41min 46s;0hs 12min 50s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;142;0hs 1min 7s;Ocupado;143;0hs 17min 16s;2
+Fin atencion Darsena 1;142;3;17hs 42min 53s;0hs 0min 0s;Ocupado;146;0hs 3min 30s;0;Libre; - ;0hs 0min 0s;0;Ocupado;144;0hs 16min 12s;Ocupado;143;0hs 16min 8s;1
+Fin atencion Recepcion;146;3;17hs 46min 24s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Libre; - ;0hs 0min 0s;1;Ocupado;144;0hs 12min 42s;Ocupado;143;0hs 12min 38s;1
+Fin atencion Balanza;146;3;17hs 51min 38s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;144;0hs 7min 28s;Ocupado;143;0hs 7min 24s;2
+Llega camion;147;3;17hs 54min 37s;0hs 1min 34s;Libre; - ;0hs 0min 0s;1;Libre; - ;0hs 0min 0s;0;Ocupado;144;0hs 4min 29s;Ocupado;143;0hs 4min 25s;2
+Llega camion;148;3;17hs 56min 12s;0hs 6min 8s;Ocupado;147;0hs 3min 33s;1;Libre; - ;0hs 0min 0s;0;Ocupado;144;0hs 2min 54s;Ocupado;143;0hs 2min 50s;2
+Fin atencion Darsena 2;143;3;17hs 59min 2s;0hs 0min 0s;Ocupado;147;0hs 0min 42s;1;Libre; - ;0hs 0min 0s;0;Ocupado;144;0hs 0min 3s;Ocupado;145;0hs 0min 3s;1
+Fin atencion Darsena 1;144;3;17hs 59min 6s;0hs 0min 0s;Ocupado;147;0hs 0min 38s;1;Libre; - ;0hs 0min 0s;0;Ocupado;146;0hs 16min 56s;Ocupado;145;0hs 19min 43s;0
+Fin atencion Recepcion;147;3;17hs 59min 45s;0hs 0min 0s;Ocupado;148;0hs 4min 36s;0;Libre; - ;0hs 0min 0s;1;Ocupado;146;0hs 16min 18s;Ocupado;145;0hs 19min 5s;0
+Cierre de planta;----;3;18hs 0min 0s;----;Ocupado;148;0hs 4min 22s;0;Ocupado;147;0hs 5min 38s;0;Ocupado;146;0hs 16min 3s;Ocupado;145;0hs 18min 50s
+Fin atencion Recepcion;148;3;18hs 4min 22s;0hs 0min 0s;Libre; - ;..hs ..min ..s;0;Ocupado;147;0hs 1min 16s;1;Ocupado;146;0hs 11min 41s;Ocupado;145;0hs 14min 28s;0
+Fin atencion Balanza;147;3;18hs 5min 38s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Ocupado;148;..hs ..min ..s;0;Ocupado;146;0hs 10min 25s;Ocupado;145;0hs 13min 12s;1
+Fin atencion Balanza;148;3;18hs 11min 54s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;0;Ocupado;146;0hs 4min 9s;Ocupado;145;0hs 6min 56s;2
+Fin atencion Darsena 1;146;3;18hs 16min 3s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;147;0hs 19min 59s;Ocupado;145;0hs 2min 46s;1
+Fin atencion Darsena 2;145;3;18hs 18min 50s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;147;0hs 24min 18s;Ocupado;148;0hs 24min 18s;0
+Fin atencion Darsena 2;148;3;18hs 38min 1s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Ocupado;147;0hs 5min 7s;Libre; - ;..hs ..min ..s;0
+Fin atencion Darsena 1;147;3;18hs 43min 10s;0hs 0min 0s;Libre; - ;0hs 0min 0s;0;Libre; - ;0hs 0min 0s;0;Libre; - ;..hs ..min ..s;Libre; - ;0hs 0min 0s;0
