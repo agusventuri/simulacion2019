@@ -44,6 +44,9 @@ class Servidor:
     def gettiempoFinAtencion(self):
         return self.convert_timedelta(self.tiempoFinAtencion)
 
+    def gettiempoFinAtencionSegundos(self):
+        return self.tiempoFinAtencion
+
     def calcularProxFinAtencion(self):
         return 40
 

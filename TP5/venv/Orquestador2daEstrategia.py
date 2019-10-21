@@ -123,7 +123,7 @@ while dia <= 30:
         if (proximoCamion > 0):
             proximoCamion -= 1
         else:
-            camion = Camion(random.random() < 0.35)
+            camion = Camion(random.random() < 0.35, segundos)
             colaRecepcion.append(camion)
             d, h, m, s = convert_timedelta(segundos)
             agregadosColaRecepcion+=1
