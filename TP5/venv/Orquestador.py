@@ -70,7 +70,7 @@ def obtenerTiempoProxCamion():
     #formula gen var aleatoria exponencial
     t = (-unoSobreLambda) * math.log(1 - random.random(),math.e)
     t=round((t),0)
-    return 180
+    return t
 
 def procesarCamiones(r):
     if len(camiones)>0:
@@ -94,7 +94,7 @@ def procesarCamiones(r):
 # tiempo en segundos hasta la llegada del proximo camion
 proximoCamion = obtenerTiempoProxCamion()
 
-while dia <= 3:
+while dia <= 30:
     proximoCamionS = 0
     finAtencionServRecS = None
     finAtencionServBalS = None
@@ -116,10 +116,10 @@ while dia <= 3:
             flagUltimoCamion = True
 
     # marcar la apertura de puertas
-    if (hora == 12 and minutos == 0 and segundos % 60 == 0):
+    if (hora == 13 and minutos == 0 and segundos % 60 == 0):
         proximoCamion = obtenerTiempoProxCamion()
         # generacion vector de estados
-        r = ["Apertura de puertas", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s", "----",
+        r = ["Apertura de puertas", "----", d + 1, str(h) + "hs " + str(minutos) + "min " + str(s) + "s", "----",
              servidorRecepcion.getEstado(), "----", "----", str(len(colaRecepcion)),
              servidorBalanza.getEstado(), "----", "----", str(len(colaBalanza)),
              servidorDarsena1.getEstado(), "----", "----",
@@ -136,6 +136,9 @@ while dia <= 3:
             flagLleganCamiones = True
         else:
             flagLleganCamiones = False
+        #para ver
+        print("longitudes cola ")
+        print(str("recepcion: ")+str(len(colaRecepcion))+str(" balanza: ")+str(len(colaBalanza))+str(" darsena: ")+str(len(colaDarsena)))
 
         # almacenar la cantidad de camiones que duermen afuera
         if (hora >= 18):
@@ -176,6 +179,8 @@ while dia <= 3:
             atendidosbal = 0
             hora = 0
             dia += 1
+
+
 
         hora += 1
 
@@ -427,6 +432,7 @@ while dia <= 3:
 
     if (cDarsena1 is not None and not isinstance(cDarsena1, Camion)):
         if (cDarsena1):
+            #empezo calibrado
             # generacion vector de estados
             d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
             finAtencionServDar1S = servidorDarsena1.gettiempoFinAtencion()
@@ -450,6 +456,7 @@ while dia <= 3:
             vectorEstados.append(r)
             # fin generacion vector de estados
         else:
+            #termino calibrado
             # generacion vector de estados
             d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
             finAtencionServDar1S = servidorDarsena1.gettiempoFinAtencion()
@@ -475,6 +482,7 @@ while dia <= 3:
 
     if (cDarsena2 is not None and not isinstance(cDarsena2, Camion)):
         if (cDarsena2):
+            #empieza calibrado
             # generacion vector de estados
             d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
             finAtencionServDar2S = servidorDarsena2.gettiempoFinAtencion()
@@ -498,6 +506,7 @@ while dia <= 3:
             vectorEstados.append(r)
             # fin generacion vector de estados
         else:
+            #termina calibrado
             # generacion vector de estados
             d3, h3, m3, s3 = convert_timedelta(proximoCamionS)
             finAtencionServDar2S = servidorDarsena2.gettiempoFinAtencion()
@@ -530,7 +539,7 @@ while dia <= 3:
             atendidosdar1 += 1
 
     if (not servidorDarsena2.getOcupado()):
-        if (len(colaDarsena) > 0 and not servidorDarsena1.getCalibrando()):
+        if (len(colaDarsena) > 0 and not servidorDarsena2.getCalibrando()):
             cam = colaDarsena.popleft()
             cam.setEstado("En servidor")
             servidorDarsena2.recibirCamion(cam)
@@ -543,6 +552,10 @@ while dia <= 3:
 #calculamos promedio de tiempo permanencia camiones
 for i in colaTerminados:
     tiempoTotalPermanencia += (i.horaSalida-i.horaEntrada)
+    print(str(i.horaSalida-i.horaEntrada)+str("  nro camion ")+str(i.nroCamion))
+    print("hora entrada :"+str(convert_timedelta(i.horaEntrada))+ " hora slida: "+str(convert_timedelta(i.horaSalida)))
+
+
 
 tiempoPromedioCamiones = round(tiempoTotalPermanencia/len(colaTerminados),0)
 
@@ -585,3 +598,4 @@ result.close()
 print("Listo")
 
 os.system('python Orquestador2daEstrategia.py')
+

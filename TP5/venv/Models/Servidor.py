@@ -114,27 +114,32 @@ class Darsena(Servidor):
             self.tiempoFinAtencion = r
             self.calibrando = True
             self.ocupado = True
+            #empieza calibrar
             return True
 
         if (self.calibrando):
             if (self.tiempoFinAtencion > 0):
                 self.tiempoFinAtencion -= 1
+                #esta calibrando
                 return None
             else:
                 self.cantidadCamiones = 0
                 self.calibrando = False
                 self.ocupado = False
+                #termino calibrado
                 return False
 
         if (self.camion is not None):
             if (self.tiempoFinAtencion > 0):
                 self.tiempoFinAtencion -= 1
+                #esta atendiendo
                 return None
             else:
                 c = self.camion
                 self.camion = None
                 self.ocupado = False
                 self.cantidadCamiones += 1
+                #termino atender
                 return c
         return None
 

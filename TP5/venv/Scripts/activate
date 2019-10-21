@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="E:\Documentos\Facultad\SIM\simulacion2019\TP5\venv"
+VIRTUAL_ENV="G:\Josue\Simulacion\simulacion2019\TP5\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
