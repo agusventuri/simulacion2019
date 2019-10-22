@@ -78,10 +78,16 @@ def procesarCamiones(r):
             dCamion1, hCamion1, mCamion1, sCamion1 = convert_timedelta(c.getHoraLlegada())
             dCamion2, hCamion2, mCamion2, sCamion2 = convert_timedelta(c.getHoraInicioEvento())
             dCamion3, hCamion3, mCamion3, sCamion3 = convert_timedelta(c.getHoraFinEvento())
-            r.append(c.getEstado())
-            r.append(str(dCamion1) + "dias" + str(hCamion1) + "hs " + str(mCamion1) + "min " + str(sCamion1) + "s")
-            r.append(str(dCamion2) + "dias" + str(hCamion2) + "hs " + str(mCamion2) + "min " + str(sCamion2) + "s")
-            r.append(str(dCamion3) + "dias" + str(hCamion3) + "hs " + str(mCamion3) + "min " + str(sCamion3) + "s")
+            estado = c.getEstado()
+            r.append(estado)
+            if estado == "Terminado":
+                r.append("--:--:--")
+                r.append("--:--:--")
+                r.append("--:--:--")
+            else:
+                r.append(str(dCamion1) + "dias" + str(hCamion1) + "hs " + str(mCamion1) + "min " + str(sCamion1) + "s")
+                r.append(str(dCamion2) + "dias" + str(hCamion2) + "hs " + str(mCamion2) + "min " + str(sCamion2) + "s")
+                r.append(str(dCamion3) + "dias" + str(hCamion3) + "hs " + str(mCamion3) + "min " + str(sCamion3) + "s")
 
     for i in range(10 - len(camiones)):
         r.append("----")
@@ -137,8 +143,10 @@ while dia <= 30:
         else:
             flagLleganCamiones = False
         #para ver
-        print("longitudes cola ")
-        print(str("recepcion: ")+str(len(colaRecepcion))+str(" balanza: ")+str(len(colaBalanza))+str(" darsena: ")+str(len(colaDarsena)))
+        #print("---------------------------------------")
+        #print(str("recepcion: ") + str(len(colaRecepcion)))
+        #print(str(" balanza: ") + str(len(colaBalanza)))
+        #print(str(" darsena: ") + str(len(colaDarsena)))
 
         # almacenar la cantidad de camiones que duermen afuera
         if (hora >= 18):
@@ -552,8 +560,8 @@ while dia <= 30:
 #calculamos promedio de tiempo permanencia camiones
 for i in colaTerminados:
     tiempoTotalPermanencia += (i.horaSalida-i.horaEntrada)
-    print(str(i.horaSalida-i.horaEntrada)+str("  nro camion ")+str(i.nroCamion))
-    print("hora entrada :"+str(convert_timedelta(i.horaEntrada))+ " hora slida: "+str(convert_timedelta(i.horaSalida)))
+    #print(str(i.horaSalida-i.horaEntrada)+str("  nro camion ")+str(i.nroCamion))
+    #print("hora entrada :"+str(convert_timedelta(i.horaEntrada))+ " hora slida: "+str(convert_timedelta(i.horaSalida)))
 
 
 

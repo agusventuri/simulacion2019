@@ -22,10 +22,6 @@ dia = 1
 hora = 0
 minutos = -1
 segundos = 0
-#unoSobreLambda = 7.5 * 60 # 7,5 minutos
-#llegada uniforme
-a= 7
-b= 8
 
 cantidadDuermenAfuera = deque([0]*30)
 cantidadAtendidos = deque([0]*30)
@@ -71,9 +67,11 @@ def formatTime(time):
     return str(time[1]) + "hs " + str(time[2]) + "min " + str(time[3]) + "s"
 
 def obtenerTiempoProxCamion():
-    #formula gen var aleatoria exponencial
-    t = (a+ random.random()*(b-a))*60
-    t=round((t),0)
+    # llegada uniforme
+    a = 7
+    b = 8
+    t = (a + random.random() * (b - a)) * 60
+    t = round((t),0)
     return t
 
 def procesarCamiones(r):
@@ -82,10 +80,16 @@ def procesarCamiones(r):
             dCamion1, hCamion1, mCamion1, sCamion1 = convert_timedelta(c.getHoraLlegada())
             dCamion2, hCamion2, mCamion2, sCamion2 = convert_timedelta(c.getHoraInicioEvento())
             dCamion3, hCamion3, mCamion3, sCamion3 = convert_timedelta(c.getHoraFinEvento())
-            r.append(c.getEstado())
-            r.append(str(dCamion1) + "dias" + str(hCamion1) + "hs " + str(mCamion1) + "min " + str(sCamion1) + "s")
-            r.append(str(dCamion2) + "dias" + str(hCamion2) + "hs " + str(mCamion2) + "min " + str(sCamion2) + "s")
-            r.append(str(dCamion3) + "dias" + str(hCamion3) + "hs " + str(mCamion3) + "min " + str(sCamion3) + "s")
+            estado = c.getEstado()
+            r.append(estado)
+            if estado == "Terminado":
+                r.append("--:--:--")
+                r.append("--:--:--")
+                r.append("--:--:--")
+            else:
+                r.append(str(dCamion1) + "dias" + str(hCamion1) + "hs " + str(mCamion1) + "min " + str(sCamion1) + "s")
+                r.append(str(dCamion2) + "dias" + str(hCamion2) + "hs " + str(mCamion2) + "min " + str(sCamion2) + "s")
+                r.append(str(dCamion3) + "dias" + str(hCamion3) + "hs " + str(mCamion3) + "min " + str(sCamion3) + "s")
 
     for i in range(10 - len(camiones)):
         r.append("----")
@@ -110,7 +114,7 @@ while dia <= 30:
 
     # control del tiempo
     # prohibir llegada de camiones luego de las 18 clavados. Evita que lleguen durante las 18
-    if (hora == 19 and minutos == 0 and segundos % 60 == 1):
+    if (hora == 19 and minutos == 0 and segundos % 60 == 0):
         flagLleganCamiones = False
 
     # prohibir recepcion de camiones luego de las 18 clavados. Evita atenderlos durante las 18
@@ -141,8 +145,10 @@ while dia <= 30:
         else:
             flagLleganCamiones = False
         #para ver
-        print("longitudes cola ")
-        print(str("recepcion: ")+str(len(colaRecepcion))+str(" balanza: ")+str(len(colaBalanza))+str(" darsena: ")+str(len(colaDarsena)))
+        #print("longitudes cola ")
+        #print(str("recepcion: ")+str(len(colaRecepcion)))
+        #print(str(" balanza: ")+str(len(colaBalanza)))
+        #print(str(" darsena: ")+str(len(colaDarsena)))
 
         # almacenar la cantidad de camiones que duermen afuera
         if (hora >= 18):
@@ -167,7 +173,7 @@ while dia <= 30:
                      servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
                      servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
                      servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()),
-                     servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion())]
+                     servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), str(len(colaDarsena))]
                 r = procesarCamiones(r)
                 vectorEstados.append(r)
                 # fin generacion vector de estados
@@ -326,6 +332,7 @@ while dia <= 30:
             cDarsena1.setEstado("En cola")
             finAtencionServDar1S = None
             cDarsena1.setHoraSalida(segundos)
+            cDarsena1.setEstado("Terminado")
             colaTerminados.append(cDarsena1)
             cam = colaDarsena.popleft()
             cam.setEstado("En servidor")
@@ -357,6 +364,7 @@ while dia <= 30:
             cDarsena2.setEstado("En cola")
             finAtencionServDar2S = None
             cDarsena2.setHoraSalida(segundos)
+            cDarsena2.setEstado("Terminado")
             colaTerminados.append(cDarsena2)
             cam = colaDarsena.popleft()
             cam.setEstado("En servidor")
@@ -388,6 +396,7 @@ while dia <= 30:
             cDarsena1.setEstado("En cola")
             finAtencionServDar1S = None
             cDarsena1.setHoraSalida(segundos)
+            cDarsena1.setEstado("Terminado")
             colaTerminados.append(cDarsena1)
             atendidosdar1 += 1
 
@@ -412,6 +421,7 @@ while dia <= 30:
         if (isinstance(cDarsena2, Camion) and not servidorDarsena2.getCalibrando()):
             cDarsena2.setEstado("En cola")
             finAtencionServDar2S = None
+            cDarsena2.setEstado("Terminado")
             colaTerminados.append(cDarsena2)
             cDarsena2.setHoraSalida(segundos)
             atendidosdar2 += 1
@@ -556,8 +566,8 @@ while dia <= 30:
 #calculamos promedio de tiempo permanencia camiones
 for i in colaTerminados:
     tiempoTotalPermanencia += (i.horaSalida-i.horaEntrada)
-    print(str(i.horaSalida-i.horaEntrada)+str("  nro camion ")+str(i.nroCamion))
-    print("hora entrada :"+str(convert_timedelta(i.horaEntrada))+ " hora slida: "+str(convert_timedelta(i.horaSalida)))
+    #print(str(i.horaSalida-i.horaEntrada)+str("  nro camion ")+str(i.nroCamion))
+    #print("hora entrada :"+str(convert_timedelta(i.horaEntrada))+ " hora slida: "+str(convert_timedelta(i.horaSalida)))
 
 tiempoPromedioCamiones = round(tiempoTotalPermanencia/len(colaTerminados),0)
 
@@ -565,7 +575,7 @@ tiempoPromedioCamiones = round(tiempoTotalPermanencia/len(colaTerminados),0)
 days, hours, minutes, seconds = convert_timedelta(tiempoPromedioCamiones)
 strTiempoPromedioCamiones = str(hours) + "hs " + str(minutes) + "min " + str(seconds) + "s"
 
-print("cant atend darsenas  "+str(atendidosdar1)+"  "+str(atendidosdar2))
+#print("cant atend darsenas  "+str(atendidosdar1)+"  "+str(atendidosdar2))
 
 #creamos un array de dias
 i = 2
@@ -579,9 +589,10 @@ cantidadAtendidos.appendleft("Cant. atendidos p/día")
 cantidadDuermenAfuera.appendleft("Cant. duermen afuera p/día")
 
 #exportacion csv
-result = open("ResultadosEst2.csv","w", newline="")
+result = open("Resultados.csv","a", newline="")
 writer = csv.writer(result, delimiter=';')
 
+writer.writerow([""])
 writer.writerow(["2da estrategia"])
 writer.writerow([""])
 writer.writerow(dias)

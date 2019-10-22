@@ -110,7 +110,7 @@ class Darsena(Servidor):
     def obtenerEvento(self):
         if (self.cantidadCamiones == 15 and not self.calibrando):
             self.cantRecalibrados += 1
-            r = round((self.a + random.random() *(self.b - self.a) + self.obtenerTiempoRecalibrado())*60,0)
+            r = self.obtenerTiempoRecalibrado()
             self.tiempoFinAtencion = r
             self.calibrando = True
             self.ocupado = True
