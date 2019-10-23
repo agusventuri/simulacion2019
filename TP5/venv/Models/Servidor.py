@@ -30,7 +30,7 @@ class Servidor:
 
     def getNroCliente(self):
         if (self.camion is None):
-            return " - "
+            return "----"
         return self.camion.getnroCamion()
 
     def getEstado(self):
@@ -91,6 +91,11 @@ class Darsena(Servidor):
 
     def getRecalibrados(self):
         return self.cantRecalibrados
+
+    def getNroCliente(self):
+        if (self.calibrando or self.camion is None):
+            return "----"
+        return self.camion.getnroCamion()
 
     #falta implementarlo completo
     def obtenerTiempoRecalibrado(self):

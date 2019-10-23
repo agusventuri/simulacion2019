@@ -83,19 +83,14 @@ def procesarCamiones(r):
             estado = c.getEstado()
             r.append(estado)
             if estado == "Terminado":
-                r.append("--:--:--")
-                r.append("--:--:--")
-                r.append("--:--:--")
+                r.extend(["--:--:--", "--:--:--", "--:--:--"])
             else:
                 r.append(str(dCamion1) + "dias" + str(hCamion1) + "hs " + str(mCamion1) + "min " + str(sCamion1) + "s")
                 r.append(str(dCamion2) + "dias" + str(hCamion2) + "hs " + str(mCamion2) + "min " + str(sCamion2) + "s")
                 r.append(str(dCamion3) + "dias" + str(hCamion3) + "hs " + str(mCamion3) + "min " + str(sCamion3) + "s")
 
     for i in range(10 - len(camiones)):
-        r.append("----")
-        r.append("----")
-        r.append("----")
-        r.append("----")
+        r.extend(["----", "----", "----", "----"])
 
     return r
 
@@ -332,6 +327,7 @@ while dia <= 30:
             cDarsena1.setEstado("En cola")
             finAtencionServDar1S = None
             cDarsena1.setHoraSalida(segundos)
+            cDarsena1.setEstado("Terminado")
             colaTerminados.append(cDarsena1)
             cam = colaDarsena.popleft()
             cam.setEstado("En servidor")
@@ -363,6 +359,7 @@ while dia <= 30:
             cDarsena2.setEstado("En cola")
             finAtencionServDar2S = None
             cDarsena2.setHoraSalida(segundos)
+            cDarsena2.setEstado("Terminado")
             colaTerminados.append(cDarsena2)
             cam = colaDarsena.popleft()
             cam.setEstado("En servidor")
@@ -394,6 +391,7 @@ while dia <= 30:
             cDarsena1.setEstado("En cola")
             finAtencionServDar1S = None
             cDarsena1.setHoraSalida(segundos)
+            cDarsena1.setEstado("Terminado")
             colaTerminados.append(cDarsena1)
             atendidosdar1 += 1
 
@@ -418,6 +416,7 @@ while dia <= 30:
         if (isinstance(cDarsena2, Camion) and not servidorDarsena2.getCalibrando()):
             cDarsena2.setEstado("En cola")
             finAtencionServDar2S = None
+            cDarsena2.setEstado("Terminado")
             colaTerminados.append(cDarsena2)
             cDarsena2.setHoraSalida(segundos)
             atendidosdar2 += 1
@@ -547,10 +546,6 @@ while dia <= 30:
 #calculamos promedio de tiempo permanencia camiones
 for i in colaTerminados:
     tiempoTotalPermanencia += (i.horaSalida-i.horaEntrada)
-    #print(str(i.horaSalida-i.horaEntrada)+str("  nro camion ")+str(i.nroCamion))
-    #print("hora entrada :"+str(convert_timedelta(i.horaEntrada))+ " hora slida: "+str(convert_timedelta(i.horaSalida)))
-
-
 
 tiempoPromedioCamiones = round(tiempoTotalPermanencia/len(colaTerminados),0)
 

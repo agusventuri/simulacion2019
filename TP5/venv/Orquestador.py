@@ -81,20 +81,68 @@ def procesarCamiones(r):
             estado = c.getEstado()
             r.append(estado)
             if estado == "Terminado":
-                r.append("--:--:--")
-                r.append("--:--:--")
-                r.append("--:--:--")
+                r.extend(["--:--:--", "--:--:--", "--:--:--"])
             else:
                 r.append(str(dCamion1) + "dias" + str(hCamion1) + "hs " + str(mCamion1) + "min " + str(sCamion1) + "s")
                 r.append(str(dCamion2) + "dias" + str(hCamion2) + "hs " + str(mCamion2) + "min " + str(sCamion2) + "s")
                 r.append(str(dCamion3) + "dias" + str(hCamion3) + "hs " + str(mCamion3) + "min " + str(sCamion3) + "s")
 
     for i in range(10 - len(camiones)):
-        r.append("----")
-        r.append("----")
-        r.append("----")
-        r.append("----")
+        r.extend(["----", "----", "----", "----"])
 
+    return r
+
+def generarVectorDeEstados(evento, nroCamion, d, h, minutos, s, stringTiempoProxCamion,
+                           boolNroCliente, boolTiempoFinAt, boolCantAtendidos,
+                           finAtRecepcion, finAtBalanza, finAtDarsena1, finAtDarsena2):
+    if boolNroCliente:
+        nroCliente1 = servidorRecepcion.getNroCliente()
+        nroCliente2 = servidorBalanza.getNroCliente()
+        if evento == "Fin calibracion Darsena 1":
+            nroCliente3 = "----"
+        else:
+            nroCliente3 = servidorDarsena1.getNroCliente()
+        if evento == "Fin calibracion Darsena 2":
+            nroCliente4 = "----"
+        else:
+            nroCliente4 = servidorDarsena2.getNroCliente()
+    else:
+        nroCliente1, nroCliente2, nroCliente3, nroCliente4 = "----", "----", "----", "----"
+
+    if boolTiempoFinAt:
+        if finAtRecepcion is not False:
+            tiempoFinAt1 = finAtRecepcion
+        else:
+            tiempoFinAt1 = formatTime(servidorRecepcion.gettiempoFinAtencion())
+
+        if finAtBalanza is not False:
+            tiempoFinAt2 = finAtBalanza
+        else:
+            tiempoFinAt2 = formatTime(servidorBalanza.gettiempoFinAtencion())
+
+        if finAtDarsena1 is not False:
+            tiempoFinAt3 = finAtDarsena1
+        else:
+            tiempoFinAt3 = formatTime(servidorDarsena1.gettiempoFinAtencion())
+
+        if finAtDarsena2 is not False:
+            tiempoFinAt4 = finAtDarsena2
+        else:
+            tiempoFinAt4 = formatTime(servidorDarsena2.gettiempoFinAtencion())
+    else:
+        tiempoFinAt1, tiempoFinAt2, tiempoFinAt3, tiempoFinAt4 = "----", "----", "----", "----"
+
+    if boolCantAtendidos:
+        cantAtendidos1 = servidorDarsena1.getCamionesAtendidos()
+        cantAtendidos2 = servidorDarsena2.getCamionesAtendidos()
+    else:
+        cantAtendidos1, cantAtendidos2 = "----", "----"
+
+    r = [evento, nroCamion, d + 1, str(h) + "hs " + str(minutos) + "min " + str(s) + "s", stringTiempoProxCamion,
+         servidorRecepcion.getEstado(), nroCliente1, tiempoFinAt1, str(len(colaRecepcion)),
+         servidorBalanza.getEstado(), nroCliente2, tiempoFinAt2, str(len(colaBalanza)),
+         servidorDarsena1.getEstado(), nroCliente3, tiempoFinAt3, cantAtendidos1,
+         servidorDarsena2.getEstado(), nroCliente4, tiempoFinAt4, cantAtendidos2, str(len(colaDarsena))]
     return r
 
 # tiempo en segundos hasta la llegada del proximo camion
@@ -125,11 +173,9 @@ while dia <= 30:
     if (hora == 13 and minutos == 0 and segundos % 60 == 0):
         proximoCamion = obtenerTiempoProxCamion()
         # generacion vector de estados
-        r = ["Apertura de puertas", "----", d + 1, str(h) + "hs " + str(minutos) + "min " + str(s) + "s", "----",
-             servidorRecepcion.getEstado(), "----", "----", str(len(colaRecepcion)),
-             servidorBalanza.getEstado(), "----", "----", str(len(colaBalanza)),
-             servidorDarsena1.getEstado(), "----", "----", "----",
-             servidorDarsena2.getEstado(), "----", "----", "----", str(len(colaDarsena))]
+        r = generarVectorDeEstados("Apertura de puertas", "----", d, h, minutos, s, "----",
+                                   False, False, False,
+                                   False, False, False, False)
         r = procesarCamiones(r)
         vectorEstados.append(r)
         # fin generacion vector de estados
@@ -142,11 +188,6 @@ while dia <= 30:
             flagLleganCamiones = True
         else:
             flagLleganCamiones = False
-        #para ver
-        #print("---------------------------------------")
-        #print(str("recepcion: ") + str(len(colaRecepcion)))
-        #print(str(" balanza: ") + str(len(colaBalanza)))
-        #print(str(" darsena: ") + str(len(colaDarsena)))
 
         # almacenar la cantidad de camiones que duermen afuera
         if (hora >= 18):
@@ -157,21 +198,17 @@ while dia <= 30:
             flagRecibirCamiones = True
             if (hora == 5):
                 # generacion vector de estados
-                r = ["Apertura de planta", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s", "----",
-                     servidorRecepcion.getEstado(), "----", "----", str(len(colaRecepcion)),
-                     servidorBalanza.getEstado(), "----", "----", str(len(colaBalanza)),
-                     servidorDarsena1.getEstado(), "----", "----", "----",
-                     servidorDarsena2.getEstado(), "----", "----", "----", str(len(colaDarsena))]
+                r = generarVectorDeEstados("Apertura de planta", "----", d, h, minutos, s, "----",
+                                   False, False, False,
+                                   False, False, False, False)
                 r = procesarCamiones(r)
                 vectorEstados.append(r)
                 # fin generacion vector de estados
             if (hora == 18):
                 # generacion vector de estados
-                r = ["Cierre de planta", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",  "----",
-                     servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-                     servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                     servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()), servidorDarsena1.getCamionesAtendidos(),
-                     servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), servidorDarsena2.getCamionesAtendidos(),str(len(colaDarsena))]
+                r = generarVectorDeEstados("Cierre de planta", "----", d, h, m, s, "----",
+                                           True, True, True,
+                                           False, False, False, False)
                 r = procesarCamiones(r)
                 vectorEstados.append(r)
                 # fin generacion vector de estados
@@ -187,8 +224,6 @@ while dia <= 30:
             atendidosbal = 0
             hora = 0
             dia += 1
-
-
 
         hora += 1
 
@@ -212,11 +247,10 @@ while dia <= 30:
             proximoCamion = obtenerTiempoProxCamion()
             proximoCamionS = proximoCamion
             d2, h2, m2, s2 = convert_timedelta(proximoCamionS)
-            r = ["Llega camion", camion.getnroCamion(), d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s", str(h2) + "hs " + str(m2) + "min " + str(s2) + "s",
-                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()), servidorDarsena1.getCamionesAtendidos(),
-                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+            stringProxCamion = str(h2) + "hs " + str(m2) + "min " + str(s2) + "s"
+            r = generarVectorDeEstados("Llega camion", str(camion.getnroCamion()), d, h, m, s, stringProxCamion,
+                                       True, True, True,
+                                       False, False, False, False)
             r = procesarCamiones(r)
             vectorEstados.append(r)
             # fin generacion vector de estados
@@ -254,12 +288,10 @@ while dia <= 30:
                 h2 = ".."
                 m2 = ".."
                 s2 = ".."
-            r = ["Fin atencion Recepcion", c.getnroCamion(), d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
-                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
-                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()), servidorDarsena1.getCamionesAtendidos(),
-                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+            stringProxCamion = str(h3) + "hs " + str(m3) + "min " + str(s3) + "s"
+            r = generarVectorDeEstados("Fin atencion Recepcion", c.getnroCamion(), d, h, m, s, stringProxCamion,
+                                       True, True, True,
+                                       str(h2) + "hs " + str(m2) + "min " + str(s2), False, False, False)
             r = procesarCamiones(r)
             vectorEstados.append(r)
             # fin generacion vector de estados
@@ -300,12 +332,10 @@ while dia <= 30:
             h2 = ".."
             m2 = ".."
             s2 = ".."
-        r = ["Fin atencion Balanza", cBalanza.getnroCamion(), d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
-             str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
-             servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-             servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", str(len(colaBalanza)),
-             servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()), servidorDarsena1.getCamionesAtendidos(),
-             servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+        stringProxCamion = str(h3) + "hs " + str(m3) + "min " + str(s3) + "s"
+        r = generarVectorDeEstados("Fin atencion Balanza", cBalanza.getnroCamion(), d, h, m, s, stringProxCamion,
+                                   True, True, True,
+                                   False, str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", False, False)
         r = procesarCamiones(r)
         vectorEstados.append(r)
         # fin generacion vector de estados
@@ -330,6 +360,7 @@ while dia <= 30:
             cDarsena1.setEstado("En cola")
             finAtencionServDar1S = None
             cDarsena1.setHoraSalida(segundos)
+            cDarsena1.setEstado("Terminado")
             colaTerminados.append(cDarsena1)
             cam = colaDarsena.popleft()
             cam.setEstado("En servidor")
@@ -347,12 +378,10 @@ while dia <= 30:
                 h2 = ".."
                 m2 = ".."
                 s2 = ".."
-            r = ["Fin atencion Darsena 1", cDarsena1.getnroCamion(), d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
-                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
-                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", servidorDarsena1.getCamionesAtendidos(),
-                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+            stringProxCamion = str(h3) + "hs " + str(m3) + "min " + str(s3) + "s"
+            r = generarVectorDeEstados("Fin atencion Darsena 1", cDarsena1.getnroCamion(), d, h, m, s, stringProxCamion,
+                                       True, True, True,
+                                       False, False, str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", False)
             r = procesarCamiones(r)
             vectorEstados.append(r)
             # fin generacion vector de estados
@@ -361,6 +390,7 @@ while dia <= 30:
             cDarsena2.setEstado("En cola")
             finAtencionServDar2S = None
             cDarsena2.setHoraSalida(segundos)
+            cDarsena2.setEstado("Terminado")
             colaTerminados.append(cDarsena2)
             cam = colaDarsena.popleft()
             cam.setEstado("En servidor")
@@ -378,12 +408,10 @@ while dia <= 30:
                 h2 = ".."
                 m2 = ".."
                 s2 = ".."
-            r = ["Fin atencion Darsena 2", cDarsena2.getnroCamion(), d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
-                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
-                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()), servidorDarsena1.getCamionesAtendidos(),
-                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+            stringProxCamion =  str(h3) + "hs " + str(m3) + "min " + str(s3) + "s"
+            r = generarVectorDeEstados("Fin atencion Darsena 2", cDarsena2.getnroCamion(), d, h, m, s, stringProxCamion,
+                                       True, True, True,
+                                       False, False, False, str(h2) + "hs " + str(m2) + "min " + str(s2) + "s")
             r = procesarCamiones(r)
             vectorEstados.append(r)
             # fin generacion vector de estados
@@ -392,6 +420,7 @@ while dia <= 30:
             cDarsena1.setEstado("En cola")
             finAtencionServDar1S = None
             cDarsena1.setHoraSalida(segundos)
+            cDarsena1.setEstado("Terminado")
             colaTerminados.append(cDarsena1)
             atendidosdar1 += 1
 
@@ -403,12 +432,10 @@ while dia <= 30:
                 h2 = ".."
                 m2 = ".."
                 s2 = ".."
-            r = ["Fin atencion Darsena 1", cDarsena1.getnroCamion(), d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
-                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
-                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", servidorDarsena1.getCamionesAtendidos(),
-                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+            stringProxCamion =  str(h3) + "hs " + str(m3) + "min " + str(s3) + "s"
+            r = generarVectorDeEstados("Fin atencion Darsena 1", cDarsena1.getnroCamion(), d, h, m, s, stringProxCamion,
+                                       True, True, True,
+                                       False, False, str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", False)
             r = procesarCamiones(r)
             vectorEstados.append(r)
             # fin generacion vector de estados
@@ -416,6 +443,7 @@ while dia <= 30:
         if (isinstance(cDarsena2, Camion) and not servidorDarsena2.getCalibrando()):
             cDarsena2.setEstado("En cola")
             finAtencionServDar2S = None
+            cDarsena2.setEstado("Terminado")
             colaTerminados.append(cDarsena2)
             cDarsena2.setHoraSalida(segundos)
             atendidosdar2 += 1
@@ -428,12 +456,10 @@ while dia <= 30:
                 h2 = ".."
                 m2 = ".."
                 s2 = ".."
-            r = ["Fin atencion Darsena 2", cDarsena2.getnroCamion(), d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
-                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
-                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), servidorDarsena1.getNroCliente(), formatTime(servidorDarsena1.gettiempoFinAtencion()), servidorDarsena1.getCamionesAtendidos(),
-                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+            stringProxCamion =  str(h3) + "hs " + str(m3) + "min " + str(s3) + "s"
+            r = generarVectorDeEstados("Fin atencion Darsena 2", cDarsena2.getnroCamion(), d, h, m, s, stringProxCamion,
+                                       True, True, True,
+                                       False, False, False, str(h2) + "hs " + str(m2) + "min " + str(s2) + "s")
             r = procesarCamiones(r)
             vectorEstados.append(r)
             # fin generacion vector de estados
@@ -450,12 +476,10 @@ while dia <= 30:
                 h2 = ".."
                 m2 = ".."
                 s2 = ".."
-            r = ["Calibrando Darsena 1", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
-                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
-                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), "----", str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", servidorDarsena1.getCamionesAtendidos(),
-                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+            stringProxCamion =  str(h3) + "hs " + str(m3) + "min " + str(s3) + "s"
+            r = generarVectorDeEstados("Calibrando Darsena 1", "----", d, h, m, s, stringProxCamion,
+                                       True, True, True,
+                                       False, False, str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", False)
             r = procesarCamiones(r)
             vectorEstados.append(r)
             # fin generacion vector de estados
@@ -470,12 +494,10 @@ while dia <= 30:
                 h2 = ".."
                 m2 = ".."
                 s2 = ".."
-            r = ["Fin calibracion Darsena 1", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
-                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
-                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), "----", str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", servidorDarsena1.getCamionesAtendidos(),
-                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), formatTime(servidorDarsena2.gettiempoFinAtencion()), servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+            stringProxCamion =  str(h3) + "hs " + str(m3) + "min " + str(s3) + "s"
+            r = generarVectorDeEstados("Fin calibracion Darsena 1", "----", d, h, m, s, stringProxCamion,
+                                       True, True, True,
+                                       False, False, str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", False)
             r = procesarCamiones(r)
             vectorEstados.append(r)
             # fin generacion vector de estados
@@ -492,14 +514,11 @@ while dia <= 30:
                 h2 = ".."
                 m2 = ".."
                 s2 = ".."
-            r = ["Calibrando Darsena 2", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
-                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
-                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), servidorDarsena2.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", servidorDarsena1.getCamionesAtendidos(),
-                 servidorDarsena2.getEstado(), "----", formatTime(servidorDarsena2.gettiempoFinAtencion()), servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+            stringProxCamion =  str(h3) + "hs " + str(m3) + "min " + str(s3) + "s"
+            r = generarVectorDeEstados("Calibrando Darsena 2", "----", d, h, m, s, stringProxCamion,
+                                       True, True, True,
+                                       False, False, False, str(h2) + "hs " + str(m2) + "min " + str(s2) + "s")
             r = procesarCamiones(r)
-            vectorEstados.append(r)
             # fin generacion vector de estados
         else:
             #termina calibrado
@@ -512,12 +531,10 @@ while dia <= 30:
                 h2 = ".."
                 m2 = ".."
                 s2 = ".."
-            r = ["Fin calibracion Darsena 2", "----", d + 1, str(h) + "hs " + str(m) + "min " + str(s) + "s",
-                 str(h3) + "hs " + str(m3) + "min " + str(s3) + "s",
-                 servidorRecepcion.getEstado(), servidorRecepcion.getNroCliente(), formatTime(servidorRecepcion.gettiempoFinAtencion()), str(len(colaRecepcion)),
-                 servidorBalanza.getEstado(), servidorBalanza.getNroCliente(), formatTime(servidorBalanza.gettiempoFinAtencion()), str(len(colaBalanza)),
-                 servidorDarsena1.getEstado(), "----", formatTime(servidorDarsena1.gettiempoFinAtencion()), servidorDarsena1.getCamionesAtendidos(),
-                 servidorDarsena2.getEstado(), servidorDarsena2.getNroCliente(), str(h2) + "hs " + str(m2) + "min " + str(s2) + "s", servidorDarsena2.getCamionesAtendidos(), str(len(colaDarsena))]
+            stringProxCamion = str(h3) + "hs " + str(m3) + "min " + str(s3) + "s"
+            r = generarVectorDeEstados("Fin calibracion Darsena 2", "----", d, h, m, s, stringProxCamion,
+                                       True, True, True,
+                                       False, False, False, str(h2) + "hs " + str(m2) + "min " + str(s2) + "s")
             r = procesarCamiones(r)
             vectorEstados.append(r)
             # fin generacion vector de estados
@@ -545,10 +562,6 @@ while dia <= 30:
 #calculamos promedio de tiempo permanencia camiones
 for i in colaTerminados:
     tiempoTotalPermanencia += (i.horaSalida-i.horaEntrada)
-    #print(str(i.horaSalida-i.horaEntrada)+str("  nro camion ")+str(i.nroCamion))
-    #print("hora entrada :"+str(convert_timedelta(i.horaEntrada))+ " hora slida: "+str(convert_timedelta(i.horaSalida)))
-
-
 
 tiempoPromedioCamiones = round(tiempoTotalPermanencia/len(colaTerminados),0)
 
@@ -591,4 +604,3 @@ result.close()
 print("Listo")
 
 os.system('python Orquestador2daEstrategia.py')
-
