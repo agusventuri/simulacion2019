@@ -97,8 +97,13 @@ class Darsena(Servidor):
         media = 10
         varianza = 1.2
         ri = random.random()
-        res= round((media + (-2 * math.log(ri,math.e) * math.cos(2 * math.pi * ri + 1)) * math.sqrt(varianza)),0)
+        res= round((media + (-2 * math.log(ri,math.e) * math.cos(2 * math.pi * ri + 1)) * math.sqrt(varianza)) * 60,0)
         return res
+
+    def getCamionesAtendidos(self):
+        if self.cantidadCamiones == 14 and self.calibrando:
+            return "----"
+        return self.cantidadCamiones + 1
 
     def getEstado(self):
         if self.calibrando:
@@ -108,7 +113,7 @@ class Darsena(Servidor):
         return "Libre"
 
     def obtenerEvento(self):
-        if (self.cantidadCamiones == 15 and not self.calibrando):
+        if (self.cantidadCamiones == 14 and not self.calibrando):
             self.cantRecalibrados += 1
             r = self.obtenerTiempoRecalibrado()
             self.tiempoFinAtencion = r
