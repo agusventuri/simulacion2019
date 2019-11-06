@@ -79,6 +79,46 @@ class Balanza(Servidor):
         return r
 
 
+    def obtenerTiempoDescarga(self):
+        def obtenerLitros(self):
+            a=15000
+            b=22000
+            r=random.randint(a,b)
+            litros=  a+ r*(b-a)
+            return litros
+
+        def obtenerK(self):
+            u=0.25
+            sigma=0.707
+            r=random.random()
+            z=math.sqrt(-2*math.log(r,math.e)) * math.cos(2*math.pi*(r+1))
+            k= u + z*sigma
+            return k
+
+        #condiciones iniciales
+        #v1= v
+        #v2= v'
+        #v2'= -kv2-20v1
+        litros=obtenerLitros()
+        h=0.1
+        v1=litros
+        v2=0
+        k=obtenerK()
+        t=0
+        #proceso de descargar
+        while v1>=1:
+            if t!=0:
+                v1= v1 + h*v2
+                v2= v2+ h*v2prima
+            v2prima=-k*v2 -20*v1
+            t=t+h
+
+        return v, t
+
+
+
+
+
 class Darsena(Servidor):
     a = 15
     b = 20

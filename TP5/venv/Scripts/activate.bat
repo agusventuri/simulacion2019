@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=E:\Documentos\Facultad\SIM\simulacion2019\TP5\venv"
+set "VIRTUAL_ENV=G:\Josue\Simulacion\simulacion2019\TP5\venv"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"
