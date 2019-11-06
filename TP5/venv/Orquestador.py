@@ -51,7 +51,7 @@ flagRecibirCamiones = False
 flagUltimoCamion = False
 
 vectorEstados = deque()
-vectorEstados.append(["", "", "", "", "", "Recepcion", "", "", "", "Balanza", "", "", "", "Darsena 1", "", "", "", "","Darsena 2", "", "", "", "Camion 1", "", "", "", "Camion 2", "", "", "", "Camion 3", "", "", "", "Camion 4", "", "", "", "Camion 5", "", "", "", "Camion 6", "", "", "", "Camion 7", "", "", "", "Camion 8", "", "", "", "Camion 9", "", "", "", "Camion 10", "", "", ""])
+vectorEstados.append(["", "", "", "", "", "Recepcion", "", "", "", "Balanza", "", "", "", "Darsena 1", "", "", "", "","Darsena 2", "", "", "", "Camion 1", "", "Litros", "", "Camion 2", "", "Litros", "", "Camion 3", "", "Litros", "", "Camion 4", "", "Litros", "", "Camion 5", "", "Litros", "", "Camion 6", "", "Litros", "", "Camion 7", "", "Litros", "", "Camion 8", "", "Litros", "", "Camion 9", "", "Litros", "", "Camion 10", "", "Litros", ""])
 vectorEstados.append(["Evento", "Camion", "Dia", "Reloj", "Tiempo prox llegada", "Estado", "Camion", "Prox fin atencion", "Cola","Estado", "Camion", "Prox fin atencion", "Cola","Estado", "Camion", "Prox fin atencion", "Atendidos","Estado", "Camion", "Prox fin atencion", "Atendidos", "Cola", "Estado", "Llegada", "Inicio atencion", "Fin atencion", "Estado", "Llegada", "Inicio atencion", "Fin atencion", "Estado", "Llegada", "Inicio atencion", "Fin atencion", "Estado", "Llegada", "Inicio atencion", "Fin atencion", "Estado", "Llegada", "Inicio atencion", "Fin atencion", "Estado", "Llegada", "Inicio atencion", "Fin atencion", "Estado", "Llegada", "Inicio atencion", "Fin atencion", "Estado", "Llegada", "Inicio atencion", "Fin atencion", "Estado", "Llegada", "Inicio atencion", "Fin atencion", "Estado", "Llegada", "Inicio atencion", "Fin atencion"])
 camiones = []
 
@@ -75,6 +75,9 @@ def obtenerTiempoProxCamion():
 def procesarCamiones(r):
     if len(camiones)>0:
         for c in camiones:
+            if (not c.getPropio()):
+                print(str(c.getLitros()))
+                vectorEstados[0][23 + ((c.getnroCamion()-1) * 4)] = str(c.getLitros()).replace(".",",")
             dCamion1, hCamion1, mCamion1, sCamion1 = convert_timedelta(c.getHoraLlegada())
             dCamion2, hCamion2, mCamion2, sCamion2 = convert_timedelta(c.getHoraInicioEvento())
             dCamion3, hCamion3, mCamion3, sCamion3 = convert_timedelta(c.getHoraInicioEvento() + c.getHoraFinEvento())

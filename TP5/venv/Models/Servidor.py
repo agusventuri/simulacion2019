@@ -75,48 +75,25 @@ class Balanza(Servidor):
 
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion balanza
-        r=round((self.a + random.random() * (self.b - self.a))*60,0)
+        r = round((self.a + random.random() * (self.b - self.a))*60,0)
         return r
 
-
-    def obtenerTiempoDescarga(self):
-        def obtenerLitros(self):
-            a=15000
-            b=22000
-            r=random.randint(a,b)
-            litros=  a+ r*(b-a)
-            return litros
-
-        def obtenerK(self):
-            u=0.25
-            sigma=0.707
-            r=random.random()
-            z=math.sqrt(-2*math.log(r,math.e)) * math.cos(2*math.pi*(r+1))
-            k= u + z*sigma
-            return k
-
-        #condiciones iniciales
-        #v1= v
-        #v2= v'
-        #v2'= -kv2-20v1
-        litros=obtenerLitros()
-        h=0.1
-        v1=litros
-        v2=0
-        k=obtenerK()
-        t=0
-        #proceso de descargar
-        while v1>=1:
-            if t!=0:
-                v1= v1 + h*v2
-                v2= v2+ h*v2prima
-            v2prima=-k*v2 -20*v1
-            t=t+h
-
-        return v, t
-
-
-
+    def obtenerEvento(self):
+        if (self.camion is not None):
+            if (self.tiempoFinAtencion > 0):
+                self.tiempoFinAtencion -= 1
+                return None
+            else:
+                a = 15000
+                b = 22000
+                r = random.random()
+                litros = round(a + r * (b - a), 4)
+                c = self.camion
+                c.setLitros(litros)
+                self.camion = None
+                self.ocupado = False
+                return c
+        return None
 
 
 class Darsena(Servidor):
@@ -195,10 +172,38 @@ class Darsena(Servidor):
 
     def calcularProxFinAtencion(self):
         # lo debe calcular segun atencion darsena
-        r = round((self.a + random.random() * (self.b - self.a))*60,0)
-        return r
+        if (self.camion.getPropio):
+            return round((self.a + random.random() * (self.b - self.a))*60,0)
+        return self.obtenerTiempoDescarga()
 
     def getCalibrando(self):
         if (self.cantidadCamiones == 15 or self.calibrando):
             return True
         return self.calibrando;
+
+    def obtenerTiempoDescarga(self):
+        u = 0.25
+        sigma = 0.707
+        r = random.random()
+        z = math.sqrt(-2 * math.log(r, math.e)) * math.cos(2  *math.pi * (r+1))
+        k = u + z * sigma
+
+        #condiciones iniciales
+        #v1= v
+        #v2= v'
+        #v2'= -kv2-20v1
+        litros = self.camion.getLitros()
+        h = 0.1
+        v1 = litros
+        v2 = 0
+        t = 0
+
+        #proceso de descargar
+        while v1 >= 1:
+            v2prima = -k * v2 - 20 * v1
+            if t != 0:
+                v1 = v1 + h * v2
+                v2 = v2 + h * v2prima
+            t = t+h
+
+        return v, t

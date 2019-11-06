@@ -568,7 +568,7 @@ cantidadDuermenAfuera.appendleft("Cant. duermen afuera p/día")
 result = open("Resultados.csv","a", newline="")
 writer = csv.writer(result, delimiter=';')
 
-writer.writerow(["1er estrategia"])
+writer.writerow(["2da estrategia"])
 writer.writerow([""])
 writer.writerow(dias)
 writer.writerow(cantidadAtendidos)

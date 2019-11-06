@@ -12,6 +12,7 @@ class Camion:
         self.estado = "En cola recepcion"
         self.horaInicioEvento = 0
         self.horaFinEvento = 0
+        self.litros = 0
 
     def getPropio(self):
         return self.propio
@@ -55,3 +56,9 @@ class Camion:
     def avanzarPosicion(self):
         self.posicion -= 1
         return True
+
+    def setLitros(self, l):
+        self.litros = l
+
+    def getLitros(self):
+        return self.litros
