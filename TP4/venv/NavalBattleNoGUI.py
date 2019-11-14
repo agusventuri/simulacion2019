@@ -29,6 +29,8 @@ def automatic(simulations_number):
     cantidad_hits_random = 0
     cantidad_misses_hunt = 0
     cantidad_hits_hunt = 0
+    cantidad_barcos_perdidos_j1 = 0
+    cantidad_barcos_perdidos_j2 = 0
 
     while run > 0:
         x, y = jugador_hunt.atacar()
@@ -41,6 +43,8 @@ def automatic(simulations_number):
             cantidad_hits_random += jugador_random.get_hits()
             cantidad_misses_hunt += jugador_hunt.get_misses()
             cantidad_hits_hunt += jugador_hunt.get_hits()
+            cantidad_barcos_perdidos_j1 += jugador_hunt.get_barcos_perdidos()
+            cantidad_barcos_perdidos_j2 += jugador_random.get_barcos_perdidos()
             run -= 1
             reset()
             continue
@@ -55,6 +59,8 @@ def automatic(simulations_number):
             cantidad_hits_random += jugador_random.get_hits()
             cantidad_misses_hunt += jugador_hunt.get_misses()
             cantidad_hits_hunt += jugador_hunt.get_hits()
+            cantidad_barcos_perdidos_j1 += jugador_hunt.get_barcos_perdidos()
+            cantidad_barcos_perdidos_j2 += jugador_random.get_barcos_perdidos()
             run -= 1
             reset()
             continue
@@ -74,7 +80,9 @@ def automatic(simulations_number):
            winner, \
            winner_points, \
            loser, \
-           loser_points
+           loser_points, \
+           cantidad_barcos_perdidos_j1, \
+           cantidad_barcos_perdidos_j2
 
 
 def reset():

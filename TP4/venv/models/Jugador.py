@@ -12,11 +12,12 @@ class Jugador:
         self.atacado = True
         self.barcos = []
         self.barcos = self.crear_barcos()
+        self.cantBarcosPerdidos = 0
 
     def crear_barcos(self):
         # 5 tipos de barco, creo 2 x cada uno
         bar = []
-        for i in range(2, 30):
+        for i in range(2, 7):
             b = Boat(random.getrandbits(1), i)
             b1 = Boat(random.getrandbits(1), i)
             bar.append(self.posicionar_barco(b))
@@ -87,6 +88,8 @@ class Jugador:
             self.atacado = True
             result = barco.recibir_ataque(x, y)
             if result is "G" or result is "H":
+                if result == "H":
+                    self.cantBarcosPerdidos += 1
                 self.occupied_positions = barco.get_cell(self.occupied_positions)
                 del self.boats_positions[x, y]
                 return result
@@ -104,3 +107,6 @@ class Jugador:
 
     def get_misses(self):
         return self.strategy.get_misses()
+
+    def get_barcos_perdidos(self):
+        return self.cantBarcosPerdidos

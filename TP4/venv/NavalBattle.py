@@ -13,7 +13,7 @@ import NavalBattleNoGUI as noGui
 pygame.font.init()
 
 # GLOBALS VARS
-number_of_simulations = 1000
+number_of_simulations = 1
 s_width = 1300
 s_height = 700
 play_width = 600  # meaning 300 // 10 = 30 width per block
@@ -178,7 +178,9 @@ def main_menu():
                     winner, \
                     winner_points, \
                     loser, \
-                    loser_points = noGui.automatic(number_of_simulations)
+                    loser_points, \
+                    cantidad_barcos_perdidos_j1, \
+                    cantidad_barcos_perdidos_j2 = noGui.automatic(number_of_simulations)
 
                     promedio_acum_misses_random = acum_misses_random / number_of_simulations
                     promedio_acum_hits_random = acum_hits_random / number_of_simulations
@@ -205,6 +207,12 @@ def main_menu():
                     result_to_show.append("Cantidad promedio de tiros errados con la estrategia random: " + str(
                         promedio_acum_misses_random))
                     result_to_show.append("El porcentaje de aciertos fue de: " + str(porc_hits_random) + "%")
+                    result_to_show.append(
+                        "Cantidad de barcos hundidos por la estrategia hunt and target: " + str(
+                            cantidad_barcos_perdidos_j2))
+                    result_to_show.append(
+                        "Cantidad de barcos hundidos por la estrategia random: " + str(
+                            cantidad_barcos_perdidos_j1))
                     result_to_show.reverse()
                     result_to_show.append("                                  ")
                     result_to_show.append("Presione una tecla para volver al menu")
