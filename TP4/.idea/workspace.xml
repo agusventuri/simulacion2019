@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53b8e78b-50d4-41a3-8120-c709e017c921" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../TP7/.idea/TP7.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TP7/venv/Capataz.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TP7/venv/Models/CentroDeTrabajo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TP7/venv/Models/Cliente.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TP7/venv/Models/Distribucion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TP7/venv/Models/Evento.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TP7/venv/Models/Ingreso.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TP7/venv/Models/Secador.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/NavalBattle.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/NavalBattle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/NavalBattleNoGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/NavalBattleNoGUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/models/Jugador.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/models/Jugador.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TP5/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
