@@ -41,3 +41,41 @@ class DistribucionNormal(IDistribucion):
         z = math.sqrt((-2) * math.log(rnd1)) * math.cos(2 * math.pi * rnd2)
 
         return (self.media + (z * self.varianza))
+
+
+class DiffUnTrabajo(IDistribucion):
+    def __init__(self):
+        pass
+
+    def generar(self, mojado):
+        v1 = mojado
+        h = 0.0001
+        t = 0.0
+
+        v1Prima = (-0.5 * mojado) - 0.04 + (0.0001 * t)
+
+        while (v1 >= 1):
+            t += h
+            v1 += h * v1Prima
+            v1Prima = (-0.5 * v1) - 0.04 + (0.0001 * t)
+
+        return t
+
+
+class DiffDosTrabajo(IDistribucion):
+    def __init__(self):
+        pass
+
+    def generar(self, mojado):
+        v1 = mojado
+        h = 0.0001
+        t = 0.0
+
+        v1Prima = (-0.5 * mojado) + 0.04 + (0.0001 * t)
+
+        while (v1 >= 1):
+            t += h
+            v1 += h * v1Prima
+            v1Prima = (-0.5 * v1) + 0.04 + (0.0001 * t)
+
+        return t

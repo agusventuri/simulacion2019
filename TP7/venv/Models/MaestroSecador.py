@@ -20,7 +20,6 @@ class MaestroSecador():
 
     def hayLugar(self):
         if (len(self.colas[0]) + len(self.colas[1]) + len(self.colas[2]) + len(self.colas[3]) + len(self.colas[4]) < 10):
-            print(len(self.colas[0]) + len(self.colas[1]) + len(self.colas[2]) + len(self.colas[3]) + len(self.colas[4]))
             return True
         return False
 
@@ -36,7 +35,7 @@ class MaestroSecador():
                 self.colas[x].append(cliente)
                 self.secadores[x].llegadaDeCliente(reloj, self.colas[x][1])
                 return
-            
+
         raise IndexError
 
     def getProximoFinAtencion(self):

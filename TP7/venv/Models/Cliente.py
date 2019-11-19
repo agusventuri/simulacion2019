@@ -29,6 +29,7 @@ class Cliente():
         self.estado = "En cola de " + cola
 
     def salir(self, horaSalida):
+        self.estado = "Terminado"
         self.horaSalida = horaSalida
         self.tiempoEnSistema = self.horaSalida - self.horaLlegada
 

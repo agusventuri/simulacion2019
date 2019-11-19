@@ -1,6 +1,8 @@
 from Models.Distribucion import DistribucionExponencialNegativa
 from Models.Distribucion import DistribucionNormal
 from Models.Distribucion import DistribucionUniforme
+from Models.Distribucion import DiffUnTrabajo
+from Models.Distribucion import DiffDosTrabajo
 from Models.CentroDeTrabajo import CentroDeTrabajo
 from Models.MaestroSecador import MaestroSecador
 from Models.Secador import Secador
@@ -24,8 +26,10 @@ _varianza = math.pow(_desvEstandar, 2)
 _distribucionIngreso = DistribucionExponencialNegativa(_lambdaLlegadas)
 _distribucionCentroA = DistribucionUniforme(_a, _b)
 _distribucionCentroB = DistribucionNormal(_media, _desvEstandar)
-_distribucionSecado1 = DistribucionUniforme(120,121)
-_distribucionSecado2 = DistribucionUniforme(130,131)
+#_distribucionSecado1 = DistribucionUniforme(100,105)
+#_distribucionSecado2 = DistribucionUniforme(120,125)
+_distribucionSecado1 = DiffUnTrabajo()
+_distribucionSecado2 = DiffDosTrabajo()
 
 _colaIngreso = deque()
 _colaCentroB = deque()
@@ -63,7 +67,27 @@ def simular(hasta):
     reloj = datetime(1, 1, 1, hour=0, minute=0, second=0)
     trabajos = []
     numTrabajos = 0
+    maxHastaAhora = 0
+    cantidadEnTaller = 0
     vectoresEstado = []
+    vectoresEstado.append(["", "", "", "", "", "", "",
+                           "Centro de", " atencion", "", "", "A",
+                           "Centro de", " atencion", "", "", "B",
+                           "",
+                           "Secador", " nro", "", "1",
+                           "Secador", " nro", "", "2",
+                           "Secador", " nro", "", "3",
+                           "Secador", " nro", "", "4",
+                           "Secador", " nro", "", "5"])
+    vectoresEstado.append(["#", "Reloj", "Evento", "Cliente", "Próxima llegada", "Cant actual", "Max",
+                           "Estado", "Cliente", "Proximo fin", "Cantidad en cola", "Cantidad atendidos",
+                           "Estado", "Cliente", "Proximo fin", "Cantidad en cola", "Cantidad atendidos",
+                           "Lugares en secadores",
+                           "Estado", "Cliente 1", "Cliente 2", "Proximo fin",
+                           "Estado", "Cliente 1", "Cliente 2", "Proximo fin",
+                           "Estado", "Cliente 1", "Cliente 2", "Proximo fin",
+                           "Estado", "Cliente 1", "Cliente 2", "Proximo fin",
+                           "Estado", "Cliente 1", "Cliente 2", "Proximo fin"])
 
     while (hasta >= 0):
         hasta -= 1
@@ -77,8 +101,8 @@ def simular(hasta):
         eventos.append(Evento("Centro B desbloqueado", _centroB.horaFinBloqueo))
         eventos.append(Evento("Inicio de bloqueo A", _centroA.horaInicioBloqueo))
         eventos.append(Evento("Centro A desbloqueado", _centroA.horaFinBloqueo))
-        eventos.append(Evento("Fin Centro B", _centroB.proximoFinAtencion))
         eventos.append(Evento("Fin Centro A", _centroA.proximoFinAtencion))
+        eventos.append(Evento("Fin Centro B", _centroB.proximoFinAtencion))
 
         # tomamos el primero
         eventoActual = eventos[0]
@@ -90,12 +114,13 @@ def simular(hasta):
                 if (evento.hora < eventoActual.hora):
                     eventoActual = evento
 
-        print(eventoActual.nombre + " - " + str(eventoActual.hora.time()))
+        #print(eventoActual.nombre + " - " + str(eventoActual.hora.time()))
 
         #actualizamos reloj
         reloj = eventoActual.hora
 
         if (eventoActual.nombre == "Nuevo trabajo"):
+            cantidadEnTaller += 1
             numTrabajos += 1
             clienteLlegando = Cliente(numTrabajos)
             clienteLlegando.llegar(reloj)
@@ -119,12 +144,14 @@ def simular(hasta):
             if (len(_colaCentroB) == 3):
                 if (_centroA.horaFinBloqueo is not None):
                     clienteEvento = _centroA.finAtencion()
+                else:
+                    _centroA.bloquear(reloj, _centroB.getProximoFin())
             if (len(_colaCentroB) <= 2):
                 clienteEvento = _centroA.finAtencion()
                 _centroB.llegadaDeCliente(reloj, clienteEvento)
                 if (len(_colaCentroB) == 3):
                     if (_centroA.horaFinBloqueo is None):
-                        _centroA.bloquear(reloj, _centroB.proximoFinAtencion)
+                        _centroA.bloquear(reloj, _centroB.getProximoFin())
 
         elif (eventoActual.nombre == "Centro A desbloqueado"):
             clienteEvento = _centroA.finalizarBloqueo()
@@ -139,25 +166,39 @@ def simular(hasta):
             clienteEvento = _centroB.actualizarFinBloqueo()
 
         elif (eventoActual.nombre == "Fin Secador 1"):
+            cantidadEnTaller -= 1
             clienteEvento = _maestroSecador.finAtencion(1, eventoActual.hora)
 
         elif (eventoActual.nombre == "Fin Secador 2"):
+            cantidadEnTaller -= 1
             clienteEvento = _maestroSecador.finAtencion(2, eventoActual.hora)
 
         elif (eventoActual.nombre == "Fin Secador 3"):
+            cantidadEnTaller -= 1
             clienteEvento = _maestroSecador.finAtencion(3, eventoActual.hora)
 
         elif (eventoActual.nombre == "Fin Secador 4"):
+            cantidadEnTaller -= 1
             clienteEvento = _maestroSecador.finAtencion(4, eventoActual.hora)
 
         elif (eventoActual.nombre == "Fin Secador 5"):
+            cantidadEnTaller -= 1
             clienteEvento = _maestroSecador.finAtencion(5, eventoActual.hora)
+
+        if (cantidadEnTaller > maxHastaAhora):
+            maxHastaAhora = cantidadEnTaller
+
+        for index, trabajoViejo in enumerate(trabajos):
+            if (clienteEvento is not None and trabajoViejo.numero == clienteEvento.numero):
+                trabajos[index] = clienteEvento
 
         vectorEstado = [fila,
                         reloj.time(),
                         eventoActual.nombre,
                         "-" if clienteEvento is None else clienteEvento.numero,
                         _ingreso.proximaLlegada.time(),
+                        cantidadEnTaller,
+                        maxHastaAhora,
                         _listaCentros[0].estado,
                         _listaCentros[0].getNumeroCliente(),
                         _listaCentros[0].getProximoFinAtencionString(),
@@ -168,20 +209,51 @@ def simular(hasta):
                         _listaCentros[1].getProximoFinAtencionString(),
                         len(_listaCentros[1].cola),
                         _listaCentros[1].cantidadAtendidos,
-                        _maestroSecador.getLugares()]
+                        _maestroSecador.getLugares(),
+                        _listaSecadores[0].estado,
+                        _listaSecadores[0].getNumeroCliente(False),
+                        _listaSecadores[0].getNumeroCliente(True),
+                        _listaSecadores[0].getProximoFinAtencionString(),
+                        _listaSecadores[1].estado,
+                        _listaSecadores[1].getNumeroCliente(False),
+                        _listaSecadores[1].getNumeroCliente(True),
+                        _listaSecadores[1].getProximoFinAtencionString(),
+                        _listaSecadores[2].estado,
+                        _listaSecadores[2].getNumeroCliente(False),
+                        _listaSecadores[2].getNumeroCliente(True),
+                        _listaSecadores[2].getProximoFinAtencionString(),
+                        _listaSecadores[3].estado,
+                        _listaSecadores[3].getNumeroCliente(False),
+                        _listaSecadores[3].getNumeroCliente(True),
+                        _listaSecadores[3].getProximoFinAtencionString(),
+                        _listaSecadores[4].estado,
+                        _listaSecadores[4].getNumeroCliente(False),
+                        _listaSecadores[4].getNumeroCliente(True),
+                        _listaSecadores[4].getProximoFinAtencionString()]
+
+        #for secador in _listaSecadores:
+        #    vectoresEstado.extend([secador.estado,
+        #                           secador.getNumeroCliente(False),
+        #                           secador.getNumeroCliente(True),
+        #                           secador.getProximoFinAtencionString()])
 
         for trabajo in trabajos:
-            vectorEstadoTrabajo = [trabajo.horaLlegada,
-                                   trabajo.horaInicioAtencion,
-                                   trabajo.horaFinAtencion,
-                                   trabajo.horaSalida,
-                                   trabajo.tiempoEnSistema]
+            vectorEstadoTrabajo = [trabajo.estado,
+                                   "-" if trabajo.horaLlegada is None else trabajo.horaLlegada.time(),
+                                   "-" if trabajo.horaInicioAtencion is None else trabajo.horaInicioAtencion.time(),
+                                   "-" if trabajo.horaFinAtencion is None else trabajo.horaFinAtencion.time(),
+                                   "-" if trabajo.horaSalida is None else trabajo.horaSalida.time(),
+                                   "-" if trabajo.tiempoEnSistema is None else trabajo.tiempoEnSistema]
             vectorEstado.extend(vectorEstadoTrabajo)
 
         vectoresEstado.append(vectorEstado)
-    return vectoresEstado
+    return vectoresEstado, trabajos
 
-vectoresEstado = simular(200)
+vectoresEstado, trabajos = simular(2000)
+
+for trabajo in trabajos:
+    vectoresEstado[0].extend(["Trabajo", "Nro", "", "", "", trabajo.numero])
+    vectoresEstado[1].extend(["Estado", "Llegada", "Inicio atención", "Fin atención", "Salida", "Tiempo en sistema"])
 
 result = open("Vectores estado.csv","w", newline="")
 writer = csv.writer(result, delimiter=';')

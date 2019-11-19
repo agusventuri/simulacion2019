@@ -81,8 +81,8 @@ class CentroDeTrabajo():
             #self.actualizarFinAtencion(self.proximoFinAtencion)
 
         self.cantidadAtendidosConEspera += 1
-        deltaProxFinAtencionB = (proxFinAtencionB - datetime(1, 1, 1)).total_seconds()
-        self.tiempoEnEspera += (self.tiempoEnEspera * (self.cantidadAtendidosConEspera - 1) + deltaProxFinAtencionB) / self.cantidadAtendidosConEspera
+#        deltaProxFinAtencionB = (proxFinAtencionB - datetime(1, 1, 1)).total_seconds()
+#        self.tiempoEnEspera += (self.tiempoEnEspera * (self.cantidadAtendidosConEspera - 1) + deltaProxFinAtencionB) / self.cantidadAtendidosConEspera
 
         self.horaInicioBloqueo = reloj
         self.horaFinBloqueo = proxFinAtencionB
@@ -119,4 +119,10 @@ class CentroDeTrabajo():
         if self.proximoFinAtencion is not None:
             return self.proximoFinAtencion.time()
         return "-"
+
+    def getProximoFin(self):
+        if (self.horaFinBloqueo is not None):
+            return self.horaFinBloqueo
+        if (self.proximoFinAtencion is not None):
+            return self.proximoFinAtencion
 

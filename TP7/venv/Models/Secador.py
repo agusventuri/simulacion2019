@@ -2,6 +2,7 @@ from Models.Distribucion import IDistribucion
 from datetime import datetime
 from datetime import timedelta
 from collections import deque
+import random
 import copy
 
 
@@ -20,9 +21,11 @@ class Secador():
 
     def calcularFinAtencion(self, hora, primero):
         if primero:
-            demora = round(self.distribucionAtencion1.generar() * 60, 0)
+            #demora = round(self.distribucionAtencion1.generar() * 60, 0)
+            demora = round(self.distribucionAtencion1.generar(100) * 60, 0)
         else:
-            demora = round(self.distribucionAtencion2.generar() * 60, 0)
+            #demora = round(self.distribucionAtencion2.generar() * 60, 0)
+            demora = round(self.distribucionAtencion2.generar(100) * 60, 0)
         return hora + timedelta(seconds=demora)
 
     def llegadaDeCliente(self, hora, cliente):
@@ -49,13 +52,15 @@ class Secador():
 
     def finAtencion(self, proximoFinAtencion):
         if (proximoFinAtencion == self.proximoFinAtencion1):
-            cliente = copy.deepcopy(self.cliente1)
             self.cliente1.finalizarAtencion(self.proximoFinAtencion1)
+            self.cliente1.salir(self.proximoFinAtencion1)
+            cliente = copy.deepcopy(self.cliente1)
             self.cliente1 = None
             self.proximoFinAtencion1 = None
         else:
-            cliente = copy.deepcopy(self.cliente2)
             self.cliente2.finalizarAtencion(self.proximoFinAtencion2)
+            self.cliente2.salir(self.proximoFinAtencion2)
+            cliente = copy.deepcopy(self.cliente2)
             self.cliente2 = None
             self.proximoFinAtencion2 = None
 
@@ -68,11 +73,11 @@ class Secador():
                 return self.cliente2.numero
         else:
             if self.cliente1 is not None:
-                return self.cliente.numero
+                return self.cliente1.numero
         return "-"
 
     def getProximoFinAtencionString(self):
-        proximoFinAtencion = self.getProximoFinAtencion
+        proximoFinAtencion = self.getProximoFinAtencion()
         if proximoFinAtencion is not None:
             return proximoFinAtencion.time()
         return "-"
