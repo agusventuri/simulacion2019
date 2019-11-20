@@ -1,4 +1,3 @@
-from Models.Distribucion import IDistribucion
 from Models.Evento import Evento
 from datetime import datetime
 from datetime import timedelta

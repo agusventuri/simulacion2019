@@ -10,7 +10,6 @@ class IDistribucion:
 
 
 class DistribucionUniforme(IDistribucion):
-
     def __init__(self, a, b):
         self.A = a
         self.B = b

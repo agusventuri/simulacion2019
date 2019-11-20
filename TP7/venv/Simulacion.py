@@ -9,21 +9,20 @@ from Models.Secador import Secador
 from Models.Cliente import Cliente
 from Models.Evento import Evento
 from Models.Ingreso import Ingreso
-import math
-import openpyxl
+from openpyxl import Workbook
 from openpyxl.styles.borders import Border, Side
+from openpyxl.styles.alignment import Alignment
 from datetime import datetime
 from datetime import timedelta
-import csv
-import os
-
+from csv import writer
 from collections import deque
+
 _lambdaLlegadas = 12
 _a = 1
 _b = 10
 _media = 8
 _desvEstandar = 5
-_varianza = math.pow(_desvEstandar, 2)
+_varianza = _desvEstandar * _desvEstandar
 
 _distribucionIngreso = DistribucionExponencialNegativa(_lambdaLlegadas)
 _distribucionCentroA = DistribucionUniforme(_a, _b)
@@ -49,8 +48,6 @@ _maestroSecador = MaestroSecador(_S1, _S2,  _S3,  _S4,  _S5)
 _listaCentros = [_centroA, _centroB]
 _listaSecadores = [_S1, _S2,  _S3,  _S4,  _S5]
 
-#hasta = int(input("Ingrese cuantos eventos desea procesar: "))
-
 def simular(opcion, cantidad):
     if (opcion == 1):
         hasta = cantidad
@@ -68,16 +65,16 @@ def simular(opcion, cantidad):
     promedioAtencion = 0
     cantidadEnTaller = 0
     vectoresEstado = []
-    vectoresEstado.append(["", "", "", "", "", "", "",
+    vectoresEstado.append(["#", "Reloj", "Evento", "Cliente", "Próxima llegada", "Cant actual", "Max",
                            "Centro de atencion A", "", "", "", "", "",
                            "Centro de atencion B", "", "", "", "", "",
-                           "",
+                           "Lugares en secadores",
                            "Secador nro 1", "", "", "1",
                            "Secador nro 2", "", "", "",
                            "Secador nro 3", "", "", "",
                            "Secador nro 4", "", "", "",
                            "Secador nro 5", "", "", "",
-                           ""])
+                           "Promedio t atencion"])
     vectoresEstado.append(["#", "Reloj", "Evento", "Cliente", "Próxima llegada", "Cant actual", "Max",
                            "Estado", "Cliente", "Prox fin", "Cant cola", "Cant atendidos", "Espera promedio",
                            "Estado", "Cliente", "Prox fin", "Cant cola", "Cant atendidos", "Espera promedio",
@@ -125,6 +122,7 @@ def simular(opcion, cantidad):
         if (opcion == 3):
             hasta = 1
 
+        # ahora realizamos accion segun que evento haya que procesar
         if (eventoActual.nombre == "Nuevo trabajo"):
             cantidadEnTaller += 1
             numTrabajos += 1
@@ -256,16 +254,17 @@ for vector in vectoresEstado:
 if (opcion == 1 or opcion == 3):
     print("\nGenerando csv...")
     result = open("Vectores estado.csv","w", newline="")
-    writer = csv.writer(result, delimiter=';')
+    writer = writer(result, delimiter=';')
 
     for vector in vectoresEstado:
         writer.writerow(vector)
     result.close()
+    print("Listo :)")
 
 if (opcion == 2 or opcion == 3):
-    print("\n Generando excel...")
+    print("\nGenerando excel...")
     # creamos el archivo en excel
-    wb = openpyxl.Workbook()
+    wb = Workbook()
     sheet = wb.active
     sheet.title = "Vector estados"
 
@@ -287,10 +286,11 @@ if (opcion == 2 or opcion == 3):
             sheet.cell(row=fila + 1, column=columna + 1).value = str(item)
             c = columna + 1
             f = fila + 1
-            if (c == 8 or c == 14 or c == 20 or c == 21 or c == 25 or c == 29 or c == 33 or c == 37 or c == 41 or
+            if (c == 2 or c == 8 or c == 14 or c == 20 or c == 21 or c == 25 or c == 29 or c == 33 or c == 37 or c == 41 or
                     (c >= 42 and c%6 == 0)):
                 sheet.cell(row=f, column=c).border = borderLeft
-            if (f == 1 or f == 2):
+            if (f == 1 or f == 2 or f == len(vectoresEstado)):
+                sheet.cell(row=fila + 1, column=columna + 1).alignment = Alignment(horizontal='center', vertical='center')
                 if (sheet.cell(row=f, column=c).border.left.border_style == "thin"):
                     sheet.cell(row=f, column=c).border = borderBottomLeft
                 else:
@@ -303,7 +303,17 @@ if (opcion == 2 or opcion == 3):
     sheet.merge_cells(start_row=1, start_column=29, end_row=1, end_column=32)
     sheet.merge_cells(start_row=1, start_column=33, end_row=1, end_column=36)
     sheet.merge_cells(start_row=1, start_column=37, end_row=1, end_column=40)
+    sheet.merge_cells(start_row=1, start_column=1, end_row=2, end_column=1)
+    sheet.merge_cells(start_row=1, start_column=2, end_row=2, end_column=2)
+    sheet.merge_cells(start_row=1, start_column=3, end_row=2, end_column=3)
+    sheet.merge_cells(start_row=1, start_column=4, end_row=2, end_column=4)
+    sheet.merge_cells(start_row=1, start_column=5, end_row=2, end_column=5)
+    sheet.merge_cells(start_row=1, start_column=6, end_row=2, end_column=6)
+    sheet.merge_cells(start_row=1, start_column=7, end_row=2, end_column=7)
+    sheet.merge_cells(start_row=1, start_column=20, end_row=2, end_column=20)
+    sheet.merge_cells(start_row=1, start_column=41, end_row=2, end_column=41)
 
     wb.save("Vector estados excel.xlsx")
+    print("Listo :)")
 
-print("Listo. Chau :)")
+print("\nHasta la prox")

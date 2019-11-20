@@ -121,4 +121,3 @@ class CentroDeTrabajo():
             return self.horaFinBloqueo
         if (self.proximoFinAtencion is not None):
             return self.proximoFinAtencion
-

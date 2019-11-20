@@ -21,10 +21,8 @@ class Secador():
 
     def calcularFinAtencion(self, hora, primero):
         if primero:
-            #demora = round(self.distribucionAtencion1.generar() * 60, 0)
             demora = round(self.distribucionAtencion1.generar(100) * 60, 0)
         else:
-            #demora = round(self.distribucionAtencion2.generar() * 60, 0)
             demora = round(self.distribucionAtencion2.generar(100) * 60, 0)
         return hora + timedelta(seconds=demora)
 
