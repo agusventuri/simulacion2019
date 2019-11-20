@@ -254,6 +254,7 @@ for vector in vectoresEstado:
     vector.extend((largoTotal-len(vector)) * [""])
 
 if (opcion == 1 or opcion == 3):
+    print("\nGenerando csv...")
     result = open("Vectores estado.csv","w", newline="")
     writer = csv.writer(result, delimiter=';')
 
@@ -262,6 +263,7 @@ if (opcion == 1 or opcion == 3):
     result.close()
 
 if (opcion == 2 or opcion == 3):
+    print("\n Generando excel...")
     # creamos el archivo en excel
     wb = openpyxl.Workbook()
     sheet = wb.active
@@ -300,6 +302,8 @@ if (opcion == 2 or opcion == 3):
     sheet.merge_cells(start_row=1, start_column=25, end_row=1, end_column=28)
     sheet.merge_cells(start_row=1, start_column=29, end_row=1, end_column=32)
     sheet.merge_cells(start_row=1, start_column=33, end_row=1, end_column=36)
-    sheet.merge_cells(start_row=1, start_column=37, end_row=1, end_column=40)1
+    sheet.merge_cells(start_row=1, start_column=37, end_row=1, end_column=40)
 
     wb.save("Vector estados excel.xlsx")
+
+print("Listo. Chau :)")
