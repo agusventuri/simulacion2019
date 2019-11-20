@@ -72,17 +72,13 @@ class CentroDeTrabajo():
     def bloquear(self, reloj, proxFinAtencionB):
         if (len(self.cola) == 0 and self.cliente is None):
             self.estado = "Bloqueado - Libre"
-            #self.cliente = None
-            #self.proximoFinAtencion = None
         else:
-            #self.cliente = self.cola.popleft()
             self.estado = "Bloqueado - Atendiendo a " + str(self.cliente.numero)
-            #self.cliente.comenzarAtencion(self.proximoFinAtencion, self.nombre)
-            #self.actualizarFinAtencion(self.proximoFinAtencion)
 
         self.cantidadAtendidosConEspera += 1
-#        deltaProxFinAtencionB = (proxFinAtencionB - datetime(1, 1, 1)).total_seconds()
-#        self.tiempoEnEspera += (self.tiempoEnEspera * (self.cantidadAtendidosConEspera - 1) + deltaProxFinAtencionB) / self.cantidadAtendidosConEspera
+
+        deltaEspera = (proxFinAtencionB - reloj).total_seconds()
+        self.tiempoEnEspera = (self.tiempoEnEspera * (self.cantidadAtendidosConEspera - 1) + deltaEspera) / self.cantidadAtendidosConEspera
 
         self.horaInicioBloqueo = reloj
         self.horaFinBloqueo = proxFinAtencionB

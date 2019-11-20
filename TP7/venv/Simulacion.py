@@ -10,6 +10,8 @@ from Models.Cliente import Cliente
 from Models.Evento import Evento
 from Models.Ingreso import Ingreso
 import math
+import openpyxl
+from openpyxl.styles.borders import Border, Side
 from datetime import datetime
 from datetime import timedelta
 import csv
@@ -47,47 +49,45 @@ _maestroSecador = MaestroSecador(_S1, _S2,  _S3,  _S4,  _S5)
 _listaCentros = [_centroA, _centroB]
 _listaSecadores = [_S1, _S2,  _S3,  _S4,  _S5]
 
-promedioPermanencia = 0.0
-promedioAtencion = 0.0
-tiempoEsperaA = 0.0
-tiempoEsperaB = 0.0
-numeroMaximoTrabajos = 0
-resultado = []
-atendidosCentroA = 0
-permanenciaCentroA = 0.0
-atendidosCentroB = 0
-permanenciaCentroB = 0.0
-atendidosSecado = 0
-permanenciaSecado = 0
-
 #hasta = int(input("Ingrese cuantos eventos desea procesar: "))
 
-def simular(hasta):
-    fila = 0
+def simular(opcion, cantidad):
+    if (opcion == 1):
+        hasta = cantidad
+    elif (opcion == 2):
+        hasta = 1
+        horaLimite = datetime(1, 1, 1, hour = cantidad, minute = 0, second = 0)
+    else:
+        hasta = 1
+    fila = -1
     reloj = datetime(1, 1, 1, hour=0, minute=0, second=0)
     trabajos = []
     numTrabajos = 0
+    numTrabajosTerminados = 0
     maxHastaAhora = 0
+    promedioAtencion = 0
     cantidadEnTaller = 0
     vectoresEstado = []
     vectoresEstado.append(["", "", "", "", "", "", "",
-                           "Centro de", " atencion", "", "", "A",
-                           "Centro de", " atencion", "", "", "B",
+                           "Centro de atencion A", "", "", "", "", "",
+                           "Centro de atencion B", "", "", "", "", "",
                            "",
-                           "Secador", " nro", "", "1",
-                           "Secador", " nro", "", "2",
-                           "Secador", " nro", "", "3",
-                           "Secador", " nro", "", "4",
-                           "Secador", " nro", "", "5"])
+                           "Secador nro 1", "", "", "1",
+                           "Secador nro 2", "", "", "",
+                           "Secador nro 3", "", "", "",
+                           "Secador nro 4", "", "", "",
+                           "Secador nro 5", "", "", "",
+                           ""])
     vectoresEstado.append(["#", "Reloj", "Evento", "Cliente", "Próxima llegada", "Cant actual", "Max",
-                           "Estado", "Cliente", "Proximo fin", "Cantidad en cola", "Cantidad atendidos",
-                           "Estado", "Cliente", "Proximo fin", "Cantidad en cola", "Cantidad atendidos",
+                           "Estado", "Cliente", "Prox fin", "Cant cola", "Cant atendidos", "Espera promedio",
+                           "Estado", "Cliente", "Prox fin", "Cant cola", "Cant atendidos", "Espera promedio",
                            "Lugares en secadores",
-                           "Estado", "Cliente 1", "Cliente 2", "Proximo fin",
-                           "Estado", "Cliente 1", "Cliente 2", "Proximo fin",
-                           "Estado", "Cliente 1", "Cliente 2", "Proximo fin",
-                           "Estado", "Cliente 1", "Cliente 2", "Proximo fin",
-                           "Estado", "Cliente 1", "Cliente 2", "Proximo fin"])
+                           "Estado", "Cliente 1", "Cliente 2", "Prox fin",
+                           "Estado", "Cliente 1", "Cliente 2", "Prox fin",
+                           "Estado", "Cliente 1", "Cliente 2", "Prox fin",
+                           "Estado", "Cliente 1", "Cliente 2", "Prox fin",
+                           "Estado", "Cliente 1", "Cliente 2", "Prox fin",
+                           "Promedio t atencion"])
 
     while (hasta >= 0):
         hasta -= 1
@@ -100,24 +100,30 @@ def simular(hasta):
         eventos.append(Evento("Inicio de bloqueo B", _centroB.horaInicioBloqueo))
         eventos.append(Evento("Centro B desbloqueado", _centroB.horaFinBloqueo))
         eventos.append(Evento("Inicio de bloqueo A", _centroA.horaInicioBloqueo))
+        eventos.append(Evento("Fin Centro B", _centroB.proximoFinAtencion))
         eventos.append(Evento("Centro A desbloqueado", _centroA.horaFinBloqueo))
         eventos.append(Evento("Fin Centro A", _centroA.proximoFinAtencion))
-        eventos.append(Evento("Fin Centro B", _centroB.proximoFinAtencion))
 
         # tomamos el primero
         eventoActual = eventos[0]
 
         # comparamos todos para tomar el minimo
         for evento in eventos:
-            #print(evento.nombre + " - " + str(evento.hora.time()))
             if (evento.hora is not None):
                 if (evento.hora < eventoActual.hora):
                     eventoActual = evento
 
-        #print(eventoActual.nombre + " - " + str(eventoActual.hora.time()))
-
         #actualizamos reloj
         reloj = eventoActual.hora
+
+        if (opcion == 2 and reloj > horaLimite):
+            break
+        else:
+            if(opcion == 2 and reloj < horaLimite):
+                hasta = 1
+
+        if (opcion == 3):
+            hasta = 1
 
         if (eventoActual.nombre == "Nuevo trabajo"):
             cantidadEnTaller += 1
@@ -165,25 +171,15 @@ def simular(hasta):
         elif (eventoActual.nombre == "Inicio de bloqueo B"):
             clienteEvento = _centroB.actualizarFinBloqueo()
 
-        elif (eventoActual.nombre == "Fin Secador 1"):
+        elif(eventoActual.nombre.startswith("Fin Secador")):
             cantidadEnTaller -= 1
-            clienteEvento = _maestroSecador.finAtencion(1, eventoActual.hora)
-
-        elif (eventoActual.nombre == "Fin Secador 2"):
-            cantidadEnTaller -= 1
-            clienteEvento = _maestroSecador.finAtencion(2, eventoActual.hora)
-
-        elif (eventoActual.nombre == "Fin Secador 3"):
-            cantidadEnTaller -= 1
-            clienteEvento = _maestroSecador.finAtencion(3, eventoActual.hora)
-
-        elif (eventoActual.nombre == "Fin Secador 4"):
-            cantidadEnTaller -= 1
-            clienteEvento = _maestroSecador.finAtencion(4, eventoActual.hora)
-
-        elif (eventoActual.nombre == "Fin Secador 5"):
-            cantidadEnTaller -= 1
-            clienteEvento = _maestroSecador.finAtencion(5, eventoActual.hora)
+            numTrabajosTerminados += 1
+            nroSecador = int(eventoActual.nombre[-1:])
+            clienteEvento = _maestroSecador.finAtencion(nroSecador, eventoActual.hora)
+            tEnSistema = clienteEvento.tiempoEnSistema.total_seconds()
+            promedioAtencion = (promedioAtencion * (numTrabajosTerminados - 1) + tEnSistema) / numTrabajosTerminados
+            if (opcion == 3 and numTrabajosTerminados == cantidad):
+                hasta = -1
 
         if (cantidadEnTaller > maxHastaAhora):
             maxHastaAhora = cantidadEnTaller
@@ -198,66 +194,112 @@ def simular(hasta):
                         "-" if clienteEvento is None else clienteEvento.numero,
                         _ingreso.proximaLlegada.time(),
                         cantidadEnTaller,
-                        maxHastaAhora,
-                        _listaCentros[0].estado,
-                        _listaCentros[0].getNumeroCliente(),
-                        _listaCentros[0].getProximoFinAtencionString(),
-                        len(_listaCentros[0].cola),
-                        _listaCentros[0].cantidadAtendidos,
-                        _listaCentros[1].estado,
-                        _listaCentros[1].getNumeroCliente(),
-                        _listaCentros[1].getProximoFinAtencionString(),
-                        len(_listaCentros[1].cola),
-                        _listaCentros[1].cantidadAtendidos,
-                        _maestroSecador.getLugares(),
-                        _listaSecadores[0].estado,
-                        _listaSecadores[0].getNumeroCliente(False),
-                        _listaSecadores[0].getNumeroCliente(True),
-                        _listaSecadores[0].getProximoFinAtencionString(),
-                        _listaSecadores[1].estado,
-                        _listaSecadores[1].getNumeroCliente(False),
-                        _listaSecadores[1].getNumeroCliente(True),
-                        _listaSecadores[1].getProximoFinAtencionString(),
-                        _listaSecadores[2].estado,
-                        _listaSecadores[2].getNumeroCliente(False),
-                        _listaSecadores[2].getNumeroCliente(True),
-                        _listaSecadores[2].getProximoFinAtencionString(),
-                        _listaSecadores[3].estado,
-                        _listaSecadores[3].getNumeroCliente(False),
-                        _listaSecadores[3].getNumeroCliente(True),
-                        _listaSecadores[3].getProximoFinAtencionString(),
-                        _listaSecadores[4].estado,
-                        _listaSecadores[4].getNumeroCliente(False),
-                        _listaSecadores[4].getNumeroCliente(True),
-                        _listaSecadores[4].getProximoFinAtencionString()]
+                        maxHastaAhora]
 
-        #for secador in _listaSecadores:
-        #    vectoresEstado.extend([secador.estado,
-        #                           secador.getNumeroCliente(False),
-        #                           secador.getNumeroCliente(True),
-        #                           secador.getProximoFinAtencionString()])
+        for centro in _listaCentros:
+            vectorEstado.extend([centro.estado,
+                                 centro.getNumeroCliente(),
+                                 centro.getProximoFinAtencionString(),
+                                 len(centro.cola),
+                                 centro.cantidadAtendidos,
+                                 timedelta(seconds=round(centro.tiempoEnEspera, 0))])
+
+        vectorEstado.append(_maestroSecador.getLugares())
+
+        for secador in _listaSecadores:
+            vectorEstado.extend([secador.estado,
+                                   secador.getNumeroCliente(False),
+                                   secador.getNumeroCliente(True),
+                                   secador.getProximoFinAtencionString()])
+
+        vectorEstado.append(timedelta(seconds=round(promedioAtencion, 0)))
 
         for trabajo in trabajos:
-            vectorEstadoTrabajo = [trabajo.estado,
+            vectorEstado.extend([trabajo.estado,
                                    "-" if trabajo.horaLlegada is None else trabajo.horaLlegada.time(),
                                    "-" if trabajo.horaInicioAtencion is None else trabajo.horaInicioAtencion.time(),
                                    "-" if trabajo.horaFinAtencion is None else trabajo.horaFinAtencion.time(),
                                    "-" if trabajo.horaSalida is None else trabajo.horaSalida.time(),
-                                   "-" if trabajo.tiempoEnSistema is None else trabajo.tiempoEnSistema]
-            vectorEstado.extend(vectorEstadoTrabajo)
+                                   "-" if trabajo.tiempoEnSistema is None else trabajo.tiempoEnSistema])
 
         vectoresEstado.append(vectorEstado)
     return vectoresEstado, trabajos
 
-vectoresEstado, trabajos = simular(2000)
+print("Ingresa una opción para establecer el final de la simulacion: ")
+print("\t1 - Eventos")
+print("\t2 - Horas")
+print("\t3 - Trabajos")
+opcion = int(input("-> "))
+opcionStr = "eventos" if opcion == 1 else "horas" if opcion == 2 else "trabajos"
+cantidad = int(input("Ahora ingrese la cantidad de " + opcionStr + " a procesar: "))
+print("\nProcesando....\n")
+
+vectoresEstado, trabajos = simular(opcion, cantidad)
+
+print("Listo :)\n")
+print("Ingresa una opción a imprimir: ")
+print("\t1 - CSV")
+print("\t2 - Excel")
+print("\t3 - Ambos")
+
+opcion = int(input("-> "))
 
 for trabajo in trabajos:
     vectoresEstado[0].extend(["Trabajo", "Nro", "", "", "", trabajo.numero])
     vectoresEstado[1].extend(["Estado", "Llegada", "Inicio atención", "Fin atención", "Salida", "Tiempo en sistema"])
 
-result = open("Vectores estado.csv","w", newline="")
-writer = csv.writer(result, delimiter=';')
+largoTotal = len(vectoresEstado[0])
 
 for vector in vectoresEstado:
-    writer.writerow(vector)
-result.close()
+    vector.extend((largoTotal-len(vector)) * [""])
+
+if (opcion == 1 or opcion == 3):
+    result = open("Vectores estado.csv","w", newline="")
+    writer = csv.writer(result, delimiter=';')
+
+    for vector in vectoresEstado:
+        writer.writerow(vector)
+    result.close()
+
+if (opcion == 2 or opcion == 3):
+    # creamos el archivo en excel
+    wb = openpyxl.Workbook()
+    sheet = wb.active
+    sheet.title = "Vector estados"
+
+    borderLeft = Border(left=Side(border_style="thin"),
+                        right=Side(border_style=None),
+                        top=Side(border_style=None),
+                        bottom=Side(border_style=None))
+    borderBottom = Border(left=Side(border_style=None),
+                        right=Side(border_style=None),
+                        top=Side(border_style=None),
+                        bottom=Side(border_style="thin"))
+    borderBottomLeft = Border(left=Side(border_style="thin"),
+                        right=Side(border_style=None),
+                        top=Side(border_style=None),
+                        bottom=Side(border_style="thin"))
+
+    for fila, vector in enumerate(vectoresEstado):
+        for columna, item in enumerate(vector):
+            sheet.cell(row=fila + 1, column=columna + 1).value = str(item)
+            c = columna + 1
+            f = fila + 1
+            if (c == 8 or c == 14 or c == 20 or c == 21 or c == 25 or c == 29 or c == 33 or c == 37 or c == 41 or
+                    (c >= 42 and c%6 == 0)):
+                sheet.cell(row=f, column=c).border = borderLeft
+            if (f == 1 or f == 2):
+                if (sheet.cell(row=f, column=c).border.left.border_style == "thin"):
+                    sheet.cell(row=f, column=c).border = borderBottomLeft
+                else:
+                    sheet.cell(row=f, column=c).border = borderBottom
+
+    sheet.merge_cells(start_row=1, start_column=8, end_row=1, end_column=13)
+    sheet.merge_cells(start_row=1, start_column=14, end_row=1, end_column=19)
+    sheet.merge_cells(start_row=1, start_column=21, end_row=1, end_column=24)
+    sheet.merge_cells(start_row=1, start_column=25, end_row=1, end_column=28)
+    sheet.merge_cells(start_row=1, start_column=29, end_row=1, end_column=32)
+    sheet.merge_cells(start_row=1, start_column=33, end_row=1, end_column=36)
+    sheet.merge_cells(start_row=1, start_column=37, end_row=1, end_column=40)1
+
+    wb.save("Vector estados excel.xlsx")
